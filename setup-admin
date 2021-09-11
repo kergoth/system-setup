@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# shellcheck source=./components/common.sh
+. "$(dirname "$0")/components/common.sh" || exit 1
+
+if [ "$(id -u)" = "0" ]; then
+    die "Error: Do not run as root"
+elif ! sudo -v; then
+    die "Error: please run as a user that can run sudo."
+fi
+
+# Install system packages and apps
+if is_mac; then
+    export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-~/.brew}
+    PATH="$HOMEBREW_PREFIX/bin:$(dirname "$0")/scripts:$PATH"
+
+    # Install brew
+    if ! [ -e "$HOMEBREW_PREFIX/bin/brew" ]; then
+        install-brew -s "$HOMEBREW_PREFIX"
+    fi
+
+    # Install GUI apps
+    brew install --cask 1password
+    brew install --cask blockblock
+    brew install --cask karabiner-elements
+    brew install --cask reikey
+    brew install --cask whatsyoursign
+    brew install --cask lulu
+    brew install --cask git-credential-manager-core
+
+    CASKROOM="$(brew --caskroom)"
+    if [ -d "$CASKROOM"/whatsyoursign ]; then
+        find "$CASKROOM"/whatsyoursign -name WhatsYourSign\ Installer.app -print0 \
+            | xargs -0 open
+    fi
+
+    "$(dirname "$0")/scripts/install-oversight"
+
+    # Configuration
+    # shellcheck source=./components/macos-configure-admin.sh
+    "$(dirname "$0")/components/macos-configure-admin.sh"
+fi
+
