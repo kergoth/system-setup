@@ -42,6 +42,7 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 # Expose hidden files and Library folder in Finder:
 defaults write com.apple.finder AppleShowAllFiles -bool true
 chflags nohidden ~/Library
+xattr -d com.apple.FinderInfo ~/Library 2>/dev/null
 
 # Show all filename extensions (so that "Evil.jpg.app" cannot masquerade easily).
 defaults write -g AppleShowAllExtensions -bool true
