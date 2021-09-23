@@ -110,3 +110,6 @@ defaults write com.apple.finder CreateDesktop -bool false
 
 # Disable Dashboard
 defaults write com.apple.dashboard mcx-disabled -bool true
+
+# Restart Dock
+killall Dock
