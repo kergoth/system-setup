@@ -81,6 +81,9 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 # Remove autohide dock delay
 defaults write com.apple.dock autohide-delay -float 0
 
+# Speed up autohide animation
+defaults write com.apple.dock autohide-time-modifier -float 0.25
+
 # Speed up mission control animations
 defaults write com.apple.dock expose-animation-duration -float 0.12
 
