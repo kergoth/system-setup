@@ -94,6 +94,10 @@ if is_mac; then
 
     # Quicklook
     brew install --cask qlcolorcode qlmarkdown qlprettypatch qlstephen quicklook-csv quicklook-json webpquicklook
+    xattr -cr ~/Library/QuickLook/*.qlgenerator
+    qlmanage -r >/dev/null 2>&1
+    qlmanage -r cache >/dev/null 2>&1
+    killall Finder >/dev/null 2>&1
 
     # Productivity
     brew install --cask omnioutliner
