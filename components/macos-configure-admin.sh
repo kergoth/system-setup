@@ -29,6 +29,9 @@ sudorun sh -c "sort -u /etc/sysctl.conf >/tmp/foo && mv /tmp/foo /etc/sysctl.con
 # shellcheck disable=SC2046
 sudorun sysctl -w $(cat /etc/sysctl.conf)
 
+# Silence Boot chime
+sudo nvram SystemAudioVolume=" "
+
 # Load new spotlight settings before rebuilding the index
 killall mds > /dev/null 2>&1
 # Make sure indexing is enabled for the main volume
