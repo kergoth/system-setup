@@ -3,9 +3,7 @@
 # shellcheck source=./common.sh
 . "$(dirname "$0")/common.sh" || exit 1
 
-if [ "$(id -u)" != "0" ] && ! sudo -v; then
-    die "Error: please run as root, or as a user that can run sudo."
-fi
+need_sudo
 
 # Enable Firewall
 sudorun defaults write /Library/Preferences/com.apple.alf globalstate -bool true
@@ -30,11 +28,11 @@ sudorun sh -c "sort -u /etc/sysctl.conf >/tmp/foo && mv /tmp/foo /etc/sysctl.con
 sudorun sysctl -w $(cat /etc/sysctl.conf)
 
 # Silence Boot chime
-sudo nvram SystemAudioVolume=" "
+sudorun nvram SystemAudioVolume=" "
 
 # Load new spotlight settings before rebuilding the index
-killall mds > /dev/null 2>&1
+sudorun killall mds > /dev/null 2>&1
 # Make sure indexing is enabled for the main volume
-sudo mdutil -i on / > /dev/null
+sudorun mdutil -i on / > /dev/null
 # Rebuild the index from scratch
-sudo mdutil -E / > /dev/null
+sudorun mdutil -E / > /dev/null

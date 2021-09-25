@@ -5,8 +5,8 @@
 
 if [ "$(id -u)" = "0" ]; then
     die "Error: Do not run as root"
-elif ! sudo -v; then
-    die "Error: please run as a user that can run sudo."
+else
+    need_sudo
 fi
 
 # Install system packages and apps

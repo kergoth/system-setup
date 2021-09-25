@@ -18,11 +18,31 @@ is_mac() {
     esac
 }
 
-die() {
-    msg="$1"
+msg() {
+    fmt="$1"
     # shellcheck disable=SC2059
-    printf "$msg\n" "$@" >&2
+    printf "$fmt\n" "$@" >&2
+}
+
+die() {
+    msg "$@"
     exit 1
+}
+
+need_sudo() {
+    if [ "$(id -u)" != "0" ]; then
+        msg "Running sudo, you may be prompted for your password.s"
+        if ! sudo -v; then
+            die "Error: please run as root, or as a user that can run sudo."
+        else
+            # Keep-alive: update existing `sudo` time stamp until finished
+            while true; do
+                sudo -n true
+                sleep 60
+                kill -0 "$$" || exit
+            done 2>/dev/null &
+        fi
+    fi
 }
 
 sudorun() {
