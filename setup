@@ -111,6 +111,8 @@ fi
 
 ## Configuration
 if is_mac; then
-    # shellcheck source=./Components/macos-configure.sh
-    "$(dirname "$0")/Components/macos-configure.sh"
+    # shellcheck source=./components/macos-configure.sh
+    "$(dirname "$0")/components/macos-configure.sh"
+    # shellcheck source=./components/macos-setup-apps.sh
+    "$(dirname "$0")/components/macos-setup-apps.sh"
 fi
