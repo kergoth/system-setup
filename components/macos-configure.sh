@@ -1,5 +1,7 @@
 #!/bin/sh
 
+scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
+
 # Prevent auto-mounting of remote-filesystems by Finder
 duti -vs com.apple.Safari afp
 duti -vs com.apple.Safari ftp
@@ -200,6 +202,16 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 # Top right screen corner → Start screen saver
 defaults write com.apple.dock wvous-tr-corner -int 5
 defaults write com.apple.dock wvous-tr-modifier -int 0
+
+# Disable font smoothing
+defaults -currentHost write -g AppleFontSmoothing -int 0
+# Select 2x display scaling for better font rendering
+usersite="$(python3 -c 'import site; print(site.getusersitepackages())')"
+if ! [ -e "$usersite/display_manager_lib.py" ]; then
+    mkdir -p "$usersite"
+    curl -Lfso "$usersite/display_manager_lib.py" "https://raw.githubusercontent.com/univ-of-utah-marriott-library-apple/display_manager/stable/display_manager_lib.py"
+fi
+python3 "$scriptdir"/macos-set-resolution-scale-2.py
 
 killall Dock
 killall SystemUIServer
