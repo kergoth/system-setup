@@ -61,6 +61,7 @@ brew install fd
 brew install ripgrep
 brew install fzf
 brew install exa
+brew install gh
 brew install git-delta
 brew install direnv
 brew install shfmt
