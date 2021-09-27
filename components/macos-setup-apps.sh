@@ -34,9 +34,7 @@ if app_installed_directly "Send to Kindle"; then
 fi
 
 # Switch these associations from Archive Utility to The Unarchiver
-duti-all -n "/System/Library/CoreServices/Applications/Archive Utility.app" \
-    | sed 's/com\.apple\.archiveutility/cx\.c3\.theunarchiver/; s/-s/-vs/;' \
-    | tr '\n' '\0' | xargs -0 -n 1 -I"{}" sh -c "{}"
+duti-switch "/System/Library/CoreServices/Applications/Archive Utility.app" cx.c3.theunarchiver
 
 # Open these apps so they set up auto-start for themselves
 while read -r app; do
