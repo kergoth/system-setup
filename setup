@@ -106,7 +106,68 @@ if is_mac; then
     brew install --cask keepingyouawake soulver2 daisydisk
 
     # Development
-    brew install --cask visual-studio-code
+    brew install --cask visual-studio-codes
+
+    # Install Mac App Store Apps
+    if ! mas account >/dev/null 2>&1; then
+        msg "Error: unable to install Mac App Store apps, please log-in to the Mac App Store."
+    else
+        # Core
+        # UnPlugged
+        mas install 423123087
+        # Magnet
+        mas install 441258766
+        # WiFi Signal
+        mas install 525912054
+        # PopClip
+        mas install 445189367
+        # Hidden Bar
+        mas install 1452453066
+        # Deliveries
+        mas install 290986013
+
+        # Communication
+        # Textual IRC Client
+        mas install 1262957439
+
+        # Reading
+        # GoodLinks
+        mas install 1474335294
+        # Reeder
+        mas install 1529448980
+
+        # Safari Extensions
+        # Shut Up
+        mas install 1015043880
+        # Hush
+        mas install 1544743900
+        # PiPer
+        mas install 1421915518
+        # Privacy Redirect for Safari
+        mas install 1578144015
+        # Tampermonkey
+        mas install 1482490089
+        # SessionRestore
+        mas install 1463334954
+        # AdGuard for Safari
+        mas install 1440147259
+
+        # Productivity
+        # Bear
+        mas install 1091189122
+        # Spark
+        mas install 1176895641
+        # Todoist
+        mas install 585829637
+
+        # Utilities
+        # WiFi Explorer
+        mas install 494803304
+        # LilyView
+        mas install 529490330
+        # MusicHarbor
+        mas install 1440405750
+    fi
 fi
 
 ## Configuration
