@@ -26,6 +26,7 @@ if is_mac; then
     brew install --cask reikey
     brew install --cask whatsyoursign
     brew install --cask lulu
+    adminbrew tap microsoft/git
     brew install --cask git-credential-manager-core
 
     CASKROOM="$(brew --caskroom)"
