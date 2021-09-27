@@ -45,6 +45,7 @@ scoop install fd
 scoop install ripgrep
 scoop install fzf
 cargo install --no-default-features --branch chesterliu/dev/win-support --git https://github.com/skyline75489/exa
+scoop install gh
 scoop install delta
 scoop install shfmt
 scoop install shellcheck
