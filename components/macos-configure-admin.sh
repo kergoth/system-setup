@@ -18,6 +18,9 @@ sudorun defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMult
 # Don't show hostname at the login screen
 sudorun defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo ""
 
+# Disable Captive Portal
+sudorun defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control.plist Active -bool false
+
 # Crank up the max open files, etc
 sudorun sh -c "echo kern.sysv.shmall=65536 >>/etc/sysctl.conf"
 sudorun sh -c "echo kern.sysv.shmmax=16777216 >>/etc/sysctl.conf"
