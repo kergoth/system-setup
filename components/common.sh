@@ -31,7 +31,7 @@ die() {
 
 need_sudo() {
     if [ "$(id -u)" != "0" ]; then
-        msg "Running sudo, you may be prompted for your password.s"
+        msg "Running sudo, you may be prompted for your password."
         if ! sudo -v; then
             die "Error: please run as root, or as a user that can run sudo."
         else
