@@ -8,6 +8,9 @@ duti -vs com.apple.Safari ftp
 duti -vs com.apple.Safari nfs
 duti -vs com.apple.Safari smb
 
+# Avoid executing scripts by default
+duti -vs com.apple.TextEdit public.unix-executable
+
 # Change indexing order and don’t send search queries to Apple
 defaults write com.apple.spotlight orderedItems -array \
 	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
