@@ -133,6 +133,7 @@ if [ "$install_admin" -eq 1 ]; then
     echo >&2 "Administrative user: $adminuser"
     echo >&2 "Installing administrative components"
     run_admin "$scriptdir/../setup-admin"
+    run_admin "$scriptdir/macos-split-setup-admin" "$adminuser"
     if [ "$install_user" -eq 0 ] && [ "$setup_user" -eq 1 ]; then
         run_user "$scriptdir/../setup"
     fi
