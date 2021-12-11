@@ -13,7 +13,6 @@ if ! [ -e "$HOMEBREW_PREFIX/bin/brew" ]; then
     install-brew -s "$HOMEBREW_PREFIX"
 fi
 
-# Install languages
 # shellcheck source=./scripts/install-asdf
 . "$(dirname "$0")/scripts/install-asdf" || exit 1
 

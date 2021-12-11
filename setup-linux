@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# shellcheck source=./components/common.sh
+. "$(dirname "$0")/components/common.sh" || exit 1
+
+export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-~/.brew}
+PATH="$HOMEBREW_PREFIX/bin:$(dirname "$0")/scripts:$PATH"
+
+## Install CLI apps
+
+# Install brew
+if ! [ -e "$HOMEBREW_PREFIX/bin/brew" ]; then
+    install-brew -s "$HOMEBREW_PREFIX"
+fi
+
+# Install languages
+# shellcheck source=./scripts/install-asdf
+. "$(dirname "$0")/scripts/install-asdf" || exit 1
+
+# shellcheck source=./scripts/install-langs-asdf
+"$(dirname "$0")/scripts/install-langs-asdf"
+
+cat setup \
+    | grep '^brew install' \
+    | awk '{print $3}' \
+    | grep -Ev 'ninja|fd|gh|git-delta|shfmt' \
+    | xargs -t sudo apt-get -y install
+brew install ninja fd gh git-delta shfmt
