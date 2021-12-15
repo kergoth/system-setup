@@ -25,4 +25,5 @@ cat setup \
     | awk '{print $3}' \
     | grep -Ev 'ninja|fd|gh|git-delta|shfmt' \
     | xargs -t sudo apt-get -y install
-brew install ninja fd gh git-delta shfmt
+sudo apt-get -y install ninja-build fd-find
+brew install gh git-delta shfmt
