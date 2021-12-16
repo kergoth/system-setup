@@ -8,6 +8,12 @@ PATH="$HOMEBREW_PREFIX/bin:$(dirname "$0")/scripts:$PATH"
 
 ## Install CLI apps
 
+# Baseline
+sudo apt-get -y install build-essential
+
+# Needed to install homebrew
+sudo apt-get -y install git
+
 # Install brew
 if ! [ -e "$HOMEBREW_PREFIX/bin/brew" ]; then
     install-brew -s "$HOMEBREW_PREFIX"
@@ -26,4 +32,8 @@ cat setup \
     | grep -Ev 'ninja|fd|gh|git-delta|shfmt' \
     | xargs -t sudo apt-get -y install
 sudo apt-get -y install ninja-build fd-find
-brew install gh git-delta shfmt
+
+# Not available via apt
+brew install gh
+brew install git-delta
+brew install shfmt
