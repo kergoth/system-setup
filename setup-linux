@@ -8,11 +8,17 @@ PATH="$HOMEBREW_PREFIX/bin:$(dirname "$0")/scripts:$PATH"
 
 ## Install CLI apps
 
-# Baseline
-sudo apt-get -y install build-essential
+if has pacman; then
+    # Update package databases
+    pacman_install -y
+fi
 
-# Needed to install homebrew
-sudo apt-get -y install git
+# Baseline, and git for homebrew and asdf
+if has apt-get; then
+    sudo apt-get -y install build-essential git
+elif has pacman; then
+    pacman_install base-devel git
+fi
 
 # Install brew
 if ! [ -e "$HOMEBREW_PREFIX/bin/brew" ]; then
@@ -26,12 +32,14 @@ fi
 # shellcheck source=./scripts/install-langs-asdf
 "$(dirname "$0")/scripts/install-langs-asdf"
 
-cat setup \
-    | grep '^brew install' \
-    | awk '{print $3}' \
-    | grep -Ev 'ninja|fd|gh|git-delta|shfmt' \
-    | xargs -t sudo apt-get -y install
-sudo apt-get -y install ninja-build fd-find
+if has apt-get; then
+    cat setup \
+        | grep '^brew install' \
+        | awk '{print $3}' \
+        | grep -Ev 'ninja|fd|gh|git-delta|shfmt' \
+        | xargs -t sudo apt-get -y install
+    sudo apt-get -y install ninja-build fd-find
+fi
 
 # Not available via apt
 brew install gh

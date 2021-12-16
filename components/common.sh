@@ -48,3 +48,15 @@ need_sudo() {
 sudorun() {
     command $SUDO "$@"
 }
+
+has() {
+    command -v "$@" >/dev/null 2>&1
+}
+
+pacman_install() {
+    sudo pacman -S --noconfirm --needed "$@"
+}
+
+apt_install() {
+    sudo apt-get -y install "$@"
+}
