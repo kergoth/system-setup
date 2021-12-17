@@ -64,12 +64,6 @@ else
     asdf plugin-update "$plugin" >/dev/null 2>&1
 fi
 
-if [ -e "$scriptdir/$plugin-build-env.sh" ]; then
-    echo >&2 "Using '$scriptdir/$plugin-build-env.sh'"
-    # shellcheck disable=SC1090
-    . "$scriptdir/$plugin-build-env.sh"
-fi
-
 if [ $# -gt 1 ]; then
     version=$2
     case "$version" in
@@ -83,6 +77,14 @@ if [ $# -gt 1 ]; then
 else
     version="$(asdf latest "$plugin")"
 fi
+
+if [ -e "$scriptdir/$plugin-build-env.sh" ]; then
+    echo >&2 "Using '$scriptdir/$plugin-build-env.sh'"
+    eval "$(echo "$plugin" | tr '[:lower:]' '[:upper:]')_VERSION=$version"
+    # shellcheck disable=SC1090
+    . "$scriptdir/$plugin-build-env.sh"
+fi
+
 
 echo >&2 "asdf-install: installing version $version of $plugin"
 
