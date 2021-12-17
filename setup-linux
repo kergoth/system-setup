@@ -37,12 +37,28 @@ fi
 "$scriptdir/scripts/install-langs-asdf"
 
 if has apt-get; then
-    cat setup \
+    cat "$scriptdir/setup" \
         | grep '^brew install' \
         | awk '{print $3}' \
         | grep -Ev 'ninja|fd|gh|git-delta|shfmt' \
         | xargs -t sudo apt-get -y install
     sudo apt-get -y install ninja-build fd-find
+    brew install gh
+    brew install git-delta
+    brew install shfmt
+elif has pacman; then
+    cat "$scriptdir/setup" \
+        | grep '^brew install' \
+        | awk '{print $3}' \
+        | grep -Ev 'gh|pup' \
+        | xargs -t sudo pacman -S --noconfirm --needed
+    brew install gh
+    brew install pup
+else
+    cat "$scriptdir/setup" \
+        | grep '^brew install' \
+        | awk '{print $3}' \
+        | xargs brew install
 fi
 
 # Not available via apt
