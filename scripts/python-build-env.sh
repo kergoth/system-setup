@@ -28,13 +28,6 @@ case "${OSTYPE:-}" in
         fi
         export CPPFLAGS
         ;;
-    *)
-        if [ -e /etc/arch-release ]; then
-            CPPFLAGS="$CPPFLAGS -I/usr/include/openssl-1.0"
-            LDFLAGS="$LDFLAGS -L/usr/lib/openssl-1.0"
-            export CPPFLAGS LDFLAGS
-        fi
-        ;;
 esac
 
 if [ -z "${CONFIGURE_OPTS:-}" ] && [ -z "${PYTHON_CONFIGURE_OPTS:-}" ]; then
