@@ -1,10 +1,12 @@
 #!/bin/sh
 
+scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
+
 # shellcheck source=./components/common.sh
-. "$(dirname "$0")/components/common.sh" || exit 1
+. "$scriptdir/components/common.sh" || exit 1
 
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-~/.brew}
-PATH="$HOMEBREW_PREFIX/bin:$(dirname "$0")/scripts:$PATH"
+PATH="$HOMEBREW_PREFIX/bin:$scriptdir/scripts:$PATH"
 
 ## Install CLI apps
 
@@ -14,10 +16,10 @@ if ! [ -e "$HOMEBREW_PREFIX/bin/brew" ]; then
 fi
 
 # shellcheck source=./scripts/install-asdf
-. "$(dirname "$0")/scripts/install-asdf" || exit 1
+. "$scriptdir/scripts/install-asdf" || exit 1
 
 # shellcheck source=./scripts/install-langs-asdf
-"$(dirname "$0")/scripts/install-langs-asdf"
+"$scriptdir/scripts/install-langs-asdf"
 
 # Mac-specific
 if is_mac; then
@@ -173,7 +175,7 @@ fi
 ## Configuration
 if is_mac; then
     # shellcheck source=./components/macos-configure.sh
-    "$(dirname "$0")/components/macos-configure.sh"
+    "$scriptdir/components/macos-configure.sh"
     # shellcheck source=./components/macos-setup-apps.sh
-    "$(dirname "$0")/components/macos-setup-apps.sh"
+    "$scriptdir/components/macos-setup-apps.sh"
 fi
