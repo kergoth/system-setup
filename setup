@@ -10,6 +10,20 @@ PATH="$HOMEBREW_PREFIX/bin:$scriptdir/scripts:$PATH"
 
 ## Install CLI apps
 
+if ! is_mac; then
+    if has pacman; then
+        # Update package databases
+        pacman_install -y
+    fi
+
+    # Baseline, and git for homebrew and asdf
+    if has apt-get; then
+        apt_install build-essential git
+    elif has pacman; then
+        pacman_install base-devel git
+    fi
+fi
+
 # Install brew
 if ! [ -e "$HOMEBREW_PREFIX/bin/brew" ]; then
     install-brew -s "$HOMEBREW_PREFIX"
@@ -37,48 +51,41 @@ if is_mac; then
 fi
 
 # Install core
-brew install git
-brew install neovim
-brew install tmux
-brew install zsh
+pkg_install neovim
+pkg_install tmux
+pkg_install zsh
 
 if is_mac; then
+    brew install git
     brew install wget
+
+    # Install development / build packages
+    brew install autoconf
+    brew install automake
+    brew install cmake
+    brew install gettext
+    brew install libtool
+    brew install patchutils
+    brew install pkg-config
 fi
 
-# Install development / build packages
-brew install autoconf
-brew install automake
-brew install cmake
-brew install gettext
-brew install libtool
-brew install ninja
-brew install pandoc
-brew install patchutils
-brew install pkg-config
-
 # Install tools
-brew install fd
-brew install ripgrep
-brew install fzf
-brew install exa
-brew install gh
-brew install git-delta
-brew install direnv
-brew install shfmt
+pkg_install fd
+pkg_install ripgrep
+pkg_install fzf
+pkg_install exa
+pkg_install gh
+pkg_install git-delta
+pkg_install direnv
+pkg_install shfmt
 install-shellcheck
-brew install jq
-brew install pup
+pkg_install jq
 
 pipx install flake8
 pipx inject flake8 pep8-naming flake8-docstrings
-pipx install httpie
 pipx install peru
 pipx install git-revise
 pipx install git+https://github.com/kergoth/git-imerge@no-completions-in-setup
-
-cargo install --git https://github.com/jez/as-tree
-go install github.com/shurcooL/markdownfmt@latest
 
 ## Install GUI apps
 if is_mac; then

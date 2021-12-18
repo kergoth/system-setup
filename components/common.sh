@@ -6,16 +6,31 @@ else
     SUDO=
 fi
 
+has() {
+    command -v "$@" >/dev/null 2>&1
+}
+
+# shellcheck disable=SC3028
+case "${OSTYPE:-}" in
+    darwin*)
+        mac=1
+        debian=0
+        arch=0
+        ;;
+    *)
+        mac=0
+        if has apt-get; then
+            debian=1
+            arch=0
+        elif has pacman; then
+            debian=0
+            arch=1
+        fi
+        ;;
+esac
+
 is_mac() {
-    # shellcheck disable=SC3028
-    case "${OSTYPE:-}" in
-        darwin*)
-            return 0
-            ;;
-        *)
-            return 1
-            ;;
-    esac
+    [ "$mac" -eq 1 ]
 }
 
 msg() {
@@ -49,14 +64,52 @@ sudorun() {
     command $SUDO "$@"
 }
 
-has() {
-    command -v "$@" >/dev/null 2>&1
-}
-
 pacman_install() {
-    sudo pacman -S --noconfirm --needed "$@"
+    sudorun pacman -S --noconfirm --needed "$@"
 }
 
 apt_install() {
-    sudo apt-get -y install "$@"
+    sudorun apt-get -y install "$@"
+}
+
+map_pkg() {
+    if [ "$debian" -eq 1 ]; then
+        case "$1" in
+            ninja)
+                echo ninja-build
+                return
+                ;;
+            fd)
+                echo fd-find
+                return
+                ;;
+        esac
+    fi
+    echo "$1"
+}
+
+pkg_install() {
+    pkg="$(map_pkg "$1")"
+    if [ "$debian" -eq 1 ]; then
+        case "$pkg" in
+            gh | git-delta | shfmt)
+                brew install "$pkg"
+                return
+                ;;
+            *)
+                apt_install "$pkg"
+                ;;
+        esac
+    elif [ "$arch" -eq 1 ]; then
+        case "$pkg" in
+            gh | pup)
+                brew install "$pkg"
+                return
+                ;;
+            *)
+                pacman_install "$pkg"
+        esac
+    else
+        brew install "$pkg"
+    fi
 }

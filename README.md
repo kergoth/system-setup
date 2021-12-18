@@ -11,7 +11,15 @@ This project holds the consolidation of my various per-system setup script repos
 
 ## Usage
 
-### Linux or macOS
+### Linux
+
+As user that can run sudo:
+
+```console
+./setup
+```
+
+### macOS
 
 ```console
 ./setup
