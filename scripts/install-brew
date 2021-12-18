@@ -3,7 +3,7 @@
 set -eu
 
 usage () {
-    echo >&2 "${0##*/} [-h|-s|-r INSTALL_REPO_PATH] INSTALL_PATH"
+    echo >&2 "${0##*/} [options] INSTALL_PATH"
     echo >&2
     echo >&2 "Install homebrew to the specified INSTALL_PATH"
     echo >&2
@@ -11,21 +11,16 @@ usage () {
     echo >&2
     echo >&2 "  -r INSTALL_REPO_PATH Destination of the homebrew repo when using -s. Default: INSTALL_PATH/homebrew"
     echo >&2 "  -s    Separate the prefix and repo."
-    echo >&2 "  -S    Use shallow clones."
     echo >&2 "  -h    Show this help."
     exit 2
 }
 
 HOMEBREW_REPO=
 separate_prefix=0
-shallow=
-while getopts sSr:h opt; do
+while getopts sr:h opt; do
     case "$opt" in
         s)
             separate_prefix=1
-            ;;
-        S)
-            shallow=1
             ;;
         r)
             HOMEBREW_REPO="$OPTARG"
@@ -45,7 +40,9 @@ HOMEBREW_PREFIX="${1:-$HOMEBREW_PREFIX}"
 if [ -z "$HOMEBREW_PREFIX" ]; then
     usage
 fi
+mkdir -p "$HOMEBREW_PREFIX"
 
+HOMEBREW_PREFIX="$(cd "$HOMEBREW_PREFIX" && pwd -P)"
 PATH="$HOMEBREW_PREFIX/bin:$PATH"
 
 if [ "$separate_prefix" -eq 1 ]; then
@@ -57,9 +54,9 @@ else
     HOMEBREW_REPO="$HOMEBREW_PREFIX"
 fi
 
-git clone ${shallow:+--depth 1} https://github.com/homebrew/brew "$HOMEBREW_REPO"
+git clone https://github.com/homebrew/brew "$HOMEBREW_REPO"
 git config -f "$HOMEBREW_REPO/.git/config" homebrew.analyticsdisabled true
-git clone ${shallow:+--depth 1} https://github.com/homebrew/homebrew-core "$HOMEBREW_REPO/Library/Taps/homebrew/homebrew-core"
+git clone https://github.com/homebrew/homebrew-core "$HOMEBREW_REPO/Library/Taps/homebrew/homebrew-core"
 
 HOMEBREW_PREFIX="$(cd "$HOMEBREW_PREFIX" && pwd -P)"
 if [ "$separate_prefix" -eq 1 ]; then
