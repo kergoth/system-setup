@@ -115,7 +115,7 @@ if is_mac; then
     brew install --cask keepingyouawake soulver2 daisydisk
 
     # Development
-    brew install --cask visual-studio-codes
+    brew install --cask visual-studio-code
 
     # Install Mac App Store Apps
     if ! mas account >/dev/null 2>&1; then
