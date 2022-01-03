@@ -1,6 +1,8 @@
 #!/bin/sh
 
 scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
+tmpdir="$(mktemp -d -t "${0##*/}.XXXXXX")" || exit 1
+trap 'rm -rf "$tmpdir"' EXIT INT TERM
 
 # Prevent auto-mounting of remote-filesystems by Finder
 duti -vs com.apple.Safari afp
@@ -212,13 +214,23 @@ defaults write com.apple.dock wvous-tr-modifier -int 0
 
 # Disable font smoothing
 defaults -currentHost write -g AppleFontSmoothing -int 0
+
 # Select 2x display scaling for better font rendering
-usersite="$(python3 -c 'import site; print(site.getusersitepackages())')"
-if ! [ -e "$usersite/display_manager_lib.py" ]; then
-    mkdir -p "$usersite"
-    curl -Lfso "$usersite/display_manager_lib.py" "https://raw.githubusercontent.com/univ-of-utah-marriott-library-apple/display_manager/stable/display_manager_lib.py"
-fi
-python3 "$scriptdir"/macos-set-resolution-scale-2.py
+/usr/bin/python3 -m venv "$tmpdir/venv"
+(
+    . "$tmpdir/venv/bin/activate"
+
+    pip install wheel
+    pip install pyobjc-core pyobjc-framework-Cocoa pyobjc-framework-Quartz
+
+    site="$(python3 -c 'import site; print(site.getsitepackages()[0])')"
+    if ! [ -e "$site/display_manager_lib.py" ]; then
+        mkdir -p "$site"
+        curl -Lfso "$site/display_manager_lib.py" "https://raw.githubusercontent.com/univ-of-utah-marriott-library-apple/display_manager/stable/display_manager_lib.py"
+    fi
+
+    python3 "$scriptdir"/macos-set-resolution-scale-2.py
+)
 
 killall Dock
 killall SystemUIServer
