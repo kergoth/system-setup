@@ -5,8 +5,9 @@ scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
 # shellcheck source=./components/common.sh
 . "$scriptdir/components/common.sh" || exit 1
 
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-~/.brew}
-PATH="$HOMEBREW_PREFIX/bin:$scriptdir/scripts:$PATH"
+PATH="$HOMEBREW_PREFIX/bin:$XDG_DATA_HOME/../bin:$scriptdir/scripts:$PATH"
 
 ## Install CLI apps
 
