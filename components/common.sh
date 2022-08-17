@@ -94,20 +94,23 @@ pkg_install() {
         case "$pkg" in
             gh | git-delta | shfmt)
                 brew install "$pkg"
-                return
                 ;;
             *)
-                apt_install "$pkg"
+                if apt cache show "$pkg" >/dev/null 2>&1; then
+                    apt_install "$pkg"
+                else
+                    brew install "$1"
+                fi
                 ;;
         esac
     elif [ "$arch" -eq 1 ]; then
         case "$pkg" in
             gh | pup)
                 brew install "$pkg"
-                return
                 ;;
             *)
                 pacman_install "$pkg"
+                ;;
         esac
     else
         brew install "$pkg"
