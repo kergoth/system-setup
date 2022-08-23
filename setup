@@ -76,6 +76,7 @@ pkg_install fzf
 pkg_install exa
 pkg_install gh
 pkg_install git-delta
+pkg_install git-absorb
 pkg_install direnv
 pkg_install shfmt
 install-shellcheck
