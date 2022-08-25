@@ -9,6 +9,7 @@ _install () {
         echo >&2 "Error: $lang installation failed:"
         ${tolog:+tail "$log"}
         _failed="${_failed:+$_failed }$lang"
+        return 1
     fi
 }
 
@@ -72,10 +73,7 @@ _install rust asdf-install -g rust stable
 _install rust rustup update
 
 export PIP_REQUIRE_VIRTUALENV=
-_install python asdf-install -g python
-if command -v python3 >/dev/null; then
-    _install python-pipx install-pipx
-fi
+_install python asdf-install -g python && _install python-pipx install-pipx
 
 # TODO: remove the packages we installed, but not the ones the user did
 if [ -n "$(echo "$_failed" | xargs)" ]; then
