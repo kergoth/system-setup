@@ -73,7 +73,7 @@ apt_install() {
 }
 
 map_pkg() {
-    if [ "$debian" -eq 1 ]; then
+    if [ -z "$NO_SUDO" ] && [ "$debian" -eq 1 ]; then
         case "$1" in
             ninja)
                 echo ninja-build
@@ -96,7 +96,7 @@ pkg_install() {
                 brew install "$pkg"
                 ;;
             *)
-                if apt cache show "$pkg" >/dev/null 2>&1; then
+                if [ -z "$NO_SUDO" ] && apt cache show "$pkg" >/dev/null 2>&1; then
                     apt_install "$pkg"
                 else
                     brew install "$1"
@@ -109,10 +109,14 @@ pkg_install() {
                 brew install "$pkg"
                 ;;
             *)
-                pacman_install "$pkg"
+                if [ -z "$NO_SUDO" ]; then
+                    pacman_install "$pkg"
+                else
+                    brew install "$1"
+                fi
                 ;;
         esac
     else
-        brew install "$pkg"
+        brew install "$1"
     fi
 }

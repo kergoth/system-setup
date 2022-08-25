@@ -11,7 +11,7 @@ PATH="$HOMEBREW_PREFIX/bin:$XDG_DATA_HOME/../bin:$scriptdir/scripts:$PATH"
 
 ## Install CLI apps
 
-if ! is_mac; then
+if ! is_mac && [ -z "$NO_SUDO" ]; then
     if has pacman; then
         # Update package databases
         pacman_install -y
