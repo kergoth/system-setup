@@ -47,12 +47,12 @@ echo >&2 "Installing prerequisites"
 if [ -z "$NO_SUDO" ] && command -v pacman >/dev/null 2>&1; then
     sudo pacman -S --noconfirm --needed openssl bzip2 sqlite ncurses unzip expat lz4
 elif [ -z "$NO_SUDO" ] && command -v apt-get >/dev/null 2>&1; then
-    sudo apt-get -y install --no-upgrade libssl-dev libbz2-dev libsqlite3-dev libncurses5-dev unzip zlib1g-dev libreadline-dev libexpat1-dev liblz4-dev
+    sudo apt-get -y install --no-upgrade libssl-dev libbz2-dev libsqlite3-dev libncurses5-dev unzip zlib1g-dev libreadline-dev libexpat1-dev liblz4-dev libffi-dev
     if command -v brew >/dev/null 2>&1; then
         brew unlink pkg-config >/dev/null 2>&1 || :
     fi
 elif command -v brew >/dev/null 2>&1; then
-    brew install openssl@1.1 bzip2 sqlite3 ncurses unzip expat lz4
+    brew install openssl bzip2 sqlite ncurses readline unzip expat xz zlib lz4 libffi
 fi | sh -c "cat ${tolog:+>"$log" 2>&1}"
 
 # shellcheck disable=SC2181
