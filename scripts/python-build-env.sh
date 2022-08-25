@@ -16,19 +16,28 @@ case "${OSTYPE:-}" in
     darwin*)
         # Silence spammy warnings on clang builds, as mentioned in the python
         # developer documentation.
-        CPPFLAGS="-Wno-unused-value -Wno-empty-body -Qunused-arguments \
+        CPPFLAGS="$CPPFLAGS -Wno-unused-value -Wno-empty-body -Qunused-arguments \
                          -Wno-parentheses-equality -Wno-nullability-completeness"
         if command -v brew >/dev/null 2>&1; then
-            eval "$(brew environment --shell=auto | grep -vw PATH)"
-            CPPFLAGS="$CPPFLAGS -I$(brew --prefix sqlite)/include -I$(brew --prefix openssl@1.1)/include -I$(xcrun --show-sdk-path)/usr/include"
-            LDFLAGS="$LDFLAGS -L$(brew --prefix sqlite)/lib -L$(brew --prefix openssl@1.1)/lib"
-            export LDFLAGS
-            # The python 3 build chokes due to a lack of llvm-ar at the moment
-            PYTHON_NO_LTO=1
+            CPPFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
         fi
-        export CPPFLAGS
+
+        # The python 3 build chokes due to a lack of llvm-ar at the moment
+        PYTHON_NO_LTO=1
         ;;
 esac
+
+if command -v brew >/dev/null 2>&1; then
+    eval "$(brew environment --shell=auto | grep -vw PATH)"
+    for brew in sqlite openssl openssl@1.1 xz; do
+        if brew_prefix="$(brew --prefix sqlite)" && [ -n "$brew_prefix" ]; then
+            CPPFLAGS="$CPPFLAGS -I$brew_prefix/include"
+            LDFLAGS="$LDFLAGS -L$brew_prefix/lib"
+        fi
+    done
+fi
+
+echo $CPPFLAGS $LDFLAGS
 
 if [ -z "${CONFIGURE_OPTS:-}" ] && [ -z "${PYTHON_CONFIGURE_OPTS:-}" ]; then
     export PYTHON_CONFIGURE_OPTS="\
