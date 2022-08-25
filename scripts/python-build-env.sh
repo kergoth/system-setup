@@ -29,8 +29,8 @@ esac
 
 if command -v brew >/dev/null 2>&1; then
     eval "$(brew environment --shell=auto | grep -vw PATH)"
-    for brew in sqlite openssl openssl@1.1 xz; do
-        if brew_prefix="$(brew --prefix sqlite)" && [ -n "$brew_prefix" ]; then
+    for brew in openssl readline sqlite xz zlib expat bzip2 libffi; do
+        if brew_prefix="$(brew --prefix "$brew")" && [ -n "$brew_prefix" ]; then
             CPPFLAGS="$CPPFLAGS -I$brew_prefix/include"
             LDFLAGS="$LDFLAGS -L$brew_prefix/lib"
         fi
