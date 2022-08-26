@@ -12,15 +12,14 @@ PATH="$HOMEBREW_PREFIX/bin:$XDG_DATA_HOME/../bin:$scriptdir/scripts:$PATH"
 ## Install CLI apps
 
 if ! is_mac && [ -z "$NO_SUDO" ]; then
-    if has pacman; then
-        # Update package databases
-        pacman_install -y
-    fi
-
     # Baseline, and git for homebrew and asdf
     if has apt-get; then
+        need_sudo
         apt_install build-essential git
     elif has pacman; then
+        need_sudo
+        # Update package databases
+        pacman_install -y
         pacman_install base-devel git
     fi
 fi
