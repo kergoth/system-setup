@@ -81,6 +81,7 @@ pkg_install direnv
 pkg_install shfmt
 install-shellcheck
 pkg_install jq
+pkg_install choose-rust
 
 pipx install flake8
 pipx inject flake8 pep8-naming flake8-docstrings
