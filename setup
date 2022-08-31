@@ -123,6 +123,8 @@ if is_mac; then
         msg "Error: unable to install Mac App Store apps, please log-in to the Mac App Store."
     else
         # Core
+        # CleanMyDrive 2
+        mas install 523620159
         # UnPlugged
         mas install 423123087
         # Magnet
