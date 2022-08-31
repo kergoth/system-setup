@@ -91,7 +91,7 @@ pipx install git-revise git-imerge
 ## Install GUI apps
 if is_mac; then
     # Core
-    brew install --cask appcleaner alfred carbon-copy-cloner syncthing the-unarchiver
+    brew install --cask appcleaner alfred carbon-copy-cloner itsycal syncthing the-unarchiver
 
     # Communication
     brew install --cask discord
