@@ -75,8 +75,8 @@ pkg_install ripgrep
 pkg_install fzf
 pkg_install exa
 pkg_install gh
-pkg_install git-delta
 pkg_install git-absorb
+pkg_install git-delta
 pkg_install direnv
 pkg_install shfmt
 install-shellcheck
@@ -86,8 +86,7 @@ pkg_install choose-rust
 pipx install flake8
 pipx inject flake8 pep8-naming flake8-docstrings
 pipx install peru
-pipx install git-revise
-pipx install git+https://github.com/kergoth/git-imerge@no-completions-in-setup
+pipx install git-revise git-imerge
 
 ## Install GUI apps
 if is_mac; then
