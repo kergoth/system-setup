@@ -95,6 +95,7 @@ if is_mac; then
 
     # Communication
     brew install --cask discord
+    brew install --cask irccloud
 
     # Screen savers
     brew install --cask aerial brooklyn
