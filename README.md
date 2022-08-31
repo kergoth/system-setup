@@ -1,4 +1,4 @@
-# Kergoth's System Setup Scripts
+# Christopher Larson's Personal System Setup Scripts
 
 [![BlueOak 1.0.0 License](https://img.shields.io/badge/License-BlueOak%201.0.0-2D6B79.svg)](https://spdx.org/licenses/BlueOak-1.0.0.html)
 
@@ -13,7 +13,7 @@ This project holds the consolidation of my various per-system setup script repos
 
 ### Linux
 
-As user that can run sudo:
+As a user that can run `sudo`:
 
 ```console
 ./setup
@@ -25,7 +25,7 @@ As user that can run sudo:
 ./setup
 ```
 
-As user that can run sudo:
+As a user that can run `sudo`:
 
 ```console
 ./setup-admin
@@ -39,7 +39,7 @@ In powershell:
 ./setup.ps1
 ```
 
-In an Administrative powershell:
+In an Administrative PowerShell:
 
 ```console
 ./setup-admin.ps1
@@ -47,11 +47,11 @@ In an Administrative powershell:
 
 ## Background and Considerations
 
-I have chosen to write these from scratch at this time for simplicity, and the limited support for Ansible on Windows without also having a Linux host nearby. I will continue to look into other options, but for now this should meet my needs.
+I have chosen to write these from scratch at this time for simplicity, and the limited support for Ansible on Windows without also having a Linux host nearby. I will continue to look into other options, but for now, this should meet my needs.
 
 ## Limitations
 
-Currently, these scripts do not fully handle all the setup I would like, such as system bootstrapping and early configuration.
+Currently, these scripts do not fully handle everything I would like, such as system bootstrapping and early configuration.
 
 ## Help
 
@@ -71,12 +71,12 @@ Distributed under the terms of the [Blue Oak Model License 1.0.0](LICENSE.md) li
 
 ## See Also
 
-### Superceded Projects
+### Superseded Projects
 
 - [mac-setup](https://github.com/kergoth/mac-setup)
 - [win-setup](https://github.com/kergoth/win-setup)
 - [dotfiles/system-setup/scripts](https://github.com/kergoth/dotfiles/tree/master/system-setup/scripts)
 
-### Partially Superceded Projects
+### Partially Superseded Projects
 
-- [arch-setup](https://github.com/kergoth/arch-setup): this also handles install/bootstrap
+- [arch-setup](https://github.com/kergoth/arch-setup)
