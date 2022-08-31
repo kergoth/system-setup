@@ -28,6 +28,7 @@ if is_mac; then
     brew install --cask lulu
     brew tap microsoft/git
     brew install --cask git-credential-manager-core
+    brew install --cask microsoft-teams
 
     CASKROOM="$(brew --caskroom)"
     if [ -d "$CASKROOM"/whatsyoursign ]; then
