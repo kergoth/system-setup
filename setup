@@ -114,7 +114,7 @@ if is_mac; then
     brew install --cask omnioutliner
 
     # Utilities
-    brew install --cask keepingyouawake soulver2 daisydisk
+    brew install --cask keepingyouawake soulver2 daisydisk photosweeper-x transmission-remote-gui
 
     # Development
     brew install --cask visual-studio-code
