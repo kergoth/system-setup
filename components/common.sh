@@ -96,7 +96,7 @@ pkg_install() {
                 brew install "$pkg"
                 ;;
             *)
-                if [ -z "$NO_SUDO" ] && apt cache show "$pkg" >/dev/null 2>&1; then
+                if [ -z "$NO_SUDO" ] && apt-cache show "$pkg" >/dev/null 2>&1; then
                     apt_install "$pkg"
                 else
                     brew install "$1"
