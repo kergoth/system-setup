@@ -101,39 +101,58 @@ apt_install_gh() {
 }
 
 pkg_install() {
-    pkg="$(map_pkg "$1")"
-    if [ "$debian" -eq 1 ]; then
-        if [ -z "$NO_SUDO" ] && apt-cache show "$pkg" >/dev/null 2>&1; then
-            apt_install "$pkg"
-            return $?
-        fi
-
-        case "$pkg" in
-        gh)
-            if [ -z "$NO_SUDO" ]; then
-                apt_install_gh
+    msg "Installing $1"
+    {
+        pkg="$(map_pkg "$1")"
+        if [ "$debian" -eq 1 ]; then
+            if [ -z "$NO_SUDO" ] && apt-cache show "$pkg" >/dev/null 2>&1; then
+                apt_install "$pkg"
                 return $?
             fi
-            ;;
-        git-delta|fd-find)
-            cargo install "$pkg"
+
+            case "$pkg" in
+            gh)
+                if [ -z "$NO_SUDO" ]; then
+                    apt_install_gh
+                    return $?
+                fi
+                ;;
+            shfmt)
+                GO111MODULE=on go install mvdan.cc/sh/v3/cmd/shfmt@latest
+                return $?
+                ;;
+            fzf)
+                go install github.com/junegunn/fzf/...@latest
+                return $?
+                ;;
+            choose-rust)
+                cargo install choose
+                return $?
+                ;;
+            bat | exa | fd-find | git-absorb | git-delta | ripgrep)
+                cargo install "$pkg"
+                return $?
+                ;;
+            esac
+        elif [ "$arch" -eq 1 ]; then
+            case "$pkg" in
+            gh | pup)
+                brew install "$pkg"
+                ;;
+            *)
+                if [ -z "$NO_SUDO" ]; then
+                    pacman_install "$pkg"
+                else
+                    brew install "$1"
+                fi
+                ;;
+            esac
             return $?
-            ;;
-        esac
-    elif [ "$arch" -eq 1 ]; then
-        case "$pkg" in
-        gh | pup)
-            brew install "$pkg"
-            ;;
-        *)
-            if [ -z "$NO_SUDO" ]; then
-                pacman_install "$pkg"
-            else
-                brew install "$1"
-            fi
-            ;;
-        esac
-        return $?
-    fi
-    brew install "$1"
+        fi
+        brew install "$1"
+    } || {
+        ret=$?
+        msg "Error installing $1"
+        return $ret
+    }
 }
