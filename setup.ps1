@@ -3,7 +3,7 @@ $ErrorActionPreference = "Continue"
 . $PSScriptRoot\Components\common.ps1
 
 # Install PowerShell modules
-$PSScriptRoot\Components\install-pwsh-modules.ps1
+. $PSScriptRoot\Components\install-pwsh-modules.ps1
 
 # Install scoop
 if (-Not $env:SCOOP)
