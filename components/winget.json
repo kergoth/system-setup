@@ -19,6 +19,9 @@
 					"PackageIdentifier" : "Discord.Discord"
 				},
 				{
+					"PackageIdentifier": "IRCCloud.IRCCloud"
+				},
+				{
 					"PackageIdentifier" : "Microsoft.WindowsTerminal"
 				},
 				{
