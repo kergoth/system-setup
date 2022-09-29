@@ -41,6 +41,7 @@ scoop install wget
 
 # Install tools
 # Unavailable on Windows: direnv
+# Available only via release archives on Windows: git-absorb
 scoop install fd
 scoop install ripgrep
 scoop install fzf
@@ -50,14 +51,14 @@ scoop install delta
 scoop install shfmt
 scoop install shellcheck
 scoop install jq
-scoop install pup
+cargo install choose
 
 pipx install flake8
 pipx inject flake8 pep8-naming flake8-docstrings
 pipx install httpie
 pipx install peru
 pipx install git-revise
-pipx install git+https://github.com/kergoth/git-imerge@no-completions-in-setup
+pipx install git-imerge
 
 cargo install --git https://github.com/jez/as-tree
 go install github.com/shurcooL/markdownfmt@latest
