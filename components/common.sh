@@ -103,23 +103,21 @@ apt_install_gh() {
 pkg_install() {
     pkg="$(map_pkg "$1")"
     if [ "$debian" -eq 1 ]; then
+        if [ -z "$NO_SUDO" ] && apt-cache show "$pkg" >/dev/null 2>&1; then
+            apt_install "$pkg"
+            return $?
+        fi
+
         case "$pkg" in
         gh)
             if [ -z "$NO_SUDO" ]; then
                 apt_install_gh
-            else
-                brew install gh
+                return $?
             fi
             ;;
-        git-delta | shfmt)
-            brew install "$pkg"
-            ;;
-        *)
-            if [ -z "$NO_SUDO" ] && apt-cache show "$pkg" >/dev/null 2>&1; then
-                apt_install "$pkg"
-            else
-                brew install "$1"
-            fi
+        git-delta|fd-find)
+            cargo install "$pkg"
+            return $?
             ;;
         esac
     elif [ "$arch" -eq 1 ]; then
@@ -135,7 +133,7 @@ pkg_install() {
             fi
             ;;
         esac
-    else
-        brew install "$1"
+        return $?
     fi
+    brew install "$1"
 }
