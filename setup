@@ -38,16 +38,16 @@ fi
 # Mac-specific
 if is_mac; then
     # For use in the configuration scripts
-    brew install duti
-    brew install mas
+    pkg_install duti
+    pkg_install mas
 
-    brew install trash
+    pkg_install trash
 
     # Install GNU alternatives to mac/BSD tools
-    brew install coreutils
-    brew install gnu-sed
-    brew install gawk
-    brew install findutils
+    pkg_install coreutils
+    pkg_install gnu-sed
+    pkg_install gawk
+    pkg_install findutils
 fi
 
 # Install core
@@ -56,17 +56,17 @@ pkg_install tmux
 pkg_install zsh
 
 if is_mac; then
-    brew install git
-    brew install wget
+    pkg_install git
+    pkg_install wget
 
     # Install development / build packages
-    brew install autoconf
-    brew install automake
-    brew install cmake
-    brew install gettext
-    brew install libtool
-    brew install patchutils
-    brew install pkg-config
+    pkg_install autoconf
+    pkg_install automake
+    pkg_install cmake
+    pkg_install gettext
+    pkg_install libtool
+    pkg_install patchutils
+    pkg_install pkg-config
 fi
 
 # Install tools
@@ -79,15 +79,15 @@ pkg_install git-absorb
 pkg_install git-delta
 pkg_install direnv
 pkg_install shfmt
-install-shellcheck
+install-shellcheck || msg "Failed to install shellcheck"
 pkg_install jq
 pkg_install choose-rust
 
-pipx install flake8
-pipx inject flake8 pep8-naming flake8-docstrings
-pipx install peru
-pipx install git-revise
-pipx install git-imerge
+pipx install flake8 || msg "Failed to install flake8"
+pipx inject flake8 pep8-naming flake8-docstrings || msg "Failed to install flake8 plugins"
+pipx install peru || msg "Failed to install peru"
+pipx install git-revise || msg "Failed to install git-revise"
+pipx install git-imerge || msg "Failed to install git-imerge"
 
 ## Install GUI apps
 if is_mac; then
