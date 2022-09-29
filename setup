@@ -141,10 +141,6 @@ if is_mac; then
         # Deliveries
         mas install 290986013
 
-        # Communication
-        # Textual IRC Client
-        mas install 1262957439
-
         # Reading
         # GoodLinks
         mas install 1474335294
