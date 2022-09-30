@@ -14,9 +14,11 @@ PATH="$HOMEBREW_PREFIX/bin:$XDG_DATA_HOME/../bin:$scriptdir/scripts:$PATH"
 if ! is_mac && [ -z "$NO_SUDO" ]; then
     # Baseline, and git for homebrew and asdf
     if has apt-get; then
+        msg "Installing baseline prerequisites"
         need_sudo
         apt_install build-essential git
     elif has pacman; then
+        msg "Installing baseline prerequisites"
         need_sudo
         # Update package databases
         pacman_install -y
@@ -29,6 +31,7 @@ if ! [ -e "$HOMEBREW_PREFIX/bin/brew" ]; then
     install-brew -s "$HOMEBREW_PREFIX"
 fi
 
+msg "Installing programming language tools"
 # shellcheck source=./scripts/install-asdf
 . "$scriptdir/scripts/install-asdf" || exit 1
 
@@ -37,6 +40,7 @@ fi
 
 # Mac-specific
 if is_mac; then
+    msg "Installing macOS tools"
     # For use in the configuration scripts
     pkg_install duti
     pkg_install mas
@@ -51,6 +55,7 @@ if is_mac; then
 fi
 
 # Install core
+msg "Installing core tools"
 pkg_install neovim
 pkg_install tmux
 pkg_install zsh
@@ -70,6 +75,7 @@ if is_mac; then
 fi
 
 # Install tools
+msg "Installing tools"
 pkg_install fd
 pkg_install ripgrep
 pkg_install fzf
@@ -91,6 +97,7 @@ pipx install git-imerge || msg "Failed to install git-imerge"
 
 ## Install GUI apps
 if is_mac; then
+    msg "Installing GUI apps"
     # Core
     brew install --cask appcleaner alfred carbon-copy-cloner itsycal syncthing the-unarchiver
 
@@ -199,8 +206,10 @@ fi
 
 ## Configuration
 if is_mac; then
+    msg "Configuring"
     # shellcheck source=./components/macos-configure.sh
     "$scriptdir/components/macos-configure.sh"
     # shellcheck source=./components/macos-setup-apps.sh
     "$scriptdir/components/macos-setup-apps.sh"
 fi
+msg "Setup complete"
