@@ -53,6 +53,10 @@ scoop install shellcheck
 scoop install jq
 cargo install choose
 
+# Disk tools
+scoop install dua
+scoop install dust
+
 pipx install flake8
 pipx inject flake8 pep8-naming flake8-docstrings
 pipx install httpie

@@ -90,6 +90,10 @@ install-shellcheck || msg "Failed to install shellcheck"
 pkg_install jq
 pkg_install choose-rust
 
+# Disk tools
+pkg_install dua
+pkg_install du-dust
+
 pipx install flake8 || msg "Failed to install flake8"
 pipx inject flake8 pep8-naming flake8-docstrings || msg "Failed to install flake8 plugins"
 pipx install peru || msg "Failed to install peru"
