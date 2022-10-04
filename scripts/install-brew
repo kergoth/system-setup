@@ -11,19 +11,24 @@ usage () {
     echo >&2
     echo >&2 "  -r INSTALL_REPO_PATH Destination of the homebrew repo when using -s. Default: INSTALL_PATH/homebrew"
     echo >&2 "  -s    Separate the prefix and repo."
+    echo >&2 "  -d    Do not run brew-doctor."
     echo >&2 "  -h    Show this help."
     exit 2
 }
 
 HOMEBREW_REPO=
 separate_prefix=0
-while getopts sr:h opt; do
+doctor=1
+while getopts sr:dh opt; do
     case "$opt" in
         s)
             separate_prefix=1
             ;;
         r)
             HOMEBREW_REPO="$OPTARG"
+            ;;
+        d)
+            doctor=0
             ;;
         \?|h)
             usage
@@ -89,4 +94,6 @@ for dir in etc include lib opt sbin share var/homebrew/linked Cellar Frameworks;
 done
 
 brew update || exit 2
-brew doctor || exit 0
+if [ $doctor -eq 1 ]; then
+    brew doctor || exit 0
+fi
