@@ -6,6 +6,7 @@ scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
 . "$scriptdir/components/common.sh" || exit 1
 
 XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+# shellcheck disable=SC2086
 export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-~/.brew}
 PATH="$HOMEBREW_PREFIX/bin:$XDG_DATA_HOME/../bin:$scriptdir/scripts:$PATH"
 
