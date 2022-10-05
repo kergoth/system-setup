@@ -64,8 +64,5 @@ pipx install peru
 pipx install git-revise
 pipx install git-imerge
 
-cargo install --git https://github.com/jez/as-tree
-go install github.com/shurcooL/markdownfmt@latest
-
 # Configuration
 . $PSScriptRoot\components\configure.ps1
