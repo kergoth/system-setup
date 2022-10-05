@@ -89,6 +89,8 @@ pkg_install shfmt
 install-shellcheck || msg "Failed to install shellcheck"
 pkg_install jq
 pkg_install choose-rust
+pkg_install sd
+cargo install --locked --all-features  --git https://github.com/ms-jpq/sad --branch senpai
 
 # Disk tools
 pkg_install dua
