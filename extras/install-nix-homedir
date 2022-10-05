@@ -23,13 +23,14 @@ fi
 
 unset NIX_PATH
 
-mkdir -p ~/.nix
-proot -b "$HOME/.nix:/nix" bash -c "curl -L https://nixos.org/nix/install | sh"
+# shellcheck disable=SC2174
+mkdir -m 0755 -p ~/.nix
+curl -L https://nixos.org/nix/install | nix-user-chroot ~/.nix sh
 
 {
-    echo "#!/usr/bin/env bash"
+    echo "#!/bin/sh"
     echo
-    echo "proot -b \"\$HOME/.nix:/nix\" bash -c 'for i in ~/.nix-profile/etc/profile.d/*.sh; do if [ -e "\$i" ]; then . "\$i"; fi; done && \"\$@\"' - \"\$@\""
+    echo "exec nix-user-chroot ~/.nix bash -c 'for i in ~/.nix-profile/etc/profile.d/*.sh; do if [ -e "\$i" ]; then . "\$i"; fi; done && \"\$@\"' - \"\$@\""
 } >"$bindir/nixrun"
 chmod +x "$bindir/nixrun"
 
