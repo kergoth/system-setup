@@ -1,220 +1,45 @@
-#!/bin/sh
+#!/bin/bash
+
+set -euo pipefail
 
 scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
+
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+# shellcheck disable=SC2086
+export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$HOME/.brew}
+PATH="$HOMEBREW_PREFIX/bin:$XDG_DATA_HOME/../bin:$scriptdir/scripts:$PATH"
 
 # shellcheck source=./components/common.sh
 . "$scriptdir/components/common.sh" || exit 1
 
-XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-# shellcheck disable=SC2086
-export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-~/.brew}
-PATH="$HOMEBREW_PREFIX/bin:$XDG_DATA_HOME/../bin:$scriptdir/scripts:$PATH"
+if [ "$(id -u)" = "0" ]; then
+    die "Error: Do not run as root"
+fi
 
-## Install CLI apps
+if [ -z "$HOMEBREW_PREFIX" ]; then
+    die "HOMEBREW_PREFIX must be set or unset, not the empty string"
+fi
 
-if ! is_mac && [ -z "$NO_SUDO" ]; then
-    # Baseline, and git for homebrew and asdf
-    if has apt-get; then
-        msg "Installing baseline prerequisites"
-        need_sudo
-        apt_install build-essential git
-    elif has pacman; then
-        msg "Installing baseline prerequisites"
-        need_sudo
-        # Update package databases
-        pacman_install -y
-        pacman_install base-devel git
+msg "Applying Nix Home Manager configuration"
+"$scriptdir/switch.sh"
+
+if is_mac; then
+    if ! [ -x "$HOMEBREW_PREFIX/bin/brew" ]; then
+        msg "Installing homebrew"
+        install-brew -s "$HOMEBREW_PREFIX" || {
+            rm -rf "$HOMEBREW_PREFIX"
+            die "Failed to install homebrew"
+        }
     fi
+
+    msg "Installing applications with homebrew"
+    "$HOMEBREW_PREFIX/bin/brew" bundle <"$scriptdir/Brewfile"
 fi
 
-# Install brew
-if ! [ -e "$HOMEBREW_PREFIX/bin/brew" ]; then
-    install-brew -s "$HOMEBREW_PREFIX"
-fi
+msg "Configuring"
+# shellcheck source=./components/macos-configure.sh
+"$scriptdir/components/macos-configure.sh"
+# shellcheck source=./components/macos-setup-apps.sh
+"$scriptdir/components/macos-setup-apps.sh"
 
-msg "Installing programming language tools"
-# shellcheck source=./scripts/install-asdf
-. "$scriptdir/scripts/install-asdf" || exit 1
-
-# shellcheck source=./scripts/install-langs-asdf
-"$scriptdir/scripts/install-langs-asdf"
-
-# Mac-specific
-if is_mac; then
-    msg "Installing macOS tools"
-    # For use in the configuration scripts
-    pkg_install duti
-    pkg_install mas
-
-    pkg_install trash
-
-    # Install GNU alternatives to mac/BSD tools
-    pkg_install coreutils
-    pkg_install gnu-sed
-    pkg_install gawk
-    pkg_install findutils
-fi
-
-# Install core
-msg "Installing core tools"
-pkg_install neovim
-pkg_install tmux
-pkg_install zsh
-
-if is_mac; then
-    pkg_install git
-    pkg_install wget
-
-    # Install development / build packages
-    pkg_install autoconf
-    pkg_install automake
-    pkg_install cmake
-    pkg_install gettext
-    pkg_install libtool
-    pkg_install patchutils
-    pkg_install pkg-config
-fi
-
-# Install tools
-msg "Installing tools"
-pkg_install fd
-pkg_install ripgrep
-pkg_install fzf
-pkg_install exa
-pkg_install gh
-pkg_install git-absorb
-pkg_install git-delta
-pkg_install direnv
-pkg_install shfmt
-install-shellcheck || msg "Failed to install shellcheck"
-pkg_install jq
-pkg_install choose-rust
-
-# Disk tools
-pkg_install dua
-pkg_install du-dust
-
-pipx install flake8 || msg "Failed to install flake8"
-pipx inject flake8 pep8-naming flake8-docstrings || msg "Failed to install flake8 plugins"
-pipx install peru || msg "Failed to install peru"
-pipx install git-revise || msg "Failed to install git-revise"
-pipx install git-imerge || msg "Failed to install git-imerge"
-
-## Install GUI apps
-if is_mac; then
-    msg "Installing GUI apps"
-    # Core
-    brew install --cask appcleaner alfred carbon-copy-cloner itsycal syncthing the-unarchiver
-
-    # Communication
-    brew install --cask discord
-    brew install --cask irccloud
-    brew install --cask slack
-
-    # Screen savers
-    brew install --cask aerial brooklyn
-
-    # Media
-    brew install --cask vlc
-
-    # Quicklook
-    brew install --cask qlcolorcode qlmarkdown qlprettypatch qlstephen quicklook-csv quicklook-json webpquicklook
-    xattr -cr ~/Library/QuickLook/*.qlgenerator
-    qlmanage -r >/dev/null 2>&1
-    qlmanage -r cache >/dev/null 2>&1
-    killall Finder >/dev/null 2>&1
-
-    # Productivity
-    brew install --cask omnioutliner
-
-    # Utilities
-    brew install --cask keepingyouawake soulver2 daisydisk photosweeper-x transmission-remote-gui
-
-    # Development
-    brew install --cask visual-studio-code
-
-    # Install Mac App Store Apps
-    if ! mas account >/dev/null 2>&1; then
-        msg "Error: unable to install Mac App Store apps, please log-in to the Mac App Store."
-    else
-        # Core
-        # CleanMyDrive 2
-        mas install 523620159
-        # UnPlugged
-        mas install 423123087
-        # Magnet
-        mas install 441258766
-        # WiFi Signal
-        mas install 525912054
-        # PopClip
-        mas install 445189367
-        # Hidden Bar
-        mas install 1452453066
-        # Deliveries
-        mas install 290986013
-
-        # Reading
-        # GoodLinks
-        mas install 1474335294
-        # Reeder
-        mas install 1529448980
-
-        # Safari Extensions
-        # Shut Up
-        mas install 1015043880
-        # Hush
-        mas install 1544743900
-        # PiPer
-        mas install 1421915518
-        # Privacy Redirect for Safari
-        mas install 1578144015
-        # Tampermonkey
-        mas install 1482490089
-        # SessionRestore
-        mas install 1463334954
-        # AdGuard for Safari
-        mas install 1440147259
-        # Matter
-        mas install 1548677272
-        # Userscripts
-        mas install 1463298887
-        # Declutter
-        mas install 1574021257
-        # Toolkit for YNAB
-        mas install 1592912837
-        # StopTheMadness
-        mas install 1376402589
-        # Vinegar
-        mas install 1591303229
-        # Social Fixer for Facebook
-        mas install 1562017526
-        # Refined Github
-        mas install 1519867270
-
-        # Productivity
-        # Bear
-        mas install 1091189122
-        # Spark
-        mas install 1176895641
-        # Todoist
-        mas install 585829637
-
-        # Utilities
-        # WiFi Explorer
-        mas install 494803304
-        # LilyView
-        mas install 529490330
-        # MusicHarbor
-        mas install 1440405750
-    fi
-fi
-
-## Configuration
-if is_mac; then
-    msg "Configuring"
-    # shellcheck source=./components/macos-configure.sh
-    "$scriptdir/components/macos-configure.sh"
-    # shellcheck source=./components/macos-setup-apps.sh
-    "$scriptdir/components/macos-setup-apps.sh"
-fi
 msg "Setup complete"
