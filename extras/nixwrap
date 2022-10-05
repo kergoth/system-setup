@@ -11,7 +11,7 @@ shims="$(mktemp -t "${0##*/}.XXXXXX")"
 trap 'rm -f "$bins" "$shims"' EXIT INT TERM
 
 if [ -L ~/.nix-profile ]; then
-    nixrun find ~/.nix-profile/bin -type l -printf '%f\n' 2>/dev/null | sort >>"$bins" || :
+    nixrun find ~/.nix-profile/bin/ \( -type l -o -type f \) -printf '%f\n' 2>/dev/null | sort >>"$bins" || :
 fi
 if [ -e ~/.nix/shims ]; then
     find ~/.nix/shims -type l -printf '%f\n' | sort >>"$shims" || :
@@ -23,7 +23,7 @@ if ! [ -f ~/.nix/shims/nixrun-wrap ]; then
     cat >~/.nix/shims/nixrun-wrap <<END
 #!/bin/sh
 
-nixrun "\$(basename "\$0")" "\$@"
+exec nixrun "\$(basename "\$0")" "\$@"
 END
     chmod +x ~/.nix/shims/nixrun-wrap
 fi
