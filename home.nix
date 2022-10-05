@@ -31,6 +31,8 @@
     choose
     fd
     ripgrep
+    sd
+    sad
 
     delta
     gh
