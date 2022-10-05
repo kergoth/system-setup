@@ -68,7 +68,7 @@ latest)
     ;;
 latest:*)
     version="$(asdf latest "$plugin" "${version#latest:}")"
-    if dot_version="$(asdf latest "$plugin" "$version.") 2>/dev/null"; then
+    if dot_version="$(asdf latest "$plugin" "$version." 2>/dev/null)"; then
         version="$dot_version"
     fi
     ;;
