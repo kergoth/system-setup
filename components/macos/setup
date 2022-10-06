@@ -13,7 +13,7 @@ msg "Installing applications with homebrew"
 "$HOMEBREW_PREFIX/bin/brew" bundle install --file="$scriptdir/components/macos/Brewfile"
 
 msg "Configuring"
-# shellcheck source=./components/macos-configure.sh
-"$scriptdir/components/macos-configure.sh"
-# shellcheck source=./components/macos-setup-apps.sh
-"$scriptdir/components/macos-setup-apps.sh"
+# shellcheck source=./components/macos/configure
+"$scriptdir/components/macos/configure"
+# shellcheck source=./components/macos/setup-apps
+"$scriptdir/components/macos/setup-apps"

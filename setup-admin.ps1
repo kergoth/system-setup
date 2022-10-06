@@ -27,7 +27,7 @@ if (-Not $myWindowsPrincipal.IsInRole($adminRole)) {
 
 $ErrorActionPreference = "Continue"
 
-. $PSScriptRoot\components\common.ps1
+. $PSScriptRoot\components\windows\common.ps1
 
 # Install winget
 if (-Not (Get-Command winget -ErrorAction SilentlyContinue))
@@ -82,7 +82,7 @@ catch {
 RefreshEnvPath
 
 # Install GUI apps
-winget import $PSScriptRoot\components\winget.json
+winget import $PSScriptRoot\components\windows\winget.json
 
 # Configuration
-. $PSScriptRoot\components\configure-admin.ps1
+. $PSScriptRoot\components\windows\configure-admin.ps1

@@ -3,7 +3,7 @@
 set -euo pipefail
 
 scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
-PATH="$scriptdir:$scriptdir/../scripts:$PATH"
+PATH="$scriptdir:$scriptdir/../../scripts:$PATH"
 
 app_path() {
     for dir in /Applications ~/Applications /Applications/Utility ~/Applications/Utility; do

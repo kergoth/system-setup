@@ -229,7 +229,7 @@ defaults -currentHost write -g AppleFontSmoothing -int 0
         curl -Lfso "$site/display_manager_lib.py" "https://raw.githubusercontent.com/univ-of-utah-marriott-library-apple/display_manager/stable/display_manager_lib.py"
     fi
 
-    python3 "$scriptdir"/macos-set-resolution-scale-2.py
+    python3 "$scriptdir"/set-resolution-scale-2.py
 )
 
 killall Dock

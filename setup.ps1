@@ -1,9 +1,9 @@
 $ErrorActionPreference = "Continue"
 
-. $PSScriptRoot\Components\common.ps1
+. $PSScriptRoot\components\windows\common.ps1
 
 # Install PowerShell modules
-. $PSScriptRoot\Components\install-pwsh-modules.ps1
+. $PSScriptRoot\components\windows\install-pwsh-modules.ps1
 
 # Install scoop
 if (-Not $env:SCOOP)
@@ -67,4 +67,4 @@ pipx install git-revise
 pipx install git-imerge
 
 # Configuration
-. $PSScriptRoot\components\configure.ps1
+. $PSScriptRoot\components\windows\configure.ps1
