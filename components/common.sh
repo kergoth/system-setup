@@ -15,27 +15,20 @@ has() {
     command -v "$@" >/dev/null 2>&1
 }
 
-# shellcheck disable=SC3028
+# shellcheck disable=SC3028,SC2034
 case "${OSTYPE:-}" in
 darwin*)
-    mac=1
-    debian=0
-    arch=0
+    OS=macos
     ;;
 *)
-    mac=0
-    if has apt-get; then
-        debian=1
-        arch=0
-    elif has pacman; then
-        debian=0
-        arch=1
+    if [ -e /etc/os-release ]; then
+        OS="$(sed -n -e '/^ID=//p' | tr '[:upper:]' '[:lower:]')"
     fi
     ;;
 esac
 
 is_mac() {
-    [ "$mac" -eq 1 ]
+    [ "$OS" = macos ]
 }
 
 msg() {
