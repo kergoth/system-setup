@@ -10,7 +10,7 @@ fi
 
 msg "Installing applications with homebrew"
 # shellcheck disable=SC2154
-"$HOMEBREW_PREFIX/bin/brew" bundle <"$scriptdir/Brewfile"
+"$HOMEBREW_PREFIX/bin/brew" bundle install --file="$scriptdir/components/macos/Brewfile"
 
 msg "Configuring"
 # shellcheck source=./components/macos-configure.sh
