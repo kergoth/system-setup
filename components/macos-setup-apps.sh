@@ -33,6 +33,10 @@ if app_installed_directly "Send to Kindle"; then
     duti -vs com.amazon.SendToKindle .azw viewer
 fi
 
+if app_installed_directly "Transmission Remote GUI"; then
+    duti -vs com.transgui .torrent viewer
+fi
+
 # Switch these associations from Archive Utility to The Unarchiver
 duti-switch "/System/Library/CoreServices/Applications/Archive Utility.app" cx.c3.theunarchiver
 
