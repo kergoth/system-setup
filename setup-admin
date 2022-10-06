@@ -1,14 +1,14 @@
 #!/bin/bash
 
-set -euo pipefail
+scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
+PATH="$scriptdir/scripts:$PATH"
 
 HOMEBREW_PREFIX=${ADMIN_HOMEBREW_PREFIX:-${HOMEBREW_PREFIX:-$HOME/.brew}}
 
 # shellcheck source=./components/common.sh
 . "$scriptdir/components/common.sh" || exit 1
 
-scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
-PATH="$scriptdir/scripts:$PATH"
+set -euo pipefail
 
 if [ "$(id -u)" = "0" ]; then
     die "Error: Do not run as root, this script expects to use sudo if needed"
@@ -20,28 +20,9 @@ if [ -z "$HOMEBREW_PREFIX" ]; then
     die "HOMEBREW_PREFIX must be set or unset, not the empty string"
 fi
 
-if is_mac; then
-    if ! [ -x "$HOMEBREW_PREFIX/bin/brew" ]; then
-        msg "Installing homebrew"
-        install-brew -s "$HOMEBREW_PREFIX" || {
-            rm -rf "$HOMEBREW_PREFIX"
-            die "Failed to install homebrew"
-        }
-    fi
-
-    msg "Installing applications with homebrew"
-    "$HOMEBREW_PREFIX/bin/brew" bundle <"$scriptdir/Brewfile.admin"
-
-    CASKROOM="$("$HOMEBREW_PREFIX/bin/brew" --caskroom)"
-    if [ -d "$CASKROOM"/whatsyoursign ]; then
-        find "$CASKROOM"/whatsyoursign -name WhatsYourSign\ Installer.app -print0 \
-            | xargs -0 open
-    fi
-
-    install-oversight
-
-    # Configuration
-    # shellcheck source=./components/macos-configure-admin.sh
-    "$scriptdir/components/macos-configure-admin.sh"
+if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/setup-admin" ]; then
+    # shellcheck disable=SC1090
+    . "$scriptdir/components/$OS/setup-admin"
+else
+    msg "WARNING: unrecognized or unsupported operating system"
 fi
-

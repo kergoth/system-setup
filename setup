@@ -1,12 +1,12 @@
 #!/bin/bash
 
-set -euo pipefail
+scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
+PATH="$scriptdir/scripts:$PATH"
 
 # shellcheck source=./components/common.sh
 . "$scriptdir/components/common.sh" || exit 1
 
-scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
-PATH="$scriptdir/scripts:$PATH"
+set -euo pipefail
 
 if [ "$(id -u)" = "0" ]; then
     die "Error: Do not run as root, this script is for user setup"
@@ -16,26 +16,23 @@ if [ -z "$HOMEBREW_PREFIX" ]; then
     die "HOMEBREW_PREFIX must be set or unset, not the empty string"
 fi
 
-msg "Applying Nix Home Manager configuration"
-"$scriptdir/switch.sh"
-
-if is_mac; then
-    if ! [ -x "$HOMEBREW_PREFIX/bin/brew" ]; then
-        msg "Installing homebrew"
-        install-brew -s "$HOMEBREW_PREFIX" || {
-            rm -rf "$HOMEBREW_PREFIX"
-            die "Failed to install homebrew"
-        }
-    fi
-
-    msg "Installing applications with homebrew"
-    "$HOMEBREW_PREFIX/bin/brew" bundle <"$scriptdir/Brewfile"
+if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/setup" ]; then
+    # shellcheck disable=SC1090
+    . "$scriptdir/components/$OS/setup"
+else
+    msg "WARNING: unrecognized or unsupported operating system"
 fi
 
-msg "Configuring"
-# shellcheck source=./components/macos-configure.sh
-"$scriptdir/components/macos-configure.sh"
-# shellcheck source=./components/macos-setup-apps.sh
-"$scriptdir/components/macos-setup-apps.sh"
+if command -v nix-env >/dev/null 2>&1; then
+    msg "Applying Nix Home Manager configuration"
+    "$scriptdir/switch.sh"
+else
+    msg "WARNING: nix is not installed, skipping home-manager setup"
+fi
+
+if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/post-setup" ]; then
+    # shellcheck disable=SC1090
+    . "$scriptdir/components/$OS/post-setup"
+fi
 
 msg "Setup complete"
