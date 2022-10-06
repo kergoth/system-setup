@@ -22,7 +22,7 @@ darwin*)
     ;;
 *)
     if [ -e /etc/os-release ]; then
-        OS="$(sed -n -e '/^ID=//p' | tr '[:upper:]' '[:lower:]')"
+        OS="$(sed -n -e 's/^ID=//p' /etc/os-release | tr '[:upper:]' '[:lower:]')"
     fi
     ;;
 esac
@@ -154,3 +154,4 @@ pkg_install() {
         return $ret
     }
 }
+
