@@ -2,18 +2,14 @@
 
 set -euo pipefail
 
-scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
-
-XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-# shellcheck disable=SC2086
-export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$HOME/.brew}
-PATH="$HOMEBREW_PREFIX/bin:$XDG_DATA_HOME/../bin:$scriptdir/scripts:$PATH"
-
 # shellcheck source=./components/common.sh
 . "$scriptdir/components/common.sh" || exit 1
 
+scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
+PATH="$scriptdir/scripts:$PATH"
+
 if [ "$(id -u)" = "0" ]; then
-    die "Error: Do not run as root"
+    die "Error: Do not run as root, this script is for user setup"
 fi
 
 if [ -z "$HOMEBREW_PREFIX" ]; then

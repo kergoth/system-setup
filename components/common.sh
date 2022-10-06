@@ -6,6 +6,11 @@ else
     SUDO=
 fi
 
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$HOME/.brew}
+export HOMEBREW_PREFIX
+PATH="$HOMEBREW_PREFIX/bin:$XDG_DATA_HOME/../bin:$PATH"
+
 has() {
     command -v "$@" >/dev/null 2>&1
 }
