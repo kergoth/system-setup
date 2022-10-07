@@ -22,6 +22,9 @@
 					"PackageIdentifier": "IRCCloud.IRCCloud"
 				},
 				{
+					"PackageIdentifier": "Microsoft.Teams"
+				},
+				{
 					"PackageIdentifier" : "Microsoft.WindowsTerminal"
 				},
 				{

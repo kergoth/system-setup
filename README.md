@@ -170,6 +170,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - 1Password
 - Discord
 - IRCCloud
+- Microsoft Teams
 - Slack
 - Visual Studio Code
 - Vivaldi
@@ -201,7 +202,6 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - LilyView
 - [LuLu](https://objective-see.org/products/lulu.html): The free, open-source firewall that aims to block unknown outgoing connections.
 - Magnet
-- Microsoft Teams
 - MusicHarbor
 - OmniOutliner
 - Oversight
