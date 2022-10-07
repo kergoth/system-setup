@@ -13,27 +13,11 @@ fi
 sudorun systemctl enable nix-daemon
 sudorun systemctl start nix-daemon
 if ! grep -q "^nix-users:.*$USER" /etc/group; then
-    sudorun sed -i -e "/^nix-users:/s/\$/ $USER/" /etc/group
+    sudorun sed -i -e "/^nix-users:/s/\$/ $USER/; /^nix-users:/s/: /:/;" /etc/group
     if ! grep -q "^nix-users:.*$USER" /etc/group; then
-        echo >&2 "Failed to add user to the nix-users group, please do so manually, then re-login and re-run the setup-admin script"
+        echo >&2 "Failed to add user to the nix-users group, please do so manually, then re-login"
     else
-        echo >&2 "User has been added to the nix-users group, please re-login and re-run the setup-admin script"
+        echo >&2 "User has been added to the nix-users group, please re-login"
     fi
     exit 1
 fi
-
-# for f in etc/profile.d/nix-daemon.sh etc/profile.d/nix.sh etc/profile.d/hm-session-vars.sh; do
-#     for profile_dir in ~/.nix-profile \
-#                     /nix/var/nix/profiles/per-user/$USER/profile \
-#                     /nix/var/nix/profiles/default; do
-#         if [ -e "$profile_dir/$f" ]; then
-#             # shellcheck disable=SC1090
-#             . "$profile_dir/$f"
-#             break
-#         fi
-#     done
-# done
-
-# nix-channel --add https://nixos.org/channels/nixpkgs-unstable
-# nix-channel --update
-
