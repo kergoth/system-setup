@@ -21,6 +21,12 @@ darwin*)
     OS=macos
     ;;
 *)
+    case "$(uname -r)" in
+    *Microsoft | *microsoft*)
+        OSTYPE=WSL
+        ;;
+    esac
+
     if [ -e /etc/os-release ]; then
         OS="$(sed -n -e 's/^ID=//p' /etc/os-release | tr '[:upper:]' '[:lower:]')"
     fi
