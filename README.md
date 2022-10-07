@@ -96,6 +96,7 @@ In an Administrative PowerShell:
 - fd
 - fzf
 - ripgrep
+- [zoxide](https://github.com/ajeetdsouza/zoxide): A smarter cd command, inspired by z and autojump.
 - sad
 - sd
 

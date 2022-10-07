@@ -31,6 +31,7 @@
     choose
     fd
     ripgrep
+    zoxide
     sd
     sad
 
