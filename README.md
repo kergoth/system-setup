@@ -103,7 +103,7 @@ In an Administrative PowerShell:
 - [hexyl](https://github.com/sharkdp/hexyl): A simple hex viewer for the terminal. Available via brew, nix, and cargo.
 - [dog](https://github.com/ogham/dog): A command-line DNS client. Available via brew as `dog`, nix as `dogdns`, and cargo from the source.
 - [titlecase](https://github.com/wezm/titlecase): A small tool that capitalizes English text. Available via cargo.
-- [petname](https://lib.rs/crates/petname)
+- [petname](https://github.com/dustinkirkland/petname): Generate human readable random names. Available via pypi and cargo.
 - [huniq](https://github.com/koraa/huniq): Command line utility to remove duplicates from the given input. Available via nix and cargo. Uses less memory than awk/uniq-seen. Rarely needed.
 
 ## Background and Considerations
