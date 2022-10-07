@@ -8,6 +8,8 @@ This project holds the consolidation of my various per-system setup script repos
 
 - Logged in as your already-configured user.
 - On macOS, Command-Line Tools or XCode must be installed (See extras/ for scripts to install these).
+- (On Linux hosts) zsh is already installed.
+- (On non-Arch Linux hosts, for now) nix is already installed.
 
 ## Usage
 
@@ -39,7 +41,7 @@ In powershell:
 ./setup.ps1
 ```
 
-## Manual Steps to Take Next
+## Manual Steps
 
 ### macOS
 
@@ -81,20 +83,191 @@ In powershell:
 - Run ssh-add in powershell to add my key to the agent, if it exists
 - Remove Edge, Store, Mail from the task bar pins.
 
-## Details
+## CLI apps installed
 
-### Apps installed
+- wget
+- git
+- neovim
 
-- bat
-- exa
-- fd
-- fzf
-- ripgrep
+- rust
+- go
+- python
+  - flake8 with pep8-naming and flake8-docstrings
+- pipx
+
+- [bat](https://github.com/sharkdp/bat): A cat(1) clone with syntax highlighting and Git integration.
+- [choose](https://github.com/theryangeary/choose): A human-friendly and fast alternative to cut and (sometimes) awk.
+- [exa](https://github.com/ogham/exa): A modern replacement for ls.
+- [fd](https://github.com/sharkdp/fd): A simple, fast and user-friendly alternative to 'find'.
+- [fzf](https://github.com/junegunn/fzf): A command-line fuzzy finder.
+- [ripgrep](https://github.com/BurntSushi/ripgrep): A line-oriented search tool that recursively searches the current directory for a regex pattern.
+- [sd](https://github.com/chmln/sd): Intuitive find & replace CLI (sed alternative).
+- [delta](https://github.com/dandavison/delta): A syntax-highlighting pager for git, diff, and grep output.
+- [dua](https://github.com/Byron/dua-cli): View disk space usage and delete unwanted data, fast. This is a faster version of ncdu.
+- [dust](https://github.com/bootandy/dust): A more intuitive version of du in rust.
+- [shellcheck](https://github.com/koalaman/shellcheck): A static analysis tool for shell scripts.
+- [shfmt](https://github.com/mvdan/sh#shfmt): Format shell programs.
+- [git-imerge](https://github.com/mhagger/git-imerge): Incremental merge for git.
+- [git-revise](https://github.com/mystor/git-revise): A handy tool for doing efficient in-memory commit rebases & fixups.
+- [peru](https://github.com/buildinspace/peru): A generic package manager, for including other people's code in your projects.
+- [sad](https://github.com/ms-jpq/sad): CLI search and replace | Space Age seD.
+- [jq](https://github.com/stedolan/jq): A lightweight and flexible command-line JSON processor.
 - [zoxide](https://github.com/ajeetdsouza/zoxide): A smarter cd command, inspired by z and autojump.
-- sad
-- sd
 
-### Apps I install on an as-needed basis
+### Linux and macOS
+
+- ssh-copy-id
+- tmux
+- patchutils
+
+- [git-absorb](https://github.com/tummychow/git-absorb): git commit --fixup, but automatic.
+- [git-branchless](https://github.com/arxanas/git-branchless): High-velocity, monorepo-scale workflow for Git.
+- [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
+
+### macOS
+
+- [lima](https://github.com/lima-vm/lima): Linux virtual machines, typically on macOS, for running containerd.
+- [colima](https://github.com/abiosoft/colima): Container runtimes on macOS (and Linux) with minimal setup.
+- [duti](https://github.com/moretension/duti): A command-line tool to select default applications for document types and URL schemes on Mac OS X.
+- [mas](https://github.com/mas-cli/mas): Mac App Store command line interface.
+- [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard): Reattach to the per-user bootstrap namespace. This is needed for tools like tmux, though tmux 2.6+ apparently incorporates this functionality already.
+- [trash](https://hasseg.org/trash/): A small command-line program for OS X that moves files or folders to the trash.
+
+### Linux
+
+The intention is to incorporate the installation of Nix on all systems in time.
+
+#### Arch Linux
+
+- nix
+- openssh
+- pkgfile
+- nss-mdns
+- avahi
+
+### Windows
+
+- winget
+- scoop
+- gow
+- starship
+
+#### PowerShell Modules
+
+- PSReadLine
+- DirColors
+- Recycle
+- BurntToast
+- ZLocation
+- posh-alias
+
+## GUI apps installed
+
+### Windows and macOS
+
+- 1Password
+- Discord
+- IRCCloud
+- Slack
+- Visual Studio Code
+- Vivaldi
+
+### macOS
+
+- 1Password for Safari
+- AdGuard for Safari
+- Aerial
+- Alfred
+- AppCleaner
+- Bear
+- Brooklyn
+- Calibre
+- Carbon Copy Cloner
+- CleanMyDrive 2
+- Declutter
+- DaisyDisk
+- Deliveries
+- Docker
+- [DevDocs for macOS](https://github.com/dteoh/devdocs-macos): An unofficial [DevDocs API Documentation](https://devdocs.io/) viewer for macOS.
+- git-credential-manager-core
+- GoodLinks
+- Hidden Bar
+- Hush
+- [Itsycal for Mac](https://www.mowglii.com/itsycal/): A tiny menu bar calendar.
+- Karabiner Elements
+- Keeping You Awake
+- LilyView
+- [LuLu](https://objective-see.org/products/lulu.html): The free, open-source firewall that aims to block unknown outgoing connections.
+- Magnet
+- Microsoft Teams
+- MusicHarbor
+- OmniOutliner
+- Oversight
+- Parallels Desktop 16 (Not the current version)
+- PiPer
+- PopClip
+- Privacy Redirect
+- Reeder
+- Refined GitHub
+- ReiKey
+- Save to Matter
+- SessionRestore
+- Shut Up
+- Social Fixer for Facebook
+- Soulver 2
+- Spark
+- StopTheMadness
+- swiftdefaultappsprefpane
+- SyncThing
+- Tampermonkey
+- The Unarchiver
+- Todoist
+- Toolkit for YNAB
+- Transmission Remote GUI
+- uBlacklist for Safari
+- UnPlugged
+- Userscripts
+- Vinegar
+- VLC
+- Vmware Horizon Client
+- WhatsYourSign
+- WiFi Explorer
+- WiFi Signal
+
+#### Fonts
+
+- Fira Code (Nerd Font)
+- Fira Mono (Nerd Font)
+- Input
+- JetBrains Mono
+
+#### QuickLook Plugins
+
+- [QLColorCode](https://github.com/anthonygelibert/QLColorCode): A Quick Look plug-in that renders source code with syntax highlighting
+- QLMarkDown
+- QLPrettyPatch
+- QLStephen
+- quicklook-csv
+- quicklook-json
+- WebPQuickLook
+
+### Windows
+
+- 7-Zip
+- AutoHotkey
+- HexChat
+- Notepad++
+- PowerShell
+- PowerToys
+- PuTTY
+- QuickLook
+- Rufus
+- SyncTrayzor
+- Windows Terminal
+
+## Apps I install on an as-needed basis
+
+### CLI
 
 - [pup](https://github.com/ericchiang/pup): A command line tool for processing HTML. Available via brew, nix, and go.
 - [httpie](https://github.com/httpie/httpie): A command-line HTTP client. Available via brew, nix, and python.
