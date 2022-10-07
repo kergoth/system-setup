@@ -83,7 +83,9 @@ In powershell:
 - Run ssh-add in powershell to add my key to the agent, if it exists
 - Remove Edge, Store, Mail from the task bar pins.
 
-## CLI apps installed
+## Apps Installed
+
+### CLI apps installed
 
 - wget
 - git
@@ -114,7 +116,7 @@ In powershell:
 - [jq](https://github.com/stedolan/jq): A lightweight and flexible command-line JSON processor.
 - [zoxide](https://github.com/ajeetdsouza/zoxide): A smarter cd command, inspired by z and autojump.
 
-### Linux and macOS
+#### Linux and macOS
 
 - ssh-copy-id
 - tmux
@@ -124,7 +126,7 @@ In powershell:
 - [git-branchless](https://github.com/arxanas/git-branchless): High-velocity, monorepo-scale workflow for Git.
 - [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
 
-### macOS
+#### macOS
 
 - [lima](https://github.com/lima-vm/lima): Linux virtual machines, typically on macOS, for running containerd.
 - [colima](https://github.com/abiosoft/colima): Container runtimes on macOS (and Linux) with minimal setup.
@@ -133,11 +135,11 @@ In powershell:
 - [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard): Reattach to the per-user bootstrap namespace. This is needed for tools like tmux, though tmux 2.6+ apparently incorporates this functionality already.
 - [trash](https://hasseg.org/trash/): A small command-line program for OS X that moves files or folders to the trash.
 
-### Linux
+#### Linux
 
 The intention is to incorporate the installation of Nix on all systems in time.
 
-#### Arch Linux
+##### Arch Linux
 
 - nix
 - openssh
@@ -145,14 +147,14 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - nss-mdns
 - avahi
 
-### Windows
+#### Windows
 
 - winget
 - scoop
 - gow
 - starship
 
-#### PowerShell Modules
+##### PowerShell Modules
 
 - PSReadLine
 - DirColors
@@ -161,9 +163,9 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - ZLocation
 - posh-alias
 
-## GUI apps installed
+### GUI apps installed
 
-### Windows and macOS
+#### Windows and macOS
 
 - 1Password
 - Discord
@@ -172,7 +174,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - Visual Studio Code
 - Vivaldi
 
-### macOS
+#### macOS
 
 - 1Password for Safari
 - AdGuard for Safari
@@ -234,14 +236,14 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - WiFi Explorer
 - WiFi Signal
 
-#### Fonts
+##### Fonts
 
 - Fira Code (Nerd Font)
 - Fira Mono (Nerd Font)
 - Input
 - JetBrains Mono
 
-#### QuickLook Plugins
+##### QuickLook Plugins
 
 - [QLColorCode](https://github.com/anthonygelibert/QLColorCode): A Quick Look plug-in that renders source code with syntax highlighting
 - QLMarkDown
@@ -251,7 +253,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - quicklook-json
 - WebPQuickLook
 
-### Windows
+#### Windows
 
 - 7-Zip
 - AutoHotkey
