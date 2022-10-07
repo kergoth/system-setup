@@ -13,30 +13,30 @@ This project holds the consolidation of my various per-system setup script repos
 
 ### Linux or macOS
 
-As a non-root user:
-
-```console
-./setup
-```
-
 As a user that can run `sudo`:
 
 ```console
 ./setup-admin
 ```
 
-### Windows
-
-In powershell:
+As a non-root user:
 
 ```console
-./setup.ps1
+./setup
 ```
+
+### Windows
 
 In an Administrative PowerShell:
 
 ```console
 ./setup-admin.ps1
+```
+
+In powershell:
+
+```console
+./setup.ps1
 ```
 
 ## Manual Steps to Take Next
