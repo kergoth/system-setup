@@ -55,7 +55,6 @@ scoop install shellcheck
 scoop install jq
 cargo install choose
 scoop install sd
-cargo install --locked --all-features  --git https://github.com/ms-jpq/sad --branch senpai
 
 # Disk tools
 scoop install dua

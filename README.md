@@ -112,7 +112,6 @@ In powershell:
 - [git-imerge](https://github.com/mhagger/git-imerge): Incremental merge for git.
 - [git-revise](https://github.com/mystor/git-revise): A handy tool for doing efficient in-memory commit rebases & fixups.
 - [peru](https://github.com/buildinspace/peru): A generic package manager, for including other people's code in your projects.
-- [sad](https://github.com/ms-jpq/sad): CLI search and replace | Space Age seD.
 - [jq](https://github.com/stedolan/jq): A lightweight and flexible command-line JSON processor.
 - [zoxide](https://github.com/ajeetdsouza/zoxide): A smarter cd command, inspired by z and autojump.
 
@@ -125,6 +124,7 @@ In powershell:
 - [git-absorb](https://github.com/tummychow/git-absorb): git commit --fixup, but automatic.
 - [git-branchless](https://github.com/arxanas/git-branchless): High-velocity, monorepo-scale workflow for Git.
 - [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
+- [sad](https://github.com/ms-jpq/sad): CLI search and replace | Space Age seD.
 
 #### macOS
 
