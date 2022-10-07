@@ -42,6 +42,7 @@ scoop install wget
 # Install tools
 # Unavailable on Windows: direnv
 # Available only via release archives on Windows: git-absorb
+scoop install bat
 scoop install fd
 scoop install ripgrep
 scoop install zoxide
