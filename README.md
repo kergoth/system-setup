@@ -284,7 +284,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 
 ### GUI
 
-#### Windows
+#### Windows (All are available via winget)
 
 - Rufus and/or Balena Etcher
 - Todoist
