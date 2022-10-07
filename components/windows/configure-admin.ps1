@@ -193,15 +193,17 @@ Start-Service ssh-agent
 Write-Verbose "Downloading Sophia Script"
 
 $DownloadsFolder = Get-ItemPropertyValue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" -Name "{374DE290-123F-4565-9164-39C4925E467B}"
-$sophiaver = "5.12.3"
-$sophia = "$DownloadsFolder\Sophia.Script.v$sophiaver.zip"
+$sophiabasever = "6.1.4"
+$sophiaver = "5.13.4"
+$sophiazip = "Sophia.Script.for.Windows.10.v$sophiaver.zip"
+$sophia = "$DownloadsFolder\$sophiazip"
 
 if (-Not (Test-Path $sophia )) {
-    Start-BitsTransfer https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$sophiaver/Sophia.Script.v$sophiaver.zip -Destination $DownloadsFolder
+    Start-BitsTransfer https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$sophiabasever/$sophiazip -Destination $DownloadsFolder
 }
 
 $sophiadir = "$env:TEMP\sophia"
-$sophiaScript = "$sophiadir\Sophia Script v$sophiaver"
+$sophiaScript = "$sophiadir\Sophia Script for Windows 10 v$sophiaver"
 try {
     Expand-Archive $sophia -DestinationPath $sophiadir -Force
     Invoke-Sophia $sophiascript
