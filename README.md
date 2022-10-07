@@ -282,6 +282,14 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - [petname](https://github.com/dustinkirkland/petname): Generate human readable random names. Available via pypi and cargo.
 - [huniq](https://github.com/koraa/huniq): Command line utility to remove duplicates from the given input. Available via nix and cargo. Uses less memory than awk/uniq-seen. Rarely needed.
 
+### GUI
+
+#### Windows
+
+- Rufus and/or Balena Etcher
+- Todoist
+- WinSCP
+
 ## Background and Considerations
 
 I have chosen to write these from scratch at this time for simplicity, and the limited support for Ansible on Windows without also having a Linux host nearby. I will continue to look into other options, but for now, this should meet my needs.
