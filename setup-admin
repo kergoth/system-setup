@@ -26,3 +26,5 @@ if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/setup-admin" ]; then
 else
     msg "WARNING: unrecognized or unsupported operating system"
 fi
+
+msg "Admin setup complete"
