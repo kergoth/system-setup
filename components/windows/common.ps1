@@ -14,6 +14,60 @@ function Remove-PossiblyMissingItem {
     }
 }
 
+# Add-EnvironmentVariableItem from Get-EnvironmentVariable.ps1
+# Copyright (C) Frank Skare (stax76)
+# MIT License
+function Add-EnvironmentVariableItem
+{
+    [CmdletBinding()]
+    [Alias('aevi')]
+    Param(
+        [Parameter(Mandatory=$true)]
+        [string] $Name,
+        [Parameter(Mandatory=$true)]
+        [string] $Value,
+        [Switch] $Machine,
+        [Switch] $User,
+        [Switch] $End
+    )
+
+    process
+    {
+        $scope = 'Process'
+
+        if ($Machine) { $scope = 'Machine' }
+        if ($User)    { $scope = 'User' }
+
+        $var = [Environment]::GetEnvironmentVariable($Name, $scope)
+        $tempItems = New-Object Collections.Generic.List[String]
+
+        foreach ($i in ($var -split ';'))
+        {
+            $i = $i.Trim()
+
+            if ($i -eq '' -or $i -eq $Value)
+            {
+                continue
+            }
+
+            $tempItems.Add($i)
+        }
+
+        $var = $tempItems -join ';'
+
+        if ($End)
+        {
+            $var = $var + ';' + $Value
+        }
+        else
+        {
+            $var = $Value + ';' + $var
+        }
+
+        [Environment]::SetEnvironmentVariable($Name, $var, $scope)
+    }
+}
+
 function Get-GithubLatestRelease {
     param (
         [parameter(Mandatory)][string]$project, # e.g. paintdotnet/release
