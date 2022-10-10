@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./test.nix
+  ];
+
   # The home-manager manual is at:
   #
   #   https://rycee.gitlab.io/home-manager/release-notes.html
