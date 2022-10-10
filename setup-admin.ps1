@@ -95,3 +95,5 @@ winget import $PSScriptRoot\components\windows\winget.json
 
 # Configuration
 . $PSScriptRoot\components\windows\configure-admin.ps1
+
+Write-Output "Admin setup complete"
