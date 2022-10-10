@@ -27,22 +27,31 @@ if (-Not $myWindowsPrincipal.IsInRole($adminRole)) {
 
 $ErrorActionPreference = "Continue"
 
-. $PSScriptRoot\components\common.ps1
+. $PSScriptRoot\components\windows\common.ps1
 
 # Install winget
 if (-Not (Get-Command winget -ErrorAction SilentlyContinue))
 {
+    $DownloadsFolder = Get-ItemPropertyValue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" -Name "{374DE290-123F-4565-9164-39C4925E467B}"
+
     Write-Verbose "Installing winget"
-    $vclibs = "$Downloads\Microsoft.VCLibs.x64.14.00.Desktop.appx"
+
+    Start-BitsTransfer https://globalcdn.nuget.org/packages/microsoft.ui.xaml.2.7.3.nupkg -Destination $DownloadsFolder
+    Move-Item "$DownloadsFolder\Microsoft.UI.Xaml.2.7.3.nupkg" "$DownloadsFolder\Microsoft.UI.Xaml.2.7.3.zip" -Force
+    Expand-Archive "$DownloadsFolder\Microsoft.UI.Xaml.2.7.3.zip" -DestinationPath "$DownloadsFolder\Microsoft.UI.Xaml.2.7.3" -Force
+    $xaml = "$DownloadsFolder\Microsoft.UI.Xaml.2.7.3\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx"
+
+    $vclibs = "$DownloadsFolder\Microsoft.VCLibs.x64.14.00.Desktop.appx"
     if (-Not (Test-Path $vclibs)) {
-        Start-BitsTransfer https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -Destination $Downloads
+        Start-BitsTransfer https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -Destination $DownloadsFolder
     }
-    $appinstaller = "$Downloads\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+    $appinstaller = "$DownloadsFolder\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
     if (-Not (Test-Path $appinstaller)) {
-        Start-BitsTransfer https://github.com/microsoft/winget-cli/releases/download/v1.0.11692/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -Destination $Downloads
+        Start-BitsTransfer https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -Destination $DownloadsFolder
     }
 
-    Add-AppxPackage $appinstaller -DependencyPath $vclibs
+    Add-AppxPackage $appinstaller -DependencyPath $vclibs,$xaml
+    Remove-PossiblyMissingItem -Recurse -Force "$DownloadsFolder\Microsoft.UI.Xaml.2.7.3"
 }
 
 # Enable WSL, WSL 2, Sandbox
@@ -82,7 +91,9 @@ catch {
 RefreshEnvPath
 
 # Install GUI apps
-winget import $PSScriptRoot\components\winget.json
+winget import $PSScriptRoot\components\windows\winget.json
 
 # Configuration
-. $PSScriptRoot\components\configure-admin.ps1
+. $PSScriptRoot\components\windows\configure-admin.ps1
+
+Write-Output "Admin setup complete"

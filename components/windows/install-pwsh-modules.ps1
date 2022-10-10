@@ -34,9 +34,7 @@ Function Install-ModuleIfNotInstalled(
 
 $VerbosePreference = "SilentlyContinue"
 
-Install-ModuleIfNotInstalled PSReadLine
-Install-ModuleIfNotInstalled DirColors
-Install-ModuleIfNotInstalled Recycle
-Install-ModuleIfNotInstalled BurntToast
-Install-ModuleIfNotInstalled ZLocation
-Install-ModuleIfNotInstalled posh-alias
+Install-ModuleIfNotInstalled PSReadLine 1.0
+Install-ModuleIfNotInstalled DirColors 1.0
+Install-ModuleIfNotInstalled Recycle 1.0
+Install-ModuleIfNotInstalled posh-alias 1.0

@@ -1,9 +1,14 @@
 $ErrorActionPreference = "Continue"
 
-. $PSScriptRoot\Components\common.ps1
+. $PSScriptRoot\components\windows\common.ps1
 
 # Install PowerShell modules
-. $PSScriptRoot\Components\install-pwsh-modules.ps1
+. $PSScriptRoot\components\windows\install-pwsh-modules.ps1
+
+# Add installed software to the user's PATH and/or startup
+if (Test-Path "C:\Program Files\7-Zip") {
+    Add-EnvironmentVariableItem "PATH" "C:\Program Files\7-Zip" -User
+}
 
 # Install scoop
 if (-Not $env:SCOOP)
@@ -42,8 +47,10 @@ scoop install wget
 # Install tools
 # Unavailable on Windows: direnv
 # Available only via release archives on Windows: git-absorb
+scoop install bat
 scoop install fd
 scoop install ripgrep
+scoop install zoxide
 scoop install fzf
 cargo install --no-default-features --branch chesterliu/dev/win-support --git https://github.com/skyline75489/exa
 scoop install gh
@@ -53,7 +60,6 @@ scoop install shellcheck
 scoop install jq
 cargo install choose
 scoop install sd
-cargo install --locked --all-features  --git https://github.com/ms-jpq/sad --branch senpai
 
 # Disk tools
 scoop install dua
@@ -61,10 +67,8 @@ scoop install dust
 
 pipx install flake8
 pipx inject flake8 pep8-naming flake8-docstrings
-pipx install httpie
 pipx install peru
 pipx install git-revise
 pipx install git-imerge
 
-# Configuration
-. $PSScriptRoot\components\configure.ps1
+Write-Output "Setup complete"

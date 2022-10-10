@@ -6,31 +6,35 @@ else
     SUDO=
 fi
 
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$HOME/.brew}
+export HOMEBREW_PREFIX
+PATH="$HOMEBREW_PREFIX/bin:$XDG_DATA_HOME/../bin:$PATH"
+
 has() {
     command -v "$@" >/dev/null 2>&1
 }
 
-# shellcheck disable=SC3028
+# shellcheck disable=SC3028,SC2034
 case "${OSTYPE:-}" in
 darwin*)
-    mac=1
-    debian=0
-    arch=0
+    OS=macos
     ;;
 *)
-    mac=0
-    if has apt-get; then
-        debian=1
-        arch=0
-    elif has pacman; then
-        debian=0
-        arch=1
+    case "$(uname -r)" in
+    *Microsoft | *microsoft*)
+        OSTYPE=WSL
+        ;;
+    esac
+
+    if [ -e /etc/os-release ]; then
+        OS="$(sed -n -e 's/^ID=//p' /etc/os-release | tr '[:upper:]' '[:lower:]')"
     fi
     ;;
 esac
 
 is_mac() {
-    [ "$mac" -eq 1 ]
+    [ "$OS" = macos ]
 }
 
 msg() {
@@ -156,3 +160,4 @@ pkg_install() {
         return $ret
     }
 }
+

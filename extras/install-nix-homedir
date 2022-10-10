@@ -1,0 +1,38 @@
+#!/bin/bash
+
+proot_url=https://proot.gitlab.io/proot/bin/proot
+bindir=${XDG_DATA_HOME:-$HOME/.local/share}/../bin
+scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
+PATH=$bindir:$PATH
+
+set -euo pipefail
+
+mkdir -p "$bindir"
+if ! command -v proot >/dev/null 2>&1; then
+    wget -O "$bindir/proot" "$proot_url"
+    chmod +x "$bindir/proot"
+fi
+
+if ! [ -e ~/.config/nix/nix.conf ]; then
+    mkdir -p ~/.config/nix
+    cat >~/.config/nix/nix.conf <<END
+experimental-features = nix-command flakes
+sandbox = false
+END
+fi
+
+unset NIX_PATH
+
+# shellcheck disable=SC2174
+mkdir -m 0755 -p ~/.nix
+curl -L https://nixos.org/nix/install | nix-user-chroot ~/.nix sh
+
+{
+    echo "#!/bin/sh"
+    echo
+    echo "exec nix-user-chroot ~/.nix bash -c 'for i in ~/.nix-profile/etc/profile.d/*.sh; do if [ -e "\$i" ]; then . "\$i"; fi; done && \"\$@\"' - \"\$@\""
+} >"$bindir/nixrun"
+chmod +x "$bindir/nixrun"
+
+cp -av "$scriptdir/nixwrap" "$bindir/nixwrap"
+"$bindir/nixwrap"

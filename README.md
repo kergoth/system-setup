@@ -8,22 +8,12 @@ This project holds the consolidation of my various per-system setup script repos
 
 - Logged in as your already-configured user.
 - On macOS, Command-Line Tools or XCode must be installed (See extras/ for scripts to install these).
+- (On Linux hosts) zsh is already installed.
+- (On non-Arch Linux hosts, for now) nix is already installed.
 
 ## Usage
 
-### Linux
-
-As a user that can run `sudo`:
-
-```console
-./setup
-```
-
-### macOS
-
-```console
-./setup
-```
+### Linux or macOS
 
 As a user that can run `sudo`:
 
@@ -31,7 +21,19 @@ As a user that can run `sudo`:
 ./setup-admin
 ```
 
+As a non-root user:
+
+```console
+./setup
+```
+
 ### Windows
+
+In an Administrative PowerShell:
+
+```console
+./setup-admin.ps1
+```
 
 In powershell:
 
@@ -39,11 +41,256 @@ In powershell:
 ./setup.ps1
 ```
 
-In an Administrative PowerShell:
+## Manual Steps
+
+### macOS
+
+- Enable `secure keyboard entry` in Terminal
+- `extras/enable-filevault`
+- Run vscode, enable settings sync
+- Run vivaldi, enable sync
+- Run deliveries, click yes to import from iCloud
+- Run musicharbor, click yes to import from iCloud
+- Run appcleaner, preferences, enable smartdelete
+- Run alfred, preferences, advanced, enable sync to `~/Sync/App Settings/Alfred`
+- Safari
+  - Change the default scale to 85%
+  - Add site settings icon
+  - Add cloud tabs icon
+  - Rearrange icons
+- Syncthing Shares
+  - Sync/dotfiles-local
+  - Sync/App Settings
+  - Library/Fonts
+
+### Windows
+
+- Set up all my Syncthing shares
+- Restore from backup:
+  - `$USERPROFILE/Apps`
+  - Vivaldi: `AppData/Local/Vivaldi/User Data/Default/`
+  - HexChat: `AppData/Roaming/HexChat`
+  - archwsl disk image
+- Run QuickLook, right click its icon, click start at login
+- Create link to CapsLockCtrlEscape.exe in Startup (win-r -> shell:startup)
+- Install Fonts from Sync/Fonts
+- Run vscode, enable settings sync
+- Run an elevated WSL terminal, clone dotfiles into $USERPROFILE/dotfiles, and run:
 
 ```console
-./setup-admin.ps1
+./script/install -d $USERPROFILE -f windows-terminal powershell git`
 ```
+- Run ssh-add in powershell to add my key to the agent, if it exists
+- Remove Edge, Store, Mail from the task bar pins.
+
+## Apps Installed
+
+### CLI apps installed
+
+- wget
+- git
+- neovim
+
+- rust
+- go
+- python
+  - flake8 with pep8-naming and flake8-docstrings
+- pipx
+
+- [bat](https://github.com/sharkdp/bat): A cat(1) clone with syntax highlighting and Git integration.
+- [choose](https://github.com/theryangeary/choose): A human-friendly and fast alternative to cut and (sometimes) awk.
+- [exa](https://github.com/ogham/exa): A modern replacement for ls.
+- [fd](https://github.com/sharkdp/fd): A simple, fast and user-friendly alternative to 'find'.
+- [fzf](https://github.com/junegunn/fzf): A command-line fuzzy finder.
+- [ripgrep](https://github.com/BurntSushi/ripgrep): A line-oriented search tool that recursively searches the current directory for a regex pattern.
+- [sd](https://github.com/chmln/sd): Intuitive find & replace CLI (sed alternative).
+- [delta](https://github.com/dandavison/delta): A syntax-highlighting pager for git, diff, and grep output.
+- [dua](https://github.com/Byron/dua-cli): View disk space usage and delete unwanted data, fast. This is a faster version of ncdu.
+- [dust](https://github.com/bootandy/dust): A more intuitive version of du in rust.
+- [shellcheck](https://github.com/koalaman/shellcheck): A static analysis tool for shell scripts.
+- [shfmt](https://github.com/mvdan/sh#shfmt): Format shell programs.
+- [git-imerge](https://github.com/mhagger/git-imerge): Incremental merge for git.
+- [git-revise](https://github.com/mystor/git-revise): A handy tool for doing efficient in-memory commit rebases & fixups.
+- [peru](https://github.com/buildinspace/peru): A generic package manager, for including other people's code in your projects.
+- [jq](https://github.com/stedolan/jq): A lightweight and flexible command-line JSON processor.
+- [zoxide](https://github.com/ajeetdsouza/zoxide): A smarter cd command, inspired by z and autojump.
+
+#### Linux and macOS
+
+- ssh-copy-id
+- tmux
+- patchutils
+
+- [git-absorb](https://github.com/tummychow/git-absorb): git commit --fixup, but automatic.
+- [git-branchless](https://github.com/arxanas/git-branchless): High-velocity, monorepo-scale workflow for Git.
+- [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
+- [sad](https://github.com/ms-jpq/sad): CLI search and replace | Space Age seD.
+
+#### macOS
+
+- [lima](https://github.com/lima-vm/lima): Linux virtual machines, typically on macOS, for running containerd.
+- [colima](https://github.com/abiosoft/colima): Container runtimes on macOS (and Linux) with minimal setup.
+- [duti](https://github.com/moretension/duti): A command-line tool to select default applications for document types and URL schemes on Mac OS X.
+- [mas](https://github.com/mas-cli/mas): Mac App Store command line interface.
+- [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard): Reattach to the per-user bootstrap namespace. This is needed for tools like tmux, though tmux 2.6+ apparently incorporates this functionality already.
+- [trash](https://hasseg.org/trash/): A small command-line program for OS X that moves files or folders to the trash.
+
+#### Linux
+
+The intention is to incorporate the installation of Nix on all systems in time.
+
+##### Arch Linux
+
+- nix
+- openssh
+- pkgfile
+- nss-mdns
+- avahi
+
+#### Windows
+
+- winget
+- scoop
+- gow
+- starship
+
+##### PowerShell Modules
+
+- PSReadLine
+- DirColors
+- Recycle
+- BurntToast
+- ZLocation
+- posh-alias
+
+### GUI apps installed
+
+#### Windows and macOS
+
+- 1Password
+- Discord
+- IRCCloud
+- Microsoft Teams
+- Slack
+- Visual Studio Code
+- Vivaldi
+
+#### macOS
+
+- 1Password for Safari
+- AdGuard for Safari
+- Aerial
+- Alfred
+- AppCleaner
+- Bear
+- Brooklyn
+- Calibre
+- Carbon Copy Cloner
+- CleanMyDrive 2
+- Declutter
+- DaisyDisk
+- Deliveries
+- Docker
+- [DevDocs for macOS](https://github.com/dteoh/devdocs-macos): An unofficial [DevDocs API Documentation](https://devdocs.io/) viewer for macOS.
+- git-credential-manager-core
+- GoodLinks
+- Hidden Bar
+- Hush
+- [Itsycal for Mac](https://www.mowglii.com/itsycal/): A tiny menu bar calendar.
+- Karabiner Elements
+- Keeping You Awake
+- LilyView
+- [LuLu](https://objective-see.org/products/lulu.html): The free, open-source firewall that aims to block unknown outgoing connections.
+- Magnet
+- MusicHarbor
+- OmniOutliner
+- Oversight
+- Parallels Desktop 16 (Not the current version)
+- PiPer
+- PopClip
+- Privacy Redirect
+- Reeder
+- Refined GitHub
+- ReiKey
+- Save to Matter
+- SessionRestore
+- Shut Up
+- Social Fixer for Facebook
+- Soulver 2
+- Spark
+- StopTheMadness
+- swiftdefaultappsprefpane
+- SyncThing
+- Tampermonkey
+- The Unarchiver
+- Todoist
+- Toolkit for YNAB
+- Transmission Remote GUI
+- uBlacklist for Safari
+- UnPlugged
+- Userscripts
+- Vinegar
+- VLC
+- Vmware Horizon Client
+- WhatsYourSign
+- WiFi Explorer
+- WiFi Signal
+
+##### Fonts
+
+- Fira Code (Nerd Font)
+- Fira Mono (Nerd Font)
+- Input
+- JetBrains Mono
+
+##### QuickLook Plugins
+
+- [QLColorCode](https://github.com/anthonygelibert/QLColorCode): A Quick Look plug-in that renders source code with syntax highlighting
+- QLMarkDown
+- QLPrettyPatch
+- QLStephen
+- quicklook-csv
+- quicklook-json
+- WebPQuickLook
+
+#### Windows
+
+- 7-Zip
+- AutoHotkey
+- HexChat
+- Notepad++
+- PowerShell
+- PowerToys
+- PuTTY
+- QuickLook
+- Rufus
+- SyncTrayzor
+- Windows Terminal
+
+## Apps I install on an as-needed basis
+
+### CLI
+
+- [pup](https://github.com/ericchiang/pup): A command line tool for processing HTML. Available via brew, nix, and go.
+- [httpie](https://github.com/httpie/httpie): A command-line HTTP client. Available via brew, nix, and python.
+- [hyperfine](https://github.com/sharkdp/hyperfine): A command-line benchmarking tool. Available via brew, nix, and cargo.
+- [fclones](https://github.com/pkolaczk/fclones): Finds and removes duplicate files. Available via brew, nix, and cargo.
+- [eva](https://github.com/nerdypepper/eva): A simple calculator REPL, similar to bc. Available via brew, nix, and cargo.
+- [vivid](https://github.com/sharkdp/vivid): A generator for the LS_COLORS environment variable. Available via brew, nix, and cargo.
+- [chars](https://github.com/antifuchs/chars). Tool to display names and codes for unicode codepoints. Available via brew, nix, and cargo.
+- [hexyl](https://github.com/sharkdp/hexyl): A simple hex viewer for the terminal. Available via brew, nix, and cargo.
+- [dog](https://github.com/ogham/dog): A command-line DNS client. Available via brew as `dog`, nix as `dogdns`, and cargo from the source.
+- [titlecase](https://github.com/wezm/titlecase): A small tool that capitalizes English text. Available via cargo.
+- [petname](https://github.com/dustinkirkland/petname): Generate human readable random names. Available via pypi and cargo.
+- [huniq](https://github.com/koraa/huniq): Command line utility to remove duplicates from the given input. Available via nix and cargo. Uses less memory than awk/uniq-seen. Rarely needed.
+
+### GUI
+
+#### Windows (All are available via winget)
+
+- Rufus and/or Balena Etcher
+- Todoist
+- WinSCP
 
 ## Background and Considerations
 

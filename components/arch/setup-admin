@@ -1,0 +1,56 @@
+#!/bin/bash
+
+pacman() {
+    command pacman --noconfirm --needed "$@"
+}
+
+install_nix() {
+    pacman -S nix
+
+    sudorun systemctl enable nix-daemon
+    sudorun systemctl start nix-daemon
+    if ! grep -q "^nix-users:.*$USER" /etc/group; then
+        sudorun sed -i -e "/^nix-users:/s/\$/ $USER/; /^nix-users:/s/: /:/;" /etc/group
+        if ! grep -q "^nix-users:.*$USER" /etc/group; then
+            echo >&2 "Failed to add user to the nix-users group, please do so manually, then re-login"
+        else
+            echo >&2 "User has been added to the nix-users group, please re-login"
+        fi
+    fi
+}
+
+pacman -Sy
+
+pacman -S openssh
+if [ "$OSTYPE" != WSL ]; then
+    sudorun systemctl enable sshd && sudo systemctl start sshd
+fi
+
+pacman -S pkgfile
+sudorun pkgfile -u
+
+if ! grep -q '^MAKEFLAGS=.*-j' /etc/makepkg.conf; then
+    CPUS=$(grep -c processor /proc/cpuinfo)
+    JOBS=$((CPUS * 3 / 2))
+    sudorun sed -i -e "s,#*MAKEFLAGS=.*,MAKEFLAGS=\"-j$JOBS\"," /etc/makepkg.conf
+    if ! grep -q '^MAKEFLAGS=.*-j' /etc/makepkg.conf; then
+        echo >&2 "Warning: failed to set MAKEFLAGS=-j$JOBS in /etc/makepkg.conf"
+    fi
+fi
+
+if [ "$OSTYPE" != WSL ]; then
+    pacman -S nss-mdns avahi
+    sudorun sed -i -e '/hosts:/{ s/mdns_minimal //g; s/dns/mdns_minimal dns/; }' /etc/nsswitch.conf
+    if ! grep -q 'hosts:.*mdns_minimal' /etc/nsswitch.conf; then
+        echo >&2 "Warning: failed to add mdns_minimal to hosts resolution in /etc/nsswitch.conf"
+    fi
+    sudorun systemctl enable avahi-daemon.service
+    sudorun systemctl start avahi-daemon.service || true
+fi
+
+pacman -S neovim
+
+# Clean up
+pacman --noconfirm -R nano :: :
+
+install_nix

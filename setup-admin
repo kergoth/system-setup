@@ -1,45 +1,30 @@
-#!/bin/sh
+#!/bin/bash
+
+scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
+PATH="$scriptdir/scripts:$PATH"
+
+HOMEBREW_PREFIX=${ADMIN_HOMEBREW_PREFIX:-${HOMEBREW_PREFIX:-$HOME/.brew}}
 
 # shellcheck source=./components/common.sh
-. "$(dirname "$0")/components/common.sh" || exit 1
+. "$scriptdir/components/common.sh" || exit 1
+
+set -euo pipefail
 
 if [ "$(id -u)" = "0" ]; then
-    die "Error: Do not run as root"
+    die "Error: Do not run as root, this script expects to use sudo if needed"
 else
     need_sudo
 fi
 
-# Install system packages and apps
-if is_mac; then
-    export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-~/.brew}
-    PATH="$HOMEBREW_PREFIX/bin:$(dirname "$0")/scripts:$PATH"
-
-    # Install brew
-    if ! [ -e "$HOMEBREW_PREFIX/bin/brew" ]; then
-        install-brew -s "$HOMEBREW_PREFIX"
-    fi
-
-    # Install GUI apps
-    brew install --cask 1password
-    brew install --cask blockblock
-    brew install --cask karabiner-elements
-    brew install --cask reikey
-    brew install --cask whatsyoursign
-    brew install --cask lulu
-    brew tap microsoft/git
-    brew install --cask git-credential-manager-core
-    brew install --cask microsoft-teams
-
-    CASKROOM="$(brew --caskroom)"
-    if [ -d "$CASKROOM"/whatsyoursign ]; then
-        find "$CASKROOM"/whatsyoursign -name WhatsYourSign\ Installer.app -print0 \
-            | xargs -0 open
-    fi
-
-    "$(dirname "$0")/scripts/install-oversight"
-
-    # Configuration
-    # shellcheck source=./components/macos-configure-admin.sh
-    "$(dirname "$0")/components/macos-configure-admin.sh"
+if [ -z "$HOMEBREW_PREFIX" ]; then
+    die "HOMEBREW_PREFIX must be set or unset, not the empty string"
 fi
 
+if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/setup-admin" ]; then
+    # shellcheck disable=SC1090
+    . "$scriptdir/components/$OS/setup-admin"
+else
+    msg "WARNING: unrecognized or unsupported operating system"
+fi
+
+msg "Admin setup complete"

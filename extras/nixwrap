@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -euo pipefail
+
+scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
+PATH="$scriptdir:$PATH"
+
+bins="$(mktemp -t "${0##*/}.XXXXXX")"
+trap 'rm -f "$bins"' EXIT INT TERM
+shims="$(mktemp -t "${0##*/}.XXXXXX")"
+trap 'rm -f "$bins" "$shims"' EXIT INT TERM
+
+if [ -L ~/.nix-profile ]; then
+    nixrun find ~/.nix-profile/bin/ \( -type l -o -type f \) -printf '%f\n' 2>/dev/null | sort >>"$bins" || :
+fi
+if [ -e ~/.nix/shims ]; then
+    find ~/.nix/shims -type l -printf '%f\n' | sort >>"$shims" || :
+fi
+
+mkdir -p ~/.nix/shims
+if ! [ -f ~/.nix/shims/nixrun-wrap ]; then
+    rm -f ~/.nix/shims/nixrun-wrap
+    cat >~/.nix/shims/nixrun-wrap <<END
+#!/bin/sh
+
+exec nixrun "\$(basename "\$0")" "\$@"
+END
+    chmod +x ~/.nix/shims/nixrun-wrap
+fi
+comm -13 "$bins" "$shims" | sed -e "s#^#$HOME/.nix/shims/#" | tr '\n' '\0' | xargs -0 rm -fv
+comm -23 "$bins" "$shims" | tr '\n' '\0' | xargs -0 -I "{}" ln -sfv ./nixrun-wrap ~/.nix/shims/"{}"
