@@ -23,7 +23,8 @@ if ! [ -f ~/.nix/shims/nixrun-wrap ]; then
     cat >~/.nix/shims/nixrun-wrap <<END
 #!/bin/sh
 
-scriptdir="$(cd "\$(dirname "\$0")" && pwd)"
+script="$(readlink -f "\$0")"
+scriptdir="$(cd "$(dirname "\$script")" && pwd)"
 PATH="\$(echo "\$PATH" | tr ':' '\n' | grep -vxF "\$scriptdir" | tr '\n' ':' | sed -e 's/:\$//')"
 exec nixrun "\$(basename "\$0")" "\$@"
 END
