@@ -1,17 +1,14 @@
 #Requires -RunAsAdministrator
 
-function Invoke-Sophia ($sophiascript) {
-    Remove-Module -Name Sophia -Force -ErrorAction Ignore
-    Import-Module -Name $sophiaScript\Manifest\Sophia.psd1 -Force
-    Import-LocalizedData -BindingVariable Global:Localization -FileName Sophia -BaseDirectory $sophiaScript\Localizations
+function Invoke-Sophia {
+    . .\Functions.ps1
 
     try {
         Checkings
+        CreateRestorePoint
     }
     catch {
     }
-
-    CreateRestorePoint
 
     # Enable app sideloading
     New-ItemProperty -Path HKLM:SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name AllowAllTrustedApps -Type DWord -Value 1 -Force
@@ -192,7 +189,7 @@ Start-Service ssh-agent
 # System configuration via Sophia
 $DownloadsFolder = Get-ItemPropertyValue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" -Name "{374DE290-123F-4565-9164-39C4925E467B}"
 
-$sophia_url = Get-GithubLatestRelease "farag2/Sophia-Script-for-Windows" "Sophia.Script.for.Windows.10"
+$sophia_url = Get-GithubLatestRelease "farag2/Sophia-Script-for-Windows" "Sophia.Script.for.Windows.10.v"
 $sophia = "$DownloadsFolder\" + (Split-Path $sophia_url -Leaf)
 if (-Not (Test-Path $sophia)) {
     Start-BitsTransfer $sophia_url -Destination $DownloadsFolder
@@ -200,11 +197,13 @@ if (-Not (Test-Path $sophia)) {
 
 $sophiadir = "$env:TEMP\sophia"
 try {
+    $cwd = Get-Location
     Write-Verbose "Installing Sophia Script"
     Expand-Archive $sophia -DestinationPath $sophiadir -Force
-    $sophiascriptdir = Get-ChildItem -Path $sophiadir
-    Invoke-Sophia $sophiascriptdir
+    Set-Location (Get-ChildItem -Path $sophiadir | Select-Object -First 1).FullName
+    Invoke-Sophia
 }
 finally {
+    Set-Location -Path $cwd
     Remove-PossiblyMissingItem $sophiadir -Recurse -Force
 }
