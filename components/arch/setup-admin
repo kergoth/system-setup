@@ -48,7 +48,7 @@ if [ "$OSTYPE" != WSL ]; then
     sudorun systemctl start avahi-daemon.service || true
 fi
 
-pacman -S neovim
+pacman -S vim
 
 # Clean up
 pacman --noconfirm -R nano :: :
