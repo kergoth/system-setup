@@ -51,6 +51,8 @@ fi
 pacman -S vim
 
 # Clean up
-pacman --noconfirm -R nano :: :
+if command pacman -Q nano >/dev/null 2>&1; then
+    sudorun pacman --noconfirm -R nano
+fi
 
 install_nix
