@@ -35,7 +35,6 @@ if (-Not (Test-Path "$env:SCOOP"))
     Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 }
 RefreshEnvPath
-scoop bucket add extras
 
 # Install languages
 scoop install rust go python
