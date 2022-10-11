@@ -1,3 +1,18 @@
+# Get the ID and security principal of the current user account
+$myWindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+$myWindowsPrincipal = new-object System.Security.Principal.WindowsPrincipal($myWindowsID)
+
+# Get the security principal for the Administrator role
+$adminRole = [System.Security.Principal.WindowsBuiltInRole]::Administrator
+
+if ($myWindowsPrincipal.IsInRole($adminRole)) {
+    # We are running "as Administrator" - so relaunch as user
+
+    $cmd = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoExit -WindowStyle Maximized -NoProfile -InputFormat None -ExecutionPolicy RemoteSigned -File " + $MyInvocation.MyCommand.Definition
+    runas /trustlevel:0x20000 $cmd
+    exit
+}
+
 $ErrorActionPreference = "Continue"
 
 . $PSScriptRoot\components\windows\common.ps1
