@@ -45,9 +45,11 @@ if (-Not (Get-Command winget -ErrorAction SilentlyContinue))
     if (-Not (Test-Path $vclibs)) {
         Start-BitsTransfer https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -Destination $DownloadsFolder
     }
-    $appinstaller = "$DownloadsFolder\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+
+    $appinstaller_url = Get-GithubLatestRelease "microsoft/winget-cli" "Microsoft.DesktopAppInstaller"
+    $appinstaller = "$DownloadsFolder\"+(Split-Path $appinstaller_url -Leaf)
     if (-Not (Test-Path $appinstaller)) {
-        Start-BitsTransfer https://github.com/microsoft/winget-cli/releases/download/v1.3.2691/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -Destination $DownloadsFolder
+        Start-BitsTransfer $appinstaller_url -Destination $DownloadsFolder
     }
 
     Add-AppxPackage $appinstaller -DependencyPath $vclibs,$xaml
