@@ -190,23 +190,20 @@ Get-Service -Name ssh-agent | Set-Service -StartupType Automatic
 Start-Service ssh-agent
 
 # System configuration via Sophia
-Write-Verbose "Downloading Sophia Script"
-
 $DownloadsFolder = Get-ItemPropertyValue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" -Name "{374DE290-123F-4565-9164-39C4925E467B}"
-$sophiabasever = "6.1.4"
-$sophiaver = "5.13.4"
-$sophiazip = "Sophia.Script.for.Windows.10.v$sophiaver.zip"
-$sophia = "$DownloadsFolder\$sophiazip"
 
-if (-Not (Test-Path $sophia )) {
-    Start-BitsTransfer https://github.com/farag2/Sophia-Script-for-Windows/releases/download/$sophiabasever/$sophiazip -Destination $DownloadsFolder
+$sophia_url = Get-GithubLatestRelease "farag2/Sophia-Script-for-Windows" "Sophia.Script.for.Windows.10"
+$sophia = "$DownloadsFolder\" + (Split-Path $sophia_url -Leaf)
+if (-Not (Test-Path $sophia)) {
+    Start-BitsTransfer $sophia_url -Destination $DownloadsFolder
 }
 
 $sophiadir = "$env:TEMP\sophia"
-$sophiaScript = "$sophiadir\Sophia Script for Windows 10 v$sophiaver"
 try {
+    Write-Verbose "Installing Sophia Script"
     Expand-Archive $sophia -DestinationPath $sophiadir -Force
-    Invoke-Sophia $sophiascript
+    $sophiascriptdir = Get-ChildItem -Path $sophiadir
+    Invoke-Sophia $sophiascriptdir
 }
 finally {
     Remove-PossiblyMissingItem $sophiadir -Recurse -Force
