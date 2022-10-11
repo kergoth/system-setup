@@ -1,7 +1,7 @@
 # Via https://stackoverflow.com/a/56893689
 Function Install-ModuleIfNotInstalled(
     [string] [Parameter(Mandatory = $true)] $moduleName,
-    [string] $minimalVersion
+    [string] $minimalVersion = $null
 ) {
     $module = Get-Module -Name $moduleName -ListAvailable |`
         Where-Object { $null -eq $minimalVersion -or $minimalVersion -lt $_.Version } |`
@@ -23,18 +23,16 @@ Function Install-ModuleIfNotInstalled(
                 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Scope CurrentUser -Force
             }        
             $optionalArgs = New-Object -TypeName Hashtable
-            if ($null -ne $minimalVersion) {
+            if ("" -ne $minimalVersion) {
                 $optionalArgs['RequiredVersion'] = $minimalVersion
-            }  
-            Write-Warning ('Install module {0} (version [{1}]) within scope of the current user.' -f $moduleName, $minimalVersion)
-            Install-Module -Name $moduleName @optionalArgs -Scope CurrentUser -Force -Verbose
+            }
+            Install-Module -Name $moduleName @optionalArgs -Scope CurrentUser -Force
         } 
     }
 }
 
-$VerbosePreference = "SilentlyContinue"
-
-Install-ModuleIfNotInstalled PSReadLine 1.0
-Install-ModuleIfNotInstalled DirColors 1.0
-Install-ModuleIfNotInstalled Recycle 1.0
-Install-ModuleIfNotInstalled posh-alias 1.0
+Write-Verbose "Installing powershell modules"
+Install-ModuleIfNotInstalled PSReadLine
+Install-ModuleIfNotInstalled DirColors
+Install-ModuleIfNotInstalled Recycle
+Install-ModuleIfNotInstalled posh-alias
