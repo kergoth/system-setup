@@ -1,16 +1,28 @@
 #!/bin/bash
 
-proot_url=https://proot.gitlab.io/proot/bin/proot
+get_github_latest_release() {
+    curl -fL "https://api.github.com/repos/$1/releases" |
+        jq -r --arg pattern "${2:-.}" '[.[] | select(.prerelease == false) | .assets[] | select(.name | test($pattern))] | .[0].browser_download_url'
+}
+
 bindir=${XDG_DATA_HOME:-$HOME/.local/share}/../bin
 scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
 PATH=$bindir:$PATH
 
 set -euo pipefail
 
-mkdir -p "$bindir"
-if ! command -v proot >/dev/null 2>&1; then
-    wget -O "$bindir/proot" "$proot_url"
-    chmod +x "$bindir/proot"
+if ! command -v nix-user-chroot >/dev/null 2>&1; then
+    if command -v jq >/dev/null 2>&1; then
+        url="$(get_github_latest_release nix-community/nix-user-chroot 'x86_64-.*linux')" || :
+    else
+        url=https://github.com/nix-community/nix-user-chroot/releases/download/1.2.2/nix-user-chroot-bin-1.2.2-x86_64-unknown-linux-musl
+    fi
+
+    if [ -n "$url" ]; then
+        mkdir -p "$bindir"
+        curl -fL "$url" -o "$bindir/nix-user-chroot"
+        chmod +x "$bindir/nix-user-chroot"
+    fi
 fi
 
 if ! [ -e ~/.config/nix/nix.conf ]; then
@@ -31,7 +43,7 @@ cat >"$bindir/nixrun" <<END
 #!/bin/sh
 
 if [ -n "\$NIXRUN" ]; then
-    # Avoid unnecessary nix-user-chroot nesting
+    # Avoid failures due to nix-user-chroot nesting
     exec "\$@"
 else
     export NIXRUN=1
