@@ -51,6 +51,9 @@
     # Linting and formatting
     shellcheck
     shfmt
+
+    # Nix tools
+    nvd
   ] ++ lib.optionals stdenv.isDarwin [
     colima
     duti
