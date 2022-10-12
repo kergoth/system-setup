@@ -11,8 +11,7 @@ package=".#homeConfigurations.$configuration.activationPackage"
 
 cd "$(dirname "$0")"
 ./build.sh "$@"
-new_generation="$(nix path-info "$package" 2>/dev/null)" || :
-"$new_generation/activate"
+nix run "$package"
 
 if command -v nixwrap >/dev/null 2>&1; then
     nixwrap
