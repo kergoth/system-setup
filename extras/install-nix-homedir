@@ -39,18 +39,6 @@ unset NIX_PATH
 mkdir -m 0755 -p ~/.nix
 curl -L https://nixos.org/nix/install | nix-user-chroot ~/.nix sh
 
-cat >"$bindir/nixrun" <<END
-#!/bin/sh
-
-if [ -n "\$NIXRUN" ]; then
-    # Avoid failures due to nix-user-chroot nesting
-    exec "\$@"
-else
-    export NIXRUN=1
-    exec nix-user-chroot ~/.nix /bin/sh -c 'for i in ~/.nix-profile/etc/profile.d/*.sh; do if [ -e "\$i" ]; then . "\$i"; fi; done && exec "\$@"' - "\$@"
-fi
-END
-chmod +x "$bindir/nixrun"
-
+cp -av "$scriptdir/nixrun" "$bindir/nixrun"
 cp -av "$scriptdir/nixwrap" "$bindir/nixwrap"
 "$bindir/nixwrap"
