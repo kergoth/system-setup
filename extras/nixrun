@@ -6,6 +6,20 @@ for i in ~/.nix-profile/etc/profile.d/*.sh; do
     fi
 done
 
+if [ -n "$NIXRUN_VERBOSE" ]; then
+    case "$1" in
+        /*)
+            ;;
+        *)
+            cmd="$(command -v "$1")"
+            shift
+            set -- "$cmd" "$@"
+            ;;
+    esac
+
+    echo "nixrun> $*" >&2
+fi
+
 if [ -n "$NIXRUN" ] || [ -d /nix ]; then
     # Avoid failures due to nix-user-chroot nesting
     exec "$@"
