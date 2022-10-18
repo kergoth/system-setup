@@ -28,6 +28,9 @@ if (Test-Path "C:\Program Files\SyncTrayzor") {
     Start-Process "C:\Program Files\SyncTrayzor\SyncTrayzor.exe" -ArgumentList --minimized
 }
 
+# Use RemoteSigned execution policy for PowerShell. Needed for scoop, etc.
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+
 # Install scoop
 if (-Not $env:SCOOP)
 {
