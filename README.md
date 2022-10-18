@@ -290,8 +290,12 @@ The intention is to incorporate the installation of Nix on all systems in time.
 
 #### Windows (All are available via winget)
 
-- Rufus and/or Balena Etcher
+- Autoruns (from Sysinternals)
+- Balena Etcher
+- Paint.NET
+- Process Explorer (from Sysinternals)
 - Todoist
+- WinDirStat
 - WinSCP
 
 ## Background and Considerations
