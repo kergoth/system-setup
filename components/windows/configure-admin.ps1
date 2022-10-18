@@ -201,5 +201,5 @@ try {
 }
 finally {
     Set-Location -Path $cwd
-    Remove-PossiblyMissingItem $sophiadir -Recurse -Force
+    Remove-Item $sophiadir -Recurse -Force -ErrorAction SilentlyContinue
 }
