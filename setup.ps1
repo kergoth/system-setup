@@ -67,6 +67,9 @@ scoop install wget
 $gitdir = scoop prefix git
 Add-EnvironmentVariableItem "PATH" "$gitdir\bin" -User
 
+# Add cargo bindir to the PATH
+Add-EnvironmentVariableItem "PATH" "$env:USERPROFILE\.cargo\bin" -User
+
 # Install tools
 # Unavailable on Windows: direnv
 # Available only via release archives on Windows: git-absorb
