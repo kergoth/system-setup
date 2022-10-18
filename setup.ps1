@@ -25,6 +25,11 @@ if (Test-Path "C:\Program Files\7-Zip") {
     Add-EnvironmentVariableItem "PATH" "C:\Program Files\7-Zip" -User
 }
 
+# Run SyncTrayzor, which will add itself to startup
+if (Test-Path "C:\Program Files\SyncTrayzor") {
+    Start-Process "C:\Program Files\SyncTrayzor\SyncTrayzor.exe" -ArgumentList --minimized
+}
+
 # Install scoop
 if (-Not $env:SCOOP)
 {
