@@ -1,5 +1,7 @@
 #!/bin/bash
 
+NIXPKGS=${NIXPKGS:-https://nixos.org/channels/nixpkgs-unstable}
+
 pacman() {
     sudorun pacman --noconfirm --needed "$@"
 }
@@ -21,6 +23,18 @@ install_nix() {
 
         sudorun systemctl enable nix-daemon
         sudorun systemctl start nix-daemon
+    fi
+
+    # shellcheck disable=SC1090
+    for i in ~/.nix-profile/etc/profile.d/nix-daemon.sh ~/.nix-profile/etc/profile.d/nix.sh; do
+        if [ -e "$i" ]; then
+            . "$i"
+        fi
+    done
+
+    if [ -n "$NIXPKGS" ]; then
+        nix-channel --add "$NIXPKGS" nixpkgs
+        nix-channel --update
     fi
 }
 

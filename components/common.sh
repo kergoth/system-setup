@@ -6,6 +6,7 @@ else
     SUDO=
 fi
 
+NIXPKGS=${NIXPKGS:-https://nixos.org/channels/nixpkgs-unstable}
 XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$HOME/.brew}
 export HOMEBREW_PREFIX
