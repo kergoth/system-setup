@@ -159,8 +159,6 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - PSReadLine
 - DirColors
 - Recycle
-- BurntToast
-- ZLocation
 - posh-alias
 
 ### GUI apps installed
