@@ -17,3 +17,5 @@ msg "Configuring"
 . "$scriptdir/components/macos/configure"
 # shellcheck source=./components/macos/setup-apps
 . "$scriptdir/components/macos/setup-apps"
+
+msg "Configuring complete"
