@@ -255,6 +255,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 
 - 7-Zip
 - AutoHotkey
+- [Ditto](https://ditto-cp.sourceforge.io)
 - HexChat
 - Notepad++
 - PowerShell
