@@ -14,6 +14,6 @@ msg "Installing applications with homebrew"
 
 msg "Configuring"
 # shellcheck source=./components/macos/configure
-"$scriptdir/components/macos/configure"
+. "$scriptdir/components/macos/configure"
 # shellcheck source=./components/macos/setup-apps
-"$scriptdir/components/macos/setup-apps"
+. "$scriptdir/components/macos/setup-apps"

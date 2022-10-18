@@ -22,4 +22,4 @@ install-oversight
 
 # Configuration
 # shellcheck source=./components/macos/configure-admin
-"$scriptdir/components/macos/configure-admin"
+. "$scriptdir/components/macos/configure-admin"
