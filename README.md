@@ -153,6 +153,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - scoop
 - gow
 - starship
+- npiperelay
 
 ##### PowerShell Modules
 

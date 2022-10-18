@@ -116,6 +116,29 @@ if (-Not (Test-Path "$env:USERPROFILE\.cargo\bin\git-absorb.exe")) {
     }
 }
 
+# npiperelay, for wsl access to Windows ssh-agent
+if (-Not (Test-Path "$env:USERPROFILE/Apps/npiperelay/npiperelay.exe")) {
+    $DownloadsFolder = Get-ItemPropertyValue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" -Name "{374DE290-123F-4565-9164-39C4925E467B}"
+    $npiperelay_url = Get-GithubLatestRelease jstarks/npiperelay windows_amd64
+    $npiperelay = "$DownloadsFolder\" + (Split-Path $npiperelay_url -Leaf)
+    if (-Not (Test-Path $npiperelay)) {
+        Start-BitsTransfer $npiperelay_url -Destination $DownloadsFolder
+    }
+    $npiperelaytemp = "$env:TEMP\npiperelay"
+    $npiperelaydir = "$env:USERPROFILE\Apps\npiperelay"
+
+    try {
+        Expand-Archive "$npiperelay" -DestinationPath $npiperelaytemp -Force
+        if (-Not (Test-Path $npiperelaydir)) {
+            New-Item $niperelaydir -Type Directory
+        }
+        Move-Item "$npiperelaytemp\npiperelay.exe" -Destination "$env:USERPROFILE\Apps\npiperelay\"
+    }
+    finally {
+        Remove-Item $npiperelaytemp -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
 RefreshEnvPath
 
 Write-Output "Setup complete"
