@@ -33,7 +33,7 @@ $ErrorActionPreference = "Continue"
 if (-Not (Get-Command winget -ErrorAction SilentlyContinue)) {
     $DownloadsFolder = Get-ItemPropertyValue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" -Name "{374DE290-123F-4565-9164-39C4925E467B}"
 
-    Write-Verbose "Installing winget"
+    Write-Output "Installing winget"
 
     $appinstaller_url = Get-GithubLatestRelease "microsoft/winget-cli" "Microsoft.DesktopAppInstaller"
     $appinstaller = "$DownloadsFolder\" + (Split-Path $appinstaller_url -Leaf)
@@ -74,7 +74,7 @@ try {
     # Features don't work inside a Sandbox
     Get-WindowsOptionalFeature -Online -ErrorAction SilentlyContinue | Out-Null
     if (-Not $error) {
-        Write-Verbose "Enabling WSL"
+        Write-Output "Enabling WSL"
 
         # Enable WSL
         $feature = Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux

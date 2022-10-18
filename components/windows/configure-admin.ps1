@@ -174,7 +174,7 @@ function Invoke-Sophia {
 . $PSScriptRoot\common.ps1
 
 # SSH
-Write-Verbose "Enabling SSH agent"
+Write-Output "Enabling SSH agent"
 
 # Set the ssh agent service to be started automatically
 Get-Service -Name ssh-agent | Set-Service -StartupType Automatic
@@ -194,7 +194,7 @@ if (-Not (Test-Path $sophia)) {
 $sophiadir = "$env:TEMP\sophia"
 try {
     $cwd = Get-Location
-    Write-Verbose "Installing Sophia Script"
+    Write-Output "Installing Sophia Script"
     Expand-Archive $sophia -DestinationPath $sophiadir -Force
     Set-Location (Get-ChildItem -Path $sophiadir | Select-Object -First 1).FullName
     Invoke-Sophia
@@ -203,3 +203,5 @@ finally {
     Set-Location -Path $cwd
     Remove-Item $sophiadir -Recurse -Force -ErrorAction SilentlyContinue
 }
+
+Write-Output "Admin configuration complete"
