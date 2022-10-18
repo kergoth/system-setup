@@ -59,8 +59,7 @@ if (-Not (Get-Command winget -ErrorAction SilentlyContinue)) {
         $wingettemp = "$env:TEMP\winget"
         try {
             Expand-Archive "$xamldl.zip" -DestinationPath $wingettemp -Force
-            Invoke-Sophia $sophiascript
-            Move-Item "$wingettemp\Microsoft.UI.Xaml.2.7.3\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx"  "$xaml"
+            Move-Item "$wingettemp\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx"  "$xaml"
         }
         finally {
             Remove-PossiblyMissingItem $wingettemp -Recurse -Force
