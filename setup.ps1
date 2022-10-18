@@ -63,6 +63,10 @@ scoop install git
 scoop install neovim
 scoop install wget
 
+# Add scoop's Git for Windows bin directory to the PATH for its bash
+$gitdir = scoop prefix git
+Add-EnvironmentVariableItem "PATH" "$gitdir\bin" -User
+
 # Install tools
 # Unavailable on Windows: direnv
 # Available only via release archives on Windows: git-absorb
