@@ -9,6 +9,8 @@ if ! [ -x "$HOMEBREW_PREFIX/bin/brew" ]; then
 fi
 
 msg "Installing applications with homebrew"
+unset HOMEBREW_AUTO_UPDATE
+
 # shellcheck disable=SC2154
 "$HOMEBREW_PREFIX/bin/brew" bundle --no-upgrade install --file="$scriptdir/components/macos/Brewfile"
 
