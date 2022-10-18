@@ -72,7 +72,6 @@ Add-EnvironmentVariableItem "PATH" "$env:USERPROFILE\.cargo\bin" -User
 
 # Install tools
 # Unavailable on Windows: direnv
-# Available only via release archives on Windows: git-absorb
 scoop install bat
 scoop install fd
 scoop install ripgrep
@@ -96,5 +95,26 @@ pipx inject flake8 pep8-naming flake8-docstrings
 pipx install peru
 pipx install git-revise
 pipx install git-imerge
+
+# git-absorb is available only via release archives on Windows. It fails to build with cargo.
+if (-Not (Test-Path "$env:USERPROFILE\.cargo\bin\git-absorb.exe")) {
+    $DownloadsFolder = Get-ItemPropertyValue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" -Name "{374DE290-123F-4565-9164-39C4925E467B}"
+    $absorb_url = Get-GithubLatestRelease tummychow/git-absorb pc-windows-msvc
+    $absorb = "$DownloadsFolder\" + (Split-Path $absorb_url -Leaf)
+    if (-Not (Test-Path $absorb)) {
+        Start-BitsTransfer $absorb_url -Destination $DownloadsFolder
+    }
+    $absorbtemp = "$env:TEMP\absorb"
+    try {
+        Expand-Archive "$absorb" -DestinationPath $absorbtemp -Force
+        $absorbdir = (Get-ChildItem -Path $absorbtemp | Select-Object -First 1).FullName
+        Move-Item "$absorbdir\git-absorb.exe" -Destination "$env:USERPROFILE\.cargo\bin\"
+    }
+    finally {
+        Remove-Item $absorbtemp -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
+RefreshEnvPath
 
 Write-Output "Setup complete"
