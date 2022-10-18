@@ -19,6 +19,9 @@
 					"PackageIdentifier" : "Discord.Discord"
 				},
 				{
+					"PackageIdentifier": "Ditto.Ditto"
+				},
+				{
 					"PackageIdentifier": "IRCCloud.IRCCloud"
 				},
 				{

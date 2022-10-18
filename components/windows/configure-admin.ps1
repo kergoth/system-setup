@@ -19,9 +19,6 @@ function Invoke-Sophia {
     # Small icons in taskbar
     Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name "TaskbarSmallIcons" -Type DWord -Value 1
 
-    # Enable Clipboard History
-    New-ItemProperty -Path HKCU:\Software\Microsoft\Clipboard -Name EnableClipboardHistory -PropertyType DWord -Value 1 -Force
-
     # Associate *.txt to Notepad++
     if (Test-Path "$env:ProgramFiles\Notepad++\notepad++.exe") {
         Set-Association -ProgramPath "%ProgramFiles%\Notepad++\notepad++.exe" -Extension .txt -Icon "%ProgramFiles%\Notepad++\notepad++.exe,0"
