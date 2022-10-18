@@ -4,7 +4,6 @@ function Invoke-Sophia {
     . .\Functions.ps1
 
     try {
-        Checkings
         CreateRestorePoint
     }
     catch {
