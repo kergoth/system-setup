@@ -7,9 +7,9 @@ This project holds the consolidation of my various per-system setup script repos
 ## Prerequisites
 
 - Logged in as your already-configured user.
-- On macOS, Command-Line Tools or XCode must be installed (See extras/ for scripts to install these).
-- (On Linux hosts) zsh is already installed.
-- (On non-Arch Linux hosts, for now) nix is already installed.
+- (On macOS) Command-Line Tools or XCode must be installed (See extras/ for scripts to install these).
+- (On Linux hosts) Zsh is already installed.
+- (On non-Arch Linux hosts, for now) Nix is already installed.
 
 ## Usage
 
