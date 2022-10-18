@@ -271,6 +271,8 @@ The intention is to incorporate the installation of Nix on all systems in time.
 
 ### CLI
 
+- [procs](https://github.com/dalance/procs): A modern replacement for ps written in Rust.
+- [htop](https://htop.dev): An interactive process viewer.
 - [pup](https://github.com/ericchiang/pup): A command line tool for processing HTML. Available via brew, nix, and go.
 - [httpie](https://github.com/httpie/httpie): A command-line HTTP client. Available via brew, nix, and python.
 - [hyperfine](https://github.com/sharkdp/hyperfine): A command-line benchmarking tool. Available via brew, nix, and cargo.
