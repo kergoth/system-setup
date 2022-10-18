@@ -13,8 +13,6 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
     exit
 }
 
-$ErrorActionPreference = "Continue"
-
 . $PSScriptRoot\components\windows\common.ps1
 
 # Install PowerShell modules
