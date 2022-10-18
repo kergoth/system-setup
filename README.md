@@ -271,6 +271,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 
 ### CLI
 
+- [broot](https://github.com/Canop/broot): A new way to see and navigate directory trees.
 - [procs](https://github.com/dalance/procs): A modern replacement for ps written in Rust.
 - [htop](https://htop.dev): An interactive process viewer.
 - [pup](https://github.com/ericchiang/pup): A command line tool for processing HTML. Available via brew, nix, and go.
