@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Nixpkgs channel url to subscribe
+NIXPKGS=${NIXPKGS:-https://nixos.org/channels/nixpkgs-unstable}
+
 get_github_latest_release() {
     curl -fL "https://api.github.com/repos/$1/releases" |
         jq -r --arg pattern "${2:-.}" '[.[] | select(.prerelease == false) | .assets[] | select(.name | test($pattern))] | .[0].browser_download_url'
@@ -42,3 +45,8 @@ curl -L https://nixos.org/nix/install | nix-user-chroot ~/.nix sh
 cp -av "$scriptdir/nixrun" "$bindir/nixrun"
 cp -av "$scriptdir/nixwrap" "$bindir/nixwrap"
 "$bindir/nixwrap"
+
+PATH="$HOME/.nix/shims:$PATH"
+
+nix-channel --add "$NIXPKGS" nixpkgs
+nix-channel --update
