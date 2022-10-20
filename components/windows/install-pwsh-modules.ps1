@@ -34,4 +34,3 @@ Function Install-ModuleIfNotInstalled(
 Write-Verbose "Installing powershell modules"
 Install-ModuleIfNotInstalled DirColors
 Install-ModuleIfNotInstalled Recycle
-Install-ModuleIfNotInstalled posh-alias
