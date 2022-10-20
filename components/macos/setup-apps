@@ -43,8 +43,8 @@ while read -r app; do
         open -ga "$app"
     fi
 done <<END
-1Password 7
-Alfred 4
+1Password
+Alfred 5
 Hidden Bar
 Karabiner-Elements
 Magnet
