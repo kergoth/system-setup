@@ -37,9 +37,6 @@ if app_installed_directly "Transmission Remote GUI"; then
     duti -vs com.transgui .torrent viewer
 fi
 
-# Switch these associations from Archive Utility to The Unarchiver
-duti-switch "/System/Library/CoreServices/Applications/Archive Utility.app" cx.c3.theunarchiver
-
 # Open these apps so they set up auto-start for themselves
 while read -r app; do
     if app_installed_directly "$app"; then
