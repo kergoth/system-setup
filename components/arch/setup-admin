@@ -40,6 +40,9 @@ install_nix() {
 
 pacman -Sy
 
+# Sync the files database
+pacman -Fy
+
 pacman -S openssh
 if [ "$OSTYPE" != WSL ]; then
     sudorun systemctl enable sshd && sudo systemctl start sshd
