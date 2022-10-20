@@ -143,7 +143,6 @@ The intention is to incorporate the installation of Nix on all systems in time.
 
 - nix
 - openssh
-- pkgfile
 - nss-mdns
 - avahi
 

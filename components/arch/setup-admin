@@ -48,9 +48,6 @@ if [ "$OSTYPE" != WSL ]; then
     sudorun systemctl enable sshd && sudo systemctl start sshd
 fi
 
-pacman -S pkgfile
-sudorun pkgfile -u
-
 if ! grep -q '^MAKEFLAGS=.*-j' /etc/makepkg.conf; then
     CPUS=$(grep -c processor /proc/cpuinfo)
     JOBS=$((CPUS * 3 / 2))
