@@ -80,5 +80,8 @@ if oversight="$(app_path "OverSight")"; then
     touch ~/Library/Application\ Support/Objective-See/OverSight/OverSight.log
 fi
 
+# Deal with Quarantine
+xattr -cr ~/Library/QuickLook/*.qlgenerator
+
 # Reload the Quick Look generators list
 qlmanage -r
