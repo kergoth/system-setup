@@ -88,3 +88,6 @@ qlmanage -r
 
 # Reset the Quick Look cache
 qlmanage -r cache
+
+# Restart Finder
+killall Finder
