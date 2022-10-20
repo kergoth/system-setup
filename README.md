@@ -157,7 +157,6 @@ The intention is to incorporate the installation of Nix on all systems in time.
 
 ##### PowerShell Modules
 
-- PSReadLine
 - DirColors
 - Recycle
 - posh-alias
