@@ -15,7 +15,7 @@ msg "Installing applications with homebrew"
 CASKROOM="$("$HOMEBREW_PREFIX/bin/brew" --caskroom)"
 if [ -d "$CASKROOM"/whatsyoursign ]; then
     find "$CASKROOM"/whatsyoursign -name WhatsYourSign\ Installer.app -print0 \
-        | xargs -0 open
+        | xargs -0 open || :
 fi
 
 install-oversight
