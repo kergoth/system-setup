@@ -12,7 +12,11 @@ fi
 
 # Hide admin user from the login window
 sudo dscl . create /Users/"$1" IsHidden 1
+
 # Hide admin user home directory
 sudo chflags hidden /Users/"$1"
+
 # Remove admin user from FileVault
-sudo fdesetup remove -user "$1"
+if sudo fdesetup list | grep -q "^$USER,"; then
+    sudo fdesetup remove -user "$1"
+fi
