@@ -253,10 +253,10 @@ The intention is to incorporate the installation of Nix on all systems in time.
 
 ### CLI
 
-- [broot](https://github.com/Canop/broot): A new way to see and navigate directory trees.
-- [dasel](https://github.com/TomWright/dasel): Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool.
-- [procs](https://github.com/dalance/procs): A modern replacement for ps written in Rust.
-- [htop](https://htop.dev): An interactive process viewer.
+- [broot](https://github.com/Canop/broot): A new way to see and navigate directory trees. Available via brew, nix, scoop, and cargo.
+- [dasel](https://github.com/TomWright/dasel): Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool. Available via brew, nix, scoop, and go.
+- [procs](https://github.com/dalance/procs): A modern replacement for ps written in Rust. Available via brew, nix, scoop, and cargo.
+- [htop](https://htop.dev): An interactive process viewer. Available via brew and nix.
 - [pup](https://github.com/ericchiang/pup): A command line tool for processing HTML. Available via brew, nix, and go.
 - [httpie](https://github.com/httpie/httpie): A command-line HTTP client. Available via brew, nix, and python.
 - [hyperfine](https://github.com/sharkdp/hyperfine): A command-line benchmarking tool. Available via brew, nix, and cargo.
