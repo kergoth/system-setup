@@ -32,10 +32,3 @@ sudorun sysctl -w $(cat /etc/sysctl.conf)
 
 # Silence Boot chime
 sudorun nvram SystemAudioVolume=" "
-
-# Load new spotlight settings before rebuilding the index
-sudorun killall mds > /dev/null 2>&1
-# Make sure indexing is enabled for the main volume
-sudorun mdutil -i on / > /dev/null
-# Rebuild the index from scratch
-sudorun mdutil -E / > /dev/null
