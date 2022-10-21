@@ -227,7 +227,6 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - Userscripts
 - Vinegar
 - VLC
-- Vmware Horizon Client
 - WhatsYourSign
 - WiFi Explorer
 - WiFi Signal
