@@ -6,12 +6,18 @@ nix () {
 
 set -euo pipefail
 
-configuration="${1:-$(uname -s | tr '[:upper:]' '[:lower:]')}"
+if [ $# -eq 0 ]; then
+    configuration=$(uname -s | tr '[:upper:]' '[:lower:]')
+else
+    configuration=$1
+    shift
+fi
+
 package=".#homeConfigurations.$configuration.activationPackage"
 
 cd "$(dirname "$0")"
-./build.sh "$@"
-nix run "$package"
+./build.sh
+nix run "$package" -- "$@"
 
 if command -v nixwrap >/dev/null 2>&1; then
     nixwrap
