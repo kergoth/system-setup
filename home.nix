@@ -12,7 +12,7 @@
 
   home.packages = with pkgs; [
     wget
-  
+
     git
     neovim
     ssh-copy-id
@@ -59,7 +59,7 @@
     duti
     lima
     mas
-    reattach-to-user-namespace 
+    reattach-to-user-namespace
   ];
 
   programs = {
