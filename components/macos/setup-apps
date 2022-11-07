@@ -81,7 +81,7 @@ if oversight="$(app_path "OverSight")"; then
 fi
 
 # Deal with Quarantine
-xattr -cr ~/Library/QuickLook/*.qlgenerator
+xattr -d -r com.apple.quarantine ~/Library/QuickLook
 
 # Reload and refresh Quick Look
 reload-quicklook
