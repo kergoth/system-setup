@@ -83,11 +83,5 @@ fi
 # Deal with Quarantine
 xattr -cr ~/Library/QuickLook/*.qlgenerator
 
-# Reload the Quick Look generators list
-qlmanage -r
-
-# Reset the Quick Look cache
-qlmanage -r cache
-
-# Restart Finder
-killall Finder
+# Reload and refresh Quick Look
+reload-quicklook
