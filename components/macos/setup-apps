@@ -37,6 +37,14 @@ if app_installed_directly "Transmission Remote GUI"; then
     duti -vs com.transgui .torrent viewer
 fi
 
+if app_installed_directly "BetterZip"; then
+    # Don't let BetterZip take over epub from Apple Books
+    duti-all -n com.apple.iBooksX \
+        | grep epub \
+        | tr '\n' '\0' \
+        | xargs -0 -I"{}" sh -c "{}"
+fi
+
 # Open these apps so they set up auto-start for themselves
 while read -r app; do
     if app_installed_directly "$app"; then
