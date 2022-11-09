@@ -229,13 +229,13 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - [Apparency](https://www.mothersruin.com/software/Apparency/): Preview the contents of a macOS app
 - [QLColorCode](https://github.com/anthonygelibert/QLColorCode): A Quick Look plug-in that renders source code with syntax highlighting
 - [qlImageSize](https://github.com/Nyx0uf/qlImageSize): Display image size and resolution
-- [QLMarkDown](https://github.com/toland/qlmarkdown)
-- [QLPrettyPatch](https://github.com/atnan/QLPrettyPatch)
-- [QLStephen](https://github.com/whomwah/qlstephen)
+- [QLMarkDown](https://github.com/toland/qlmarkdown): Preview Markdown files
+- [QLPrettyPatch](https://github.com/atnan/QLPrettyPatch): QuickLook generator for patch files
+- [QLStephen](https://github.com/whomwah/qlstephen): Preview plain text files without or with unknown file extension. Example: README, CHANGELOG, index.styl, etc
 - [QLVideo](https://github.com/Marginal/QLVideo): Preview most types of video files, as well as their thumbnails, cover art and metadata
-- [quicklook-csv](https://github.com/p2/quicklook-csv)
-- [quicklook-json](http://www.sagtau.com/quicklookjson.html)
-- [QuickLookASE](https://github.com/rsodre/QuickLookASE): Preview Adobe ASE Color Swatches generated with Adobe Photoshop, Adobe Illustrator, Adobe Color CC, Spectrum, COLOURlovers, Prisma, among many others.
+- [quicklook-csv](https://github.com/p2/quicklook-csv): A QuickLook plugin for CSV files
+- [QuickLookJSON](http://www.sagtau.com/quicklookjson.html): A useful quick look plugin to preview JSON files
+- [QuickLookASE](https://github.com/rsodre/QuickLookASE): Preview Adobe ASE Color Swatches generated with Adobe Photoshop, Adobe Illustrator, Adobe Color CC, Spectrum, COLOURlovers, Prisma, among many others
 - [Suspicious Package](https://www.mothersruin.com/software/SuspiciousPackage/): Preview the contents of a standard Apple installer package
 - [WebPQuickLook](https://github.com/emin/WebPQuickLook)
 
