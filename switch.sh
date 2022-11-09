@@ -16,7 +16,7 @@ fi
 package=".#homeConfigurations.$configuration.activationPackage"
 
 cd "$(dirname "$0")"
-./build.sh
+./build.sh "$configuration"
 nix run "$package" -- "$@"
 
 if command -v nixwrap >/dev/null 2>&1; then
