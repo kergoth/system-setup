@@ -227,6 +227,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 ##### QuickLook Plugins
 
 - [Apparency](https://www.mothersruin.com/software/Apparency/): Preview the contents of a macOS app
+- [BetterZip](https://betterzip.com): A trialware file archiver. I only install this for the QuickLook plugin.
 - [QLColorCode](https://github.com/anthonygelibert/QLColorCode): A Quick Look plug-in that renders source code with syntax highlighting
 - [qlImageSize](https://github.com/Nyx0uf/qlImageSize): Display image size and resolution
 - [QLMarkDown](https://github.com/toland/qlmarkdown): Preview Markdown files
