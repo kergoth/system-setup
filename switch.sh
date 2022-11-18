@@ -13,11 +13,12 @@ else
     shift
 fi
 
-package=".#homeConfigurations.$configuration.activationPackage"
-
 cd "$(dirname "$0")"
 ./build.sh "$configuration"
-nix run "$package" -- "$@"
+if ! command -v home-manager &>/dev/null; then
+    alias home-manager="nix run --no-write-lock-file github:nix-community/home-manager/ --"
+fi
+home-manager --flake ".#$configuration" switch
 
 if command -v nixwrap >/dev/null 2>&1; then
     nixwrap
