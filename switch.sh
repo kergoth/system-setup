@@ -16,9 +16,15 @@ fi
 cd "$(dirname "$0")"
 ./build.sh "$configuration"
 if ! command -v home-manager &>/dev/null; then
-    alias home-manager="nix run --no-write-lock-file github:nix-community/home-manager/ --"
+    hm () {
+        nix run --no-write-lock-file github:nix-community/home-manager/ -- "$@"
+    }
+else
+    hm () {
+        home-manager "$@"
+    }
 fi
-home-manager --flake ".#$configuration" switch
+hm --flake ".#$configuration" switch
 
 if command -v nixwrap >/dev/null 2>&1; then
     nixwrap
