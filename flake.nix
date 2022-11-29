@@ -39,6 +39,20 @@
         ];
       };
 
+      # Linux hosts with local home directories on /data
+      homeConfigurations.work_data = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          ./home.nix
+          {
+            home = {
+              username = "kergoth";
+              homeDirectory = "/data/kergoth";
+            };
+          }
+        ];
+      };
+
       # macOS hosts
       homeConfigurations.darwin = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-darwin;
