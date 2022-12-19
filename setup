@@ -1,5 +1,23 @@
 #!/bin/bash
 
+usage() {
+    echo >&2 "${0##*/} [-c HOME_MANAGER_CONFIG]"
+    exit 2
+}
+
+home_config=
+while getopts c:h opt; do
+    case "$opt" in
+        c)
+            home_config="$OPTARG"
+            ;;
+        \? | h)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
+
 scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
 PATH="$scriptdir/scripts:$PATH"
 
@@ -25,7 +43,7 @@ fi
 
 if command -v nix-env >/dev/null 2>&1; then
     msg "Applying Nix Home Manager configuration"
-    "$scriptdir/switch.sh"
+    "$scriptdir/switch.sh" ${home_config:+"$home_config"}
 else
     msg "WARNING: nix is not installed, skipping home-manager setup"
 fi
