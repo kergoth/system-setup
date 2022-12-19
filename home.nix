@@ -53,6 +53,9 @@
     shellcheck
     shfmt
 
+    # Bug tracking and workflow
+    jira-cli-go
+
     # Nix tools
     nvd
   ] ++ lib.optionals stdenv.isDarwin [

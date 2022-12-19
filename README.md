@@ -102,20 +102,21 @@ and integrate systems more effectively.
 
 - [bat](https://github.com/sharkdp/bat): A cat(1) clone with syntax highlighting and Git integration.
 - [choose](https://github.com/theryangeary/choose): A human-friendly and fast alternative to cut and (sometimes) awk.
-- [exa](https://github.com/ogham/exa): A modern replacement for ls.
-- [fd](https://github.com/sharkdp/fd): A simple, fast and user-friendly alternative to 'find'.
-- [fzf](https://github.com/junegunn/fzf): A command-line fuzzy finder.
-- [ripgrep](https://github.com/BurntSushi/ripgrep): A line-oriented search tool that recursively searches the current directory for a regex pattern.
-- [sd](https://github.com/chmln/sd): Intuitive find & replace CLI (sed alternative).
 - [delta](https://github.com/dandavison/delta): A syntax-highlighting pager for git, diff, and grep output.
 - [dua](https://github.com/Byron/dua-cli): View disk space usage and delete unwanted data, fast. This is a faster version of ncdu.
 - [dust](https://github.com/bootandy/dust): A more intuitive version of du in rust.
-- [shellcheck](https://github.com/koalaman/shellcheck): A static analysis tool for shell scripts.
-- [shfmt](https://github.com/mvdan/sh#shfmt): Format shell programs.
+- [exa](https://github.com/ogham/exa): A modern replacement for ls.
+- [fd](https://github.com/sharkdp/fd): A simple, fast and user-friendly alternative to 'find'.
+- [fzf](https://github.com/junegunn/fzf): A command-line fuzzy finder.
 - [git-imerge](https://github.com/mhagger/git-imerge): Incremental merge for git.
 - [git-revise](https://github.com/mystor/git-revise): A handy tool for doing efficient in-memory commit rebases & fixups.
-- [peru](https://github.com/buildinspace/peru): A generic package manager, for including other people's code in your projects.
 - [jq](https://github.com/stedolan/jq): A lightweight and flexible command-line JSON processor.
+- [jira-cli](https://github.com/ankitpokhrel/jira-cli): Feature-rich interactive Jira command line.
+- [peru](https://github.com/buildinspace/peru): A generic package manager, for including other people's code in your projects.
+- [ripgrep](https://github.com/BurntSushi/ripgrep): A line-oriented search tool that recursively searches the current directory for a regex pattern.
+- [sd](https://github.com/chmln/sd): Intuitive find & replace CLI (sed alternative).
+- [shellcheck](https://github.com/koalaman/shellcheck): A static analysis tool for shell scripts.
+- [shfmt](https://github.com/mvdan/sh#shfmt): Format shell programs.
 - [zoxide](https://github.com/ajeetdsouza/zoxide): A smarter cd command, inspired by z and autojump.
 
 #### Linux and macOS
