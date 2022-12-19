@@ -14,6 +14,7 @@
     wget
 
     git
+    git-lfs
     neovim
     ssh-copy-id
     tmux
