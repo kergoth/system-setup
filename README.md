@@ -95,9 +95,7 @@ In powershell:
 
 - [rust](https://www.rust-lang.org): A multi-paradigm, general-purpose programming language.
 - [go](https://go.dev): An open source programming language supported by Google
-- [python](https://www.python.org): A programming language that lets you work quickly
-and integrate systems more effectively.
-  - [flake8](https://pypi.org/project/flake8/) with [pep8-naming](https://pypi.org/project/pep8-naming/) and [flake8-docstrings](https://pypi.org/project/flake8-docstrings/)
+- [python](https://www.python.org): A programming language that lets you work quickly and integrate systems more effectively.
 - [pipx](https://pypi.org/project/pipx/): Install and run python applications in isolated environments.
 
 - [bat](https://github.com/sharkdp/bat): A cat(1) clone with syntax highlighting and Git integration.

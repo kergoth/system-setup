@@ -20,12 +20,7 @@
     tmux
 
     cargo
-    (python310.withPackages (ps: with ps; [
-      pip
-      flake8
-      flake8-docstrings
-      pep8-naming
-    ]))
+    (python310.withPackages (ps: with ps; [ pip ]))
     python310.pkgs.pipx
     go
 
