@@ -112,6 +112,7 @@ In powershell:
 - [jira-cli](https://github.com/ankitpokhrel/jira-cli): Feature-rich interactive Jira command line.
 - [peru](https://github.com/buildinspace/peru): A generic package manager, for including other people's code in your projects.
 - [ripgrep](https://github.com/BurntSushi/ripgrep): A line-oriented search tool that recursively searches the current directory for a regex pattern.
+- [sapling](https://sapling-scm.com): A Scalable, User-Friendly Source Control System.
 - [sd](https://github.com/chmln/sd): Intuitive find & replace CLI (sed alternative).
 - [shellcheck](https://github.com/koalaman/shellcheck): A static analysis tool for shell scripts.
 - [shfmt](https://github.com/mvdan/sh#shfmt): Format shell programs.

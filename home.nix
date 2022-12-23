@@ -31,6 +31,7 @@
     sd
     sad
 
+    # SCM & Related
     delta
     gh
     git-absorb
@@ -39,6 +40,7 @@
     git-revise
     patchutils
     peru
+    sapling
 
     # Disk tools
     dua
