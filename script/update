@@ -1,0 +1,50 @@
+#!/bin/bash
+
+on_exit () {
+    if [ -n "$tmpfile" ]; then
+        rm -f "$tmpfile"
+    fi
+    git checkout HEAD -- flake.lock &>/dev/null
+}
+
+set -euo pipefail
+
+tmpfile=$(mktemp -t "${0##*/}.XXXXXX")
+trap on_exit EXIT INT TERM
+
+cd "$(dirname "$0")/.."
+
+configuration="${1:-$(uname -s | tr '[:upper:]' '[:lower:]')}"
+
+./switch.sh "$configuration"
+
+./update.sh 2>&1 | grep -v '^warning:' | tee "$tmpfile"
+if ! [ -s "$tmpfile" ]; then
+    exit 0
+fi
+
+{
+    echo 'flake.lock: Update'
+    echo
+    echo 'Flake lock file updates:'
+    echo
+    cat "$tmpfile"
+} >.git/COMMIT_EDITMSG
+
+./build.sh "$configuration" | tee "$tmpfile"
+if [ -s "$tmpfile" ]; then
+    if grep -q "No version or selection state changes." "$tmpfile"; then
+        exit 0
+    fi
+    {
+        echo
+        echo "Home manager generation update:"
+        echo
+        cat "$tmpfile"
+    } >>.git/COMMIT_EDITMSG
+fi
+
+echo >&2 "Committing flake update"
+git commit -F .git/COMMIT_EDITMSG flake.lock
+
+echo >&2 "If the updates are palatable, remember to run ./switch.sh"
