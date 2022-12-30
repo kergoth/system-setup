@@ -10,17 +10,15 @@ trap 'rm -f "$bins"' EXIT INT TERM
 shims="$(mktemp -t "${0##*/}.XXXXXX")"
 trap 'rm -f "$bins" "$shims"' EXIT INT TERM
 
+profile_dir="$HOME/.nix-profile"
+shims_dir="$HOME/.nix/shims"
 if [ $# -gt 0 ]; then
     profile_dir="$1"
     shift
     if [ $# -gt 0 ]; then
         shims_dir="$1"
         shift
-    else
-        shims_dir="$HOME/.nix/shims"
     fi
-else
-    profile_dir="$HOME/.nix-profile"
 fi
 
 if [ -L "$profile_dir" ]; then
