@@ -7,6 +7,20 @@ on_exit () {
     git checkout HEAD -- flake.lock &>/dev/null
 }
 
+nix () {
+    command nix --experimental-features 'nix-command flakes' "$@"
+}
+
+if ! command -v home-manager &>/dev/null; then
+    hm () {
+        nix run --no-write-lock-file github:nix-community/home-manager/ -- "$@"
+    }
+else
+    hm () {
+        home-manager "$@"
+    }
+fi
+
 set -euo pipefail
 
 tmpfile=$(mktemp -t "${0##*/}.XXXXXX")
@@ -32,6 +46,19 @@ fi
 } >.git/COMMIT_EDITMSG
 
 ./build.sh "$configuration" | tee "$tmpfile"
+
+generation="$(hm generations | head -n 1 | cut -d" " -f7)" || :
+if [ -n "$generation" ]; then
+    package=".#homeConfigurations.$configuration.activationPackage"
+    new_generation="$(nix path-info "$package" 2>/dev/null)" || :
+
+    if command -v nvd >/dev/null 2>&1; then
+        if [ -n "$generation" ] && [ -n "$new_generation" ] && [ "$generation" != "$new_generation" ]; then
+            nvd diff "$generation" "$new_generation"
+        fi
+    fi
+fi >>"$tmpfile"
+
 if [ -s "$tmpfile" ]; then
     if grep -q "No version or selection state changes." "$tmpfile"; then
         exit 0
