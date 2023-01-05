@@ -44,17 +44,7 @@ fi
 cd "$(dirname "$0")"
 ./build.sh "$configuration"
 
-generation="$(hm generations | head -n 1 | cut -d" " -f7)" || :
-if [ -n "$generation" ]; then
-    package=".#homeConfigurations.$configuration.activationPackage"
-    new_generation="$(nix path-info "$package" 2>/dev/null)" || :
-
-    if command -v nvd >/dev/null 2>&1; then
-        if [ -n "$generation" ] && [ -n "$new_generation" ] && [ "$generation" != "$new_generation" ]; then
-            nvd diff "$generation" "$new_generation"
-        fi
-    fi
-fi
+./scripts/hm-nvd "$configuration"
 
 hm --flake ".#$configuration" switch ${dry_run:+-n}
 
