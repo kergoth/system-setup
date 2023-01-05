@@ -30,6 +30,8 @@ cd "$(dirname "$0")/.."
 
 configuration="${1:-$(uname -s | tr '[:upper:]' '[:lower:]')}"
 
+set -x
+
 ./switch.sh "$configuration"
 
 ./update.sh 2>&1 | grep -v '^warning:' | tee "$tmpfile"
@@ -47,17 +49,7 @@ fi
 
 ./build.sh "$configuration" | tee "$tmpfile"
 
-generation="$(hm generations | head -n 1 | cut -d" " -f7)" || :
-if [ -n "$generation" ]; then
-    package=".#homeConfigurations.$configuration.activationPackage"
-    new_generation="$(nix path-info "$package" 2>/dev/null)" || :
-
-    if command -v nvd >/dev/null 2>&1; then
-        if [ -n "$generation" ] && [ -n "$new_generation" ] && [ "$generation" != "$new_generation" ]; then
-            nvd diff "$generation" "$new_generation"
-        fi
-    fi
-fi >>"$tmpfile"
+./scripts/hm-nvd "$configuration" | tee -a "$tmpfile"
 
 if [ -s "$tmpfile" ]; then
     if grep -q "No version or selection state changes." "$tmpfile"; then
