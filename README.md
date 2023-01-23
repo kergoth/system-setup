@@ -253,6 +253,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
 - [QuickLook](https://www.apple.com/mac/)
 - [Rufus](https://rufus.ie/)
+- [SnipDo](https://snipdo-app.com): Select a text in any application and SnipDo pops up to help you
 - [SyncTrayzor](https://github.com/canton7/SyncTrayzor)
 - [Windows Terminal](https://apps.microsoft.com/store/detail/9N0DX20HK701?hl=en-us&gl=US)
 
