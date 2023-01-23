@@ -6,63 +6,25 @@
 		{
 			"Packages" :
 			[
-				{
-					"PackageIdentifier" : "AgileBits.1Password"
-				},
-				{
-					"PackageIdentifier" : "7zip.7zip"
-				},
-				{
-					"PackageIdentifier" : "Lexikos.AutoHotkey"
-				},
-				{
-					"PackageIdentifier" : "Discord.Discord"
-				},
-				{
-					"PackageIdentifier": "Ditto.Ditto"
-				},
-				{
-					"PackageIdentifier": "IRCCloud.IRCCloud"
-				},
-				{
-					"PackageIdentifier": "Microsoft.Teams"
-				},
-				{
-					"PackageIdentifier" : "Microsoft.WindowsTerminal"
-				},
-				{
-					"PackageIdentifier" : "Notepad++.Notepad++"
-				},
-				{
-					"PackageIdentifier" : "Rufus.Rufus"
-				},
-				{
-					"PackageIdentifier" : "VivaldiTechnologies.Vivaldi"
-				},
-				{
-					"PackageIdentifier" : "SlackTechnologies.Slack"
-				},
-				{
-					"PackageIdentifier" : "PuTTY.PuTTY"
-				},
-				{
-					"PackageIdentifier" : "QL-Win.QuickLook"
-				},
-				{
-					"PackageIdentifier" : "Microsoft.VisualStudioCode"
-				},
-				{
-					"PackageIdentifier" : "Microsoft.PowerShell"
-				},
-				{
-					"PackageIdentifier" : "Microsoft.PowerToys"
-				},
-				{
-					"PackageIdentifier" : "SyncTrayzor.SyncTrayzor"
-				},
-                {
-                    "PackageIdentifier": "HexChat.HexChat"
-                }
+				{ "PackageIdentifier" : "7zip.7zip" },
+				{ "PackageIdentifier" : "AgileBits.1Password" },
+				{ "PackageIdentifier" : "Discord.Discord" },
+				{ "PackageIdentifier" : "Ditto.Ditto" },
+                { "PackageIdentifier" : "HexChat.HexChat" },
+				{ "PackageIdentifier" : "IRCCloud.IRCCloud" },
+				{ "PackageIdentifier" : "Lexikos.AutoHotkey" },
+				{ "PackageIdentifier" : "Microsoft.PowerShell" },
+				{ "PackageIdentifier" : "Microsoft.PowerToys" },
+				{ "PackageIdentifier" : "Microsoft.Teams" },
+				{ "PackageIdentifier" : "Microsoft.VisualStudioCode" },
+				{ "PackageIdentifier" : "Microsoft.WindowsTerminal" },
+				{ "PackageIdentifier" : "Notepad++.Notepad++" },
+				{ "PackageIdentifier" : "PuTTY.PuTTY" },
+				{ "PackageIdentifier" : "QL-Win.QuickLook" },
+				{ "PackageIdentifier" : "Rufus.Rufus" },
+				{ "PackageIdentifier" : "SlackTechnologies.Slack" },
+				{ "PackageIdentifier" : "SyncTrayzor.SyncTrayzor" },
+				{ "PackageIdentifier" : "VivaldiTechnologies.Vivaldi" }
 			],
 			"SourceDetails" :
 			{
