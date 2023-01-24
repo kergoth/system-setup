@@ -1,0 +1,58 @@
+#!/bin/sh
+
+pipx_check() {
+    pkg="$1"
+    cmd="${2:-}"
+
+    if [ -n "$cmd" ] && command -v "$cmd" >/dev/null 2>&1; then
+        return 0
+    fi
+    pipxs="$pipxs $pkg"
+}
+
+cargo_check() {
+    pkg="$1"
+    cmd="${2:-}"
+
+    if [ -n "$cmd" ] && command -v "$cmd" >/dev/null 2>&1; then
+        return 0
+    fi
+    cargos="$cargos $pkg"
+}
+
+pipxs=
+cargos=
+
+if ! command -v pipx >/dev/null 2>&1; then
+    "$(dirname "$0")"/scripts/install-pipx
+fi
+
+pipx_check git-revise git-revise
+pipx_check git-imerge git-imerge
+pipx_check peru peru
+cargo_check choose choose
+cargo_check git-branchless git-branchless
+
+# As we don't support nix, install asdf for local environments
+if ! command -v asdf >/dev/null 2>&1; then
+    "$(dirname "$0")"/components/freebsd/scripts/install-asdf
+fi
+
+# Installation
+if [ -n "$(echo "$pipxs" | sed -e 's/^ *//; s/ *$//')" ]; then
+    msg "Installing via pipx: $pipxs"
+    echo "$pipxs" | tr ' ' '\n' | sort -u | tr '\n' '\0' | xargs -0 --no-run-if-empty -o -n 1 pipx install
+fi
+
+if [ -n "$(echo "$cargos" | sed -e 's/^ *//; s/ *$//')" ]; then
+    echo "$cargos" | tr ' ' '\n' | sort -u | tr '\n' '\0' | xargs -0 --no-run-if-empty -o cargo install
+fi
+
+# User shell
+if [ -e /usr/local/bin/zsh ]; then
+    current_shell="$(getent passwd "$LOGNAME" | sed -e 's#.*:##')"
+    if [ "$current_shell" != /usr/local/bin/zsh ]; then
+        msg "Changing current user shell to zsh"
+        chsh -s /usr/local/bin/zsh
+    fi
+fi
