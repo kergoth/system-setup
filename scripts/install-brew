@@ -10,6 +10,7 @@ usage () {
     echo >&2 "Options:"
     echo >&2
     echo >&2 "  -r INSTALL_REPO_PATH Destination of the homebrew repo when using -s. Default: INSTALL_PATH/homebrew"
+    echo >&2 "  -u GITHUB_USER  Specify a github user for the git repositories. Default: homebrew"
     echo >&2 "  -s    Separate the prefix and repo."
     echo >&2 "  -d    Do not run brew-doctor."
     echo >&2 "  -h    Show this help."
@@ -17,15 +18,19 @@ usage () {
 }
 
 HOMEBREW_REPO=
+github_user=homebrew
 separate_prefix=0
 doctor=1
-while getopts sr:dh opt; do
+while getopts r:u:sdh opt; do
     case "$opt" in
-        s)
-            separate_prefix=1
-            ;;
         r)
             HOMEBREW_REPO="$OPTARG"
+            ;;
+	u)
+	    github_user="$OPTARG"
+	    ;;
+        s)
+            separate_prefix=1
             ;;
         d)
             doctor=0
@@ -59,9 +64,9 @@ else
     HOMEBREW_REPO="$HOMEBREW_PREFIX"
 fi
 
-git clone https://github.com/homebrew/brew "$HOMEBREW_REPO"
+git clone https://github.com/"$github_user"/brew "$HOMEBREW_REPO"
 git config -f "$HOMEBREW_REPO/.git/config" homebrew.analyticsdisabled true
-git clone https://github.com/homebrew/homebrew-core "$HOMEBREW_REPO/Library/Taps/homebrew/homebrew-core"
+git clone https://github.com/"$github_user"/homebrew-core "$HOMEBREW_REPO/Library/Taps/homebrew/homebrew-core"
 
 HOMEBREW_PREFIX="$(cd "$HOMEBREW_PREFIX" && pwd -P)"
 if [ "$separate_prefix" -eq 1 ]; then
