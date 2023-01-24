@@ -20,8 +20,20 @@ cargo_check() {
     cargos="$cargos $pkg"
 }
 
+go_check() {
+    pkg="$1"
+    cmd="${2:-}"
+
+    if [ -n "$cmd" ] && command -v "$cmd" >/dev/null 2>&1; then
+        return 0
+    fi
+    gos="$gos $pkg"
+}
+
+
 pipxs=
 cargos=
+gos=
 
 if ! command -v pipx >/dev/null 2>&1; then
     "$(dirname "$0")"/scripts/install-pipx
@@ -32,6 +44,9 @@ pipx_check git-imerge git-imerge
 pipx_check peru peru
 cargo_check choose choose
 cargo_check git-branchless git-branchless
+
+# Bug tracking and workflow
+go_check github.com/ankitpokhrel/jira-cli/...@latest jira
 
 # As we don't support nix, install asdf for local environments
 if ! command -v asdf >/dev/null 2>&1; then
@@ -45,7 +60,11 @@ if [ -n "$(echo "$pipxs" | sed -e 's/^ *//; s/ *$//')" ]; then
 fi
 
 if [ -n "$(echo "$cargos" | sed -e 's/^ *//; s/ *$//')" ]; then
-    echo "$cargos" | tr ' ' '\n' | sort -u | tr '\n' '\0' | xargs -0 --no-run-if-empty -o cargo install
+    echo "$cargos" | tr ' ' '\n' | sort -u | tr '\n' '\0' | xargs -0 --no-run-if-empty -o cargo install --locked
+fi
+
+if [ -n "$(echo "$gos" | sed -e 's/^ *//; s/ *$//')" ]; then
+    echo "$gos" | tr ' ' '\n' | sort -u | tr '\n' '\0' | xargs -0 --no-run-if-empty -o go install
 fi
 
 # User shell

@@ -76,9 +76,6 @@ freebsd_check sysutils/dust dust
 freebsd_check devel/hs-ShellCheck shellcheck
 freebsd_check devel/shfmt shfmt
 
-# Bug tracking and workflow
-# Missing: jira-cli-go
-
 # Directly supported by nix home-manager
 freebsd_check sysutils/direnv direnv
 freebsd_check textproc/fzf fzf
