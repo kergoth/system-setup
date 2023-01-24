@@ -1,11 +1,5 @@
 #!/bin/sh
 
-if [ "$(id -u)" != "0" ]; then
-    SUDO="sudo "
-else
-    SUDO=
-fi
-
 NIXPKGS=${NIXPKGS:-https://nixos.org/channels/nixpkgs-unstable}
 XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-$HOME/.brew}
@@ -38,6 +32,20 @@ is_mac() {
     [ "$OS" = macos ]
 }
 
+is_freebsd() {
+    [ "$OS" = freebsd ]
+}
+
+if [ "$(id -u)" != "0" ]; then
+    if is_freebsd; then
+        SUDO="doas "
+    else
+        SUDO="sudo "
+    fi
+else
+    SUDO=
+fi
+
 msg() {
     fmt="$1"
     # shellcheck disable=SC2059
@@ -51,6 +59,14 @@ die() {
 
 need_sudo() {
     if [ "$(id -u)" != "0" ]; then
+        if is_freebsd; then
+            if has doas && [ -e /usr/local/etc/doas.conf ] && [ "$(doas -C /usr/local/etc/doas.conf pkg)" = permit ]; then
+                return 0
+            else
+                die "Error: please run as root, or as a user that can run doas."
+            fi
+        fi
+
         msg "Running sudo, you may be prompted for your password."
         if ! sudo -v; then
             die "Error: please run as root, or as a user that can run sudo."
