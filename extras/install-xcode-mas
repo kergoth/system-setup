@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This works, but can only install the latest version, which isn't
 # compatible with older versions of OS X
 

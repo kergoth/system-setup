@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 nix () {
     command nix --experimental-features 'nix-command flakes' "$@"

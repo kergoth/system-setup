@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Nixpkgs channel url to subscribe
 NIXPKGS=${NIXPKGS:-https://nixos.org/channels/nixpkgs-unstable}
