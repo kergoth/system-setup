@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Ensure we can run llvm-profdata on FreeBSD
 for llvmdir in /usr/local/llvm*/bin; do

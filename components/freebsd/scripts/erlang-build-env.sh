@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export KERL_CONFIGURE_OPTIONS="--without-javac"
 
