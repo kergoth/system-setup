@@ -3,7 +3,8 @@
 set -e
 
 XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-PIPX_HOME="${PIPX_HOME:-${XDG_DATA_HOME:-$HOME/.local/share}/../pipx/venvs}"
+xdg_root="$(dirname "${XDG_DATA_HOME:-$HOME/.local/share}")"
+PIPX_HOME="${PIPX_HOME:-$xdg_root/pipx/venvs}"
 
 python3 -m ensurepip --user --upgrade
 python3 -m venv "$PIPX_HOME/pipx"
@@ -15,5 +16,5 @@ python3 -m venv "$PIPX_HOME/pipx"
 )
 "$PIPX_HOME/pipx/bin/pipx" install --force pipx
 
-mkdir -p "$XDG_DATA_HOME/../bin"
-ln -sf "$PIPX_HOME/pipx/bin/pipx" "$XDG_DATA_HOME/../bin"
+mkdir -p "$xdg_root/bin"
+ln -sf "$PIPX_HOME/pipx/bin/pipx" "$xdg_root/bin"
