@@ -104,8 +104,8 @@ scoop install sd
 scoop install dua
 scoop install dust
 
-pipx install git-revise
-pipx install git-imerge
+pip install --user git-revise
+pip install --user git-imerge
 
 # git-absorb is available only via release archives on Windows. It fails to build with cargo.
 if (-Not (Test-Path "$env:USERPROFILE\.cargo\bin\git-absorb.exe")) {
