@@ -150,11 +150,12 @@ The intention is to incorporate the installation of Nix on all systems in time.
 
 #### Windows
 
-- [winget](https://github.com/microsoft/winget-cli): Windows Package Manager CLI.
-- [scoop](https://scoop.sh): A command-line installer for Windows.
+- [Build Tools for Visual Studio 2022](https://visualstudio.microsoft.com/downloads/): These Build Tools allow you to build Visual Studio projects from a command-line interface.
 - [gow](https://github.com/bmatzelle/gow): Unix command line utilities installer for Windows.
-- [starship](https://starship.rs): A cross-shell prompt.
 - [npiperelay](https://github.com/jstarks/npiperelay): Access Windows named pipes from WSL.
+- [scoop](https://scoop.sh): A command-line installer for Windows.
+- [starship](https://starship.rs): A cross-shell prompt.
+- [winget](https://github.com/microsoft/winget-cli): Windows Package Manager CLI.
 
 ##### PowerShell Modules
 
