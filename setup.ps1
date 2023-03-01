@@ -51,7 +51,7 @@ if ($reg) {
 }
 RefreshEnvPath
 
-python3 -m pip install --user pipx
+python3 -m pip install --user --disable-pip-version-check pipx
 python3 -m pipx ensurepath
 RefreshEnvPath
 
@@ -104,8 +104,8 @@ scoop install sd
 scoop install dua
 scoop install dust
 
-pip install --user git-revise
-pip install --user git-imerge
+pip install --user --disable-pip-version-check git-revise
+pip install --user --disable-pip-version-check git-imerge
 
 # git-absorb is available only via release archives on Windows. It fails to build with cargo.
 if (-Not (Test-Path "$env:USERPROFILE\.cargo\bin\git-absorb.exe")) {
