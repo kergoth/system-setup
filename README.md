@@ -110,7 +110,6 @@ In powershell:
 - [git-revise](https://github.com/mystor/git-revise): A handy tool for doing efficient in-memory commit rebases & fixups.
 - [jq](https://github.com/stedolan/jq): A lightweight and flexible command-line JSON processor.
 - [jira-cli](https://github.com/ankitpokhrel/jira-cli): Feature-rich interactive Jira command line.
-- [peru](https://github.com/buildinspace/peru): A generic package manager, for including other people's code in your projects.
 - [ripgrep](https://github.com/BurntSushi/ripgrep): A line-oriented search tool that recursively searches the current directory for a regex pattern.
 - [sapling](https://sapling-scm.com): A Scalable, User-Friendly Source Control System.
 - [sd](https://github.com/chmln/sd): Intuitive find & replace CLI (sed alternative).
@@ -120,13 +119,14 @@ In powershell:
 
 #### Linux and macOS
 
-- [ssh-copy-id](https://www.openssh.com): Install your identity.pub in a remote machine’s authorized_keys.
-- [tmux](https://github.com/tmux/tmux): An open-source terminal multiplexer.
-- [patchutils](http://cyberelk.net/tim/software/patchutils/): A small collection of programs that operate on patch files.
+- [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
 - [git-absorb](https://github.com/tummychow/git-absorb): git commit --fixup, but automatic.
 - [git-branchless](https://github.com/arxanas/git-branchless): High-velocity, monorepo-scale workflow for Git.
-- [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
+- [patchutils](http://cyberelk.net/tim/software/patchutils/): A small collection of programs that operate on patch files.
+- [peru](https://github.com/buildinspace/peru): A generic package manager, for including other people's code in your projects.
 - [sad](https://github.com/ms-jpq/sad): CLI search and replace | Space Age seD.
+- [ssh-copy-id](https://www.openssh.com): Install your identity.pub in a remote machine’s authorized_keys.
+- [tmux](https://github.com/tmux/tmux): An open-source terminal multiplexer.
 
 #### macOS
 

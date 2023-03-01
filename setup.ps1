@@ -106,7 +106,6 @@ scoop install dust
 
 pipx install flake8
 pipx inject flake8 pep8-naming flake8-docstrings
-pipx install peru
 pipx install git-revise
 pipx install git-imerge
 
