@@ -89,6 +89,7 @@ try {
     cargo install --git https://github.com/ogham/exa
 }
 catch {
+    Write-Error "Failed to install exa. Please make sure the Visual Studio Build Tools with the C++ Desktop workload is installed."
 }
 
 scoop install gh
