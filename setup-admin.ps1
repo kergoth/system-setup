@@ -102,6 +102,9 @@ RefreshEnvPath
 # Install GUI apps
 winget import $PSScriptRoot\components\windows\winget.json
 
+# Install Visual Studio C++ Desktop Workload
+winget install Microsoft.VisualStudio.2022.Community --silent --override "--wait --quiet --add ProductLang En-us --add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended"
+
 # Configuration
 . $PSScriptRoot\components\windows\configure-admin.ps1
 
