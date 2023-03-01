@@ -78,7 +78,18 @@ scoop install fd
 scoop install ripgrep
 scoop install zoxide
 scoop install fzf
-cargo install --no-default-features --branch chesterliu/dev/win-support --git https://github.com/skyline75489/exa
+
+try {
+    $VSInstall = (Get-VSSetupInstance | Select-Object -ExpandProperty InstallationPath)
+    $VSTools = $VSInstall + "/Common7/Tools"
+    if (Test-Path $VSTools) {
+        . ($VSTools + "/Launch-VsDevShell.ps1")
+    }
+    cargo install --no-default-features --git https://github.com/ogham/exa
+}
+catch {
+}
+
 scoop install gh
 scoop install delta
 scoop install shfmt
