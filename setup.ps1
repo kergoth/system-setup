@@ -80,12 +80,13 @@ scoop install zoxide
 scoop install fzf
 
 try {
-    $VSInstall = (Get-VSSetupInstance | Select-Object -ExpandProperty InstallationPath)
+    $VSInstall = (Get-VSSetupInstance | Where-Object DisplayName -Match 'Build Tools' | Sort-Object -Property InstallationVersion | Select-Object -Last 1 -ExpandProperty InstallationPath)
     $VSTools = $VSInstall + "/Common7/Tools"
     if (Test-Path $VSTools) {
         . ($VSTools + "/Launch-VsDevShell.ps1")
     }
-    cargo install --no-default-features --git https://github.com/ogham/exa
+
+    cargo install --git https://github.com/ogham/exa
 }
 catch {
 }
