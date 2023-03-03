@@ -110,7 +110,7 @@ pip install --user --disable-pip-version-check git-imerge
 # git-absorb is available only via release archives on Windows. It fails to build with cargo.
 if (-Not (Test-Path "$env:USERPROFILE\.cargo\bin\git-absorb.exe")) {
     $DownloadsFolder = Get-ItemPropertyValue -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" -Name "{374DE290-123F-4565-9164-39C4925E467B}"
-    $absorb_url = Get-GithubLatestRelease tummychow/git-absorb pc-windows-msvc
+    $absorb_url = Get-GithubLatestRelease tummychow/git-absorb "pc-windows-msvc.*.zip"
     $absorb = "$DownloadsFolder\" + (Split-Path $absorb_url -Leaf)
     if (-Not (Test-Path $absorb)) {
         Start-BitsTransfer $absorb_url -Destination $DownloadsFolder
