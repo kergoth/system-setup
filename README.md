@@ -157,10 +157,11 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - [starship](https://starship.rs): A cross-shell prompt.
 - [winget](https://github.com/microsoft/winget-cli): Windows Package Manager CLI.
 
-##### PowerShell Modules
+##### Powershell Modules
 
 - [DirColors](https://www.powershellgallery.com/packages/DirColors): Provides dircolors-like functionality to all System.IO.FilesystemInfo formatters.
 - [Recycle](https://www.powershellgallery.com/packages/Recycle): Deletes the file or folder as if it had been done via File Explorer, or restores a deleted file from the recycle bin.
+- [posh-alias](https://www.powershellgallery.com/packages/posh-alias): A better alias for Powershell.
 
 ### GUI apps installed
 
