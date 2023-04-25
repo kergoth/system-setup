@@ -1,0 +1,51 @@
+#!/bin/sh
+
+set -eu
+
+has() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# shellcheck disable=SC3028,SC2034
+case "${OSTYPE:-}" in
+darwin*)
+    OS=macos
+    ;;
+*)
+    case "$(uname -r)" in
+    *Microsoft | *microsoft*)
+        OSTYPE=WSL
+        ;;
+    esac
+
+    if [ -e /etc/os-release ]; then
+        OS="$(sed -n -e 's/^ID=//p' /etc/os-release | tr '[:upper:]' '[:lower:]')"
+    fi
+    ;;
+esac
+
+if ! has git || ! has bash; then
+    if [ "$OS" = freebsd ]; then
+        doas pkg bootstrap || :
+        if ! command -v git >/dev/null 2>&1; then
+            doas pkg install git
+        fi
+        if ! command -v bash >/dev/null 2>&1; then
+            doas pkg install bash
+        fi
+    elif has nix-shell; then
+        exec nix-shell -p git bash --run "$0"
+    else
+        echo >&2 "Error: unsupported host and git and/or bash are not available, exiting"
+        exit 1
+    fi
+fi
+
+SETUP_DIR=${SETUP_DIR:-$HOME/.setup}
+
+if ! [ -e "$SETUP_DIR" ]; then
+    git clone --recursive https://github.com/kergoth/system-setup "$SETUP_DIR"
+fi
+
+"$SETUP_DIR/setup-admin" || :
+"$SETUP_DIR/setup"
