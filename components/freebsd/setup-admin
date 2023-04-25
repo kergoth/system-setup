@@ -86,6 +86,10 @@ freebsd_check sysutils/exa exa
 # FreeBSD-only
 freebsd_check sysutils/lsblk lsblk
 
+# Add user to operator and video groups
+doas pw groupmod operator -m "$LOGNAME"
+doas pw groupmod video -m "$LOGNAME"
+
 # Installation
 if [ -n "$(echo "$pkgs" | sed -e 's/^ *//; s/ *$//')" ]; then
     echo "$pkgs" | tr ' ' '\n' | sort -u | tr '\n' '\0' | xargs -0 --no-run-if-empty -o env ASSUME_ALWAYS_YES=YES $SUDO pkg install
