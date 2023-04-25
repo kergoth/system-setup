@@ -97,8 +97,9 @@ scoop install delta
 scoop install shfmt
 scoop install shellcheck
 scoop install jq
-cargo install choose
 scoop install sd
+cargo install choose
+scoop install git-branchless
 
 # Disk tools
 scoop install dua

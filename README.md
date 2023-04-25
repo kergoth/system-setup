@@ -106,6 +106,7 @@ In powershell:
 - [exa](https://github.com/ogham/exa): A modern replacement for ls.
 - [fd](https://github.com/sharkdp/fd): A simple, fast and user-friendly alternative to 'find'.
 - [fzf](https://github.com/junegunn/fzf): A command-line fuzzy finder.
+- [git-branchless](https://github.com/arxanas/git-branchless): High-velocity, monorepo-scale workflow for Git.
 - [git-imerge](https://github.com/mhagger/git-imerge): Incremental merge for git.
 - [git-revise](https://github.com/mystor/git-revise): A handy tool for doing efficient in-memory commit rebases & fixups.
 - [jq](https://github.com/stedolan/jq): A lightweight and flexible command-line JSON processor.
@@ -122,7 +123,6 @@ In powershell:
 
 - [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
 - [git-absorb](https://github.com/tummychow/git-absorb): git commit --fixup, but automatic.
-- [git-branchless](https://github.com/arxanas/git-branchless): High-velocity, monorepo-scale workflow for Git.
 - [patchutils](http://cyberelk.net/tim/software/patchutils/): A small collection of programs that operate on patch files.
 - [sad](https://github.com/ms-jpq/sad): CLI search and replace | Space Age seD.
 - [ssh-copy-id](https://www.openssh.com): Install your identity.pub in a remote machine’s authorized_keys.
