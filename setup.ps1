@@ -97,6 +97,7 @@ scoop install delta
 scoop install shfmt
 scoop install shellcheck
 scoop install jq
+scoop install sad
 scoop install sd
 cargo install choose
 scoop install git-branchless

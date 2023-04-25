@@ -115,6 +115,7 @@ In powershell:
 - [peru](https://github.com/buildinspace/peru): A generic package manager, for including other people's code in your projects.
 - [ripgrep](https://github.com/BurntSushi/ripgrep): A line-oriented search tool that recursively searches the current directory for a regex pattern.
 - [sapling](https://sapling-scm.com): A Scalable, User-Friendly Source Control System.
+- [sad](https://github.com/ms-jpq/sad): CLI search and replace | Space Age seD.
 - [sd](https://github.com/chmln/sd): Intuitive find & replace CLI (sed alternative).
 - [shellcheck](https://github.com/koalaman/shellcheck): A static analysis tool for shell scripts.
 - [shfmt](https://github.com/mvdan/sh#shfmt): Format shell programs.
@@ -124,7 +125,6 @@ In powershell:
 
 - [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
 - [patchutils](http://cyberelk.net/tim/software/patchutils/): A small collection of programs that operate on patch files.
-- [sad](https://github.com/ms-jpq/sad): CLI search and replace | Space Age seD.
 - [ssh-copy-id](https://www.openssh.com): Install your identity.pub in a remote machine’s authorized_keys.
 - [tmux](https://github.com/tmux/tmux): An open-source terminal multiplexer.
 
