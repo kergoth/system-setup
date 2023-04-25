@@ -2,10 +2,6 @@
 
 NIXPKGS=${NIXPKGS:-https://nixos.org/channels/nixpkgs-unstable}
 
-pacman() {
-    sudorun pacman --noconfirm --needed "$@"
-}
-
 install_nix() {
     if [ "$OSTYPE" = WSL ]; then
         sh <(curl -L https://nixos.org/nix/install) --no-daemon

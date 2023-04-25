@@ -85,6 +85,10 @@ sudorun() {
     command $SUDO "$@"
 }
 
+pacman() {
+    sudorun pacman --noconfirm --needed "$@"
+}
+
 pacman_install() {
     sudorun pacman -S --noconfirm --needed "$@"
 }
