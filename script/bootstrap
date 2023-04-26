@@ -64,11 +64,13 @@ if ! [ -e "$SETUP_DIR" ]; then
     run git clone --recursive https://github.com/kergoth/system-setup "$SETUP_DIR"
 fi
 
-run "$SETUP_DIR/setup-admin" || :
+cd "$SETUP_DIR"
+
+run ./setup-admin || :
 if [ -d /data/kergoth ]; then
-    run "$SETUP_DIR/setup" -c work_data
+    run ./setup -c work_data
 elif [ -d /mel/kergoth ]; then
-    run "$SETUP_DIR/setup" -c work
+    run ./setup -c work
 else
-    run "$SETUP_DIR/setup"
+    run ./setup
 fi
