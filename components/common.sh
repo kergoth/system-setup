@@ -91,6 +91,15 @@ pacman() {
     sudorun pacman --noconfirm --needed "$@"
 }
 
+pacman_install() {
+    # shellcheck disable=SC2086
+    for arg; do
+        if ! pacman -Q "$arg" >/dev/null 2>&1; then
+            echo "$arg"
+        fi
+    done | xargs $SUDO pacman --noconfirm --needed -S
+}
+
 component_source() {
     local scriptdir=$1
     local scriptname=$2

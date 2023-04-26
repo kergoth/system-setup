@@ -5,7 +5,7 @@ pacman -Sy
 # Sync the files database
 pacman -Fy
 
-pacman -S openssh
+pacman_install openssh
 if [ "$OSTYPE" != WSL ]; then
     sudorun systemctl enable sshd && sudo systemctl start sshd
 fi
@@ -20,7 +20,7 @@ if ! grep -q '^MAKEFLAGS=.*-j' /etc/makepkg.conf; then
 fi
 
 if [ "$OSTYPE" != WSL ]; then
-    pacman -S nss-mdns avahi
+    pacman_install nss-mdns avahi
     sudorun sed -i -e '/hosts:/{ s/mdns_minimal //g; s/dns/mdns_minimal dns/; }' /etc/nsswitch.conf
     if ! grep -q 'hosts:.*mdns_minimal' /etc/nsswitch.conf; then
         echo >&2 "Warning: failed to add mdns_minimal to hosts resolution in /etc/nsswitch.conf"
@@ -29,7 +29,7 @@ if [ "$OSTYPE" != WSL ]; then
     sudorun systemctl start avahi-daemon.service || true
 fi
 
-pacman -S vi
+pacman_install vi
 
 # Clean up
 if command pacman -Q nano >/dev/null 2>&1; then
