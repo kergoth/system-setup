@@ -45,12 +45,6 @@ if ! [ -e "$DOTFILES_DIR/bb" ]; then
     git clone https://github.com/kergoth/bb "$DOTFILES_DIR/bb"
 fi
 
-# Clean up for before my dotfiles were used
-rm -f ~/.viminfo ~/.zcompdump
-
-# Install dotfiles
-"$DOTFILES_DIR/script/install"
-
 component_source "$scriptdir" setup
 
 if command -v nix-env >/dev/null 2>&1; then
@@ -61,5 +55,11 @@ else
 fi
 
 component_source "$scriptdir" post-setup
+
+# Clean up for before my dotfiles were used
+rm -f ~/.viminfo ~/.zcompdump
+
+# Install dotfiles
+"$DOTFILES_DIR/script/install"
 
 msg "Setup complete"
