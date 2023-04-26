@@ -35,7 +35,9 @@ esac
 
 if ! has git || ! has bash; then
     if [ "$OS" = freebsd ]; then
-        run doas pkg bootstrap || :
+        if ! doas pkg -N; then
+            run doas pkg bootstrap
+        fi
         if ! command -v git >/dev/null 2>&1; then
             run doas pkg install git
         fi
