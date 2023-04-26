@@ -11,9 +11,10 @@ This project holds the consolidation of my various per-system setup script repos
 ## Usage
 
 This repository includes scripts for setting up systems per my personal
-preferences. The scripts are split into 4 phases:
+preferences. The scripts are split into 4 phases, each of which is manually run:
 
-The first two scripts are currently only used for non-Windows hosts:
+The first two scripts are currently only used for non-Windows hosts. These are
+self-contained and may be used without cloning the repository:
 
 - os-install: Currently I only have a single script for this, which is Arch.
   This is run as root, prior to rebooting into the newly installed system, and
@@ -28,12 +29,17 @@ The first two scripts are currently only used for non-Windows hosts:
   must be self-contained, and by definition is os/distro-specific, so exists in
   a subdirectory of script/ for each.
 
-The remaining two are common to all hosts, but are powershell scripts on Windows (.ps1 extension):
+The remaining two are common to all hosts, but are powershell scripts on Windows
+(.ps1 extension):
 
 - setup-admin: This is run by a non-root user with sudo/doas access, to perform
   post-install system-level setup and configuration.
 - setup: This is run by our non-root user with no need for sudo/doas. This may
   be the same user as is used for setup-admin, but this is not required.
+
+Lastly, a wrapper script `script/bootstrap` is provided which clones the
+repository, installing git first if necessary, and then runs the setup-admin and
+setup scripts. This is self-contained also.
 
 ## Manual Steps
 
