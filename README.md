@@ -7,7 +7,6 @@ This project holds the consolidation of my various per-system setup script repos
 ## Prerequisites
 
 - (On macOS) Command-Line Tools or XCode must be installed (See extras/ for scripts to install these).
-- (On Linux hosts) Zsh is already installed.
 - (On non-Arch Linux hosts, for now) Nix is already installed.
 
 ## Usage
@@ -130,9 +129,11 @@ The remaining two are common to all hosts, but are powershell scripts on Windows
 - [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard): Reattach to the per-user bootstrap namespace. This is needed for tools like tmux, though tmux 2.6+ apparently incorporates this functionality already.
 - [trash](https://hasseg.org/trash/): A small command-line program for OS X that moves files or folders to the trash.
 
-#### Linux
+#### Linux and FreeBSD
 
 The intention is to incorporate the installation of Nix on all systems in time.
+
+- [zsh](https://zsh.sourceforge.io): A shell designed for interactive use, although it is also a powerful scripting language. This is installed by default on macOS.
 
 ##### Arch Linux
 
