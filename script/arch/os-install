@@ -137,7 +137,7 @@ setup_os() {
 in_chroot=0
 device=/dev/sda1
 bootloader=grub
-while getopts cb:h opt; do
+while getopts cd:b:h opt; do
     case "$opt" in
     c)
         in_chroot=1
