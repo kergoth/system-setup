@@ -6,6 +6,15 @@ has() {
     command -v "$1" >/dev/null 2>&1
 }
 
+run () {
+    if has printcmd >/dev/null 2>&1; then
+        printf '❯ %s\n' "$(printcmd "$@")" >&2
+    else
+        printf '❯ %s\n' "$*" >&2
+    fi
+    "$@"
+}
+
 # shellcheck disable=SC3028,SC2034
 case "${OSTYPE:-}" in
 darwin*)
@@ -26,12 +35,12 @@ esac
 
 if ! has git || ! has bash; then
     if [ "$OS" = freebsd ]; then
-        doas pkg bootstrap || :
+        run doas pkg bootstrap || :
         if ! command -v git >/dev/null 2>&1; then
-            doas pkg install git
+            run doas pkg install git
         fi
         if ! command -v bash >/dev/null 2>&1; then
-            doas pkg install bash
+            run doas pkg install bash
         fi
     elif has nix-shell; then
         exec nix-shell -p git bash --run "$0"
@@ -44,8 +53,8 @@ fi
 SETUP_DIR=${SETUP_DIR:-$HOME/.setup}
 
 if ! [ -e "$SETUP_DIR" ]; then
-    git clone --recursive https://github.com/kergoth/system-setup "$SETUP_DIR"
+    run git clone --recursive https://github.com/kergoth/system-setup "$SETUP_DIR"
 fi
 
-"$SETUP_DIR/setup-admin" || :
-"$SETUP_DIR/setup"
+run "$SETUP_DIR/setup-admin" || :
+run "$SETUP_DIR/setup"
