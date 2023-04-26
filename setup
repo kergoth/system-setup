@@ -30,10 +30,6 @@ if [ "$(id -u)" = "0" ]; then
     die "Error: Do not run as root, this script is for user setup"
 fi
 
-if [ -z "$HOMEBREW_PREFIX" ]; then
-    die "HOMEBREW_PREFIX must be set or unset, not the empty string"
-fi
-
 if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/setup" ]; then
     # shellcheck disable=SC1090
     . "$scriptdir/components/$OS/setup"
