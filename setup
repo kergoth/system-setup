@@ -47,6 +47,11 @@ fi
 
 component_source "$scriptdir" setup
 
+# Install nix configuration
+if ! [ -e "$XDG_CONFIG_HOME/nix/nix.conf" ]; then
+    "$DOTFILES_DIR/script/install" nix
+fi
+
 if command -v nix-env >/dev/null 2>&1; then
     msg "Applying Nix Home Manager configuration"
     "$scriptdir/switch.sh" ${home_config:+"$home_config"}
