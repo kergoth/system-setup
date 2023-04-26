@@ -10,14 +10,17 @@ This project holds the consolidation of my various per-system setup script repos
 
 ## Usage
 
-This repository includes scripts for setting up systems per my personal preferences. The scripts are split into 4 phases:
+This repository includes scripts for setting up systems per my personal
+preferences. The scripts are split into 4 phases:
 
 The first two scripts are currently only used for non-Windows hosts:
 
 - os-install: Currently I only have a single script for this, which is Arch.
   This is run as root, prior to rebooting into the newly installed system, and
   is intended to install and perform initial early system setup such as
-  bootloader installation. This script is intended to be able to run without cloning this repository, so must be self-contained, and by definition is os/distro-specific, so exists in a subdirectory of script/ for each.
+  bootloader installation. This script is intended to be able to run without
+  cloning this repository, so must be self-contained, and by definition is
+  os/distro-specific, so exists in a subdirectory of script/ for each.
 - setup-root: This is run as root, after OS installation, before our user has
   sudo/doas access, possibly before our user exists, and its purpose is to do
   just this, add our user and ensure it can use sudo or doas, and nothing more.
