@@ -45,6 +45,12 @@ if ! [ -e "$DOTFILES_DIR/bb" ]; then
     git clone https://github.com/kergoth/bb "$DOTFILES_DIR/bb"
 fi
 
+# Clean up for before my dotfiles were used
+rm -f ~/.viminfo ~/.zcompdump
+
+# Install dotfiles
+"$DOTFILES_DIR/script/install"
+
 if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/setup" ]; then
     # shellcheck disable=SC1090
     . "$scriptdir/components/$OS/setup"
