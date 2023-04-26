@@ -21,5 +21,6 @@ if [ -z "$HOMEBREW_PREFIX" ]; then
 fi
 
 component_source "$scriptdir" setup-admin
+component_source "$scriptdir" post-setup-admin
 
 msg "Admin setup complete"
