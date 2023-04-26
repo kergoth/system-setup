@@ -39,10 +39,10 @@ if ! has git || ! has bash; then
             run doas pkg bootstrap
         fi
         if ! command -v git >/dev/null 2>&1; then
-            run doas pkg install git
+            run doas env ASSUME_ALWAYS_YES=YES pkg install git
         fi
         if ! command -v bash >/dev/null 2>&1; then
-            run doas pkg install bash
+            run doas env ASSUME_ALWAYS_YES=YES pkg install bash
         fi
     elif has nix-shell; then
         exec nix-shell -p git bash --run "$0"
