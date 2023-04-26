@@ -106,3 +106,51 @@ component_source() {
         . "$scriptdir/components/$OS/$scriptname"
     fi
 }
+
+NIXPKGS=${NIXPKGS:-https://nixos.org/channels/nixpkgs-unstable}
+
+install_nix() {
+    if [ "$OSTYPE" = WSL ]; then
+        if ! has nix-env; then
+            curl -L https://nixos.org/nix/install | sudorun sh -s -- --no-daemon
+        fi
+    elif [ "$OS" = arch ]; then
+        if ! has nix-env; then
+            pacman -S nix
+        fi
+
+        if ! grep -q "^nix-users:.*$USER" /etc/group; then
+            sudorun sed -i -e "/^nix-users:/s/\$/ $USER/; /^nix-users:/s/: /:/;" /etc/group
+            if ! grep -q "^nix-users:.*$USER" /etc/group; then
+                echo >&2 "Failed to add user to the nix-users group, please do so manually, then re-login"
+            else
+                echo >&2 "User has been added to the nix-users group, please re-login"
+            fi
+        fi
+
+        sudorun systemctl enable nix-daemon
+        sudorun systemctl start nix-daemon
+    else
+        if ! has nix-env; then
+            curl -L https://nixos.org/nix/install | sudorun sh -s -- --daemon
+        fi
+    fi
+
+    setup_nix_shell
+
+    if [ -n "$NIXPKGS" ]; then
+        nix-channel --add "$NIXPKGS" nixpkgs
+        nix-channel --update
+    fi
+}
+
+setup_nix_shell() {
+    # shellcheck disable=SC1090
+    for i in /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ~/.nix-profile/etc/profile.d/nix-daemon.sh ~/.nix-profile/etc/profile.d/nix.sh; do
+        if [ -e "$i" ]; then
+            . "$i"
+        fi
+    done
+}
+
+setup_nix_shell

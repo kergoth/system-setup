@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+install_nix
+
 if ! [ -x "$HOMEBREW_PREFIX/bin/brew" ]; then
     msg "Installing homebrew"
     install-brew -s "$HOMEBREW_PREFIX" || {
