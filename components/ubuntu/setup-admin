@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if ! has zsh; then
+    sudorun apt-get -y install zsh
+fi
