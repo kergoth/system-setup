@@ -15,7 +15,7 @@ has() {
 case "${OSTYPE:-}" in
 darwin*)
     OS=macos
-    SYSTEM=darwin
+    SYSTEM=macos
     ;;
 *)
     case "$(uname -r)" in
