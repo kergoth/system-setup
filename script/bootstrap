@@ -46,6 +46,12 @@ if ! has git || ! has bash; then
         fi
     elif has nix-shell; then
         exec nix-shell -p git bash --run "$0"
+    elif has apt-get; then
+        run apt-get update
+        run apt-get -y install git bash
+    elif has pacman; then
+        run pacman -Sy
+        run pacman -S --noconfirm --needed git bash
     else
         echo >&2 "Error: unsupported host and git and/or bash are not available, exiting"
         exit 1
