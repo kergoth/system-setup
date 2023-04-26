@@ -31,6 +31,8 @@ fi
 
 pacman_install vi
 
+pacman_install zsh
+
 # Clean up
 if command pacman -Q nano >/dev/null 2>&1; then
     sudorun pacman --noconfirm -R nano
