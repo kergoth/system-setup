@@ -38,6 +38,12 @@ fi
 if ! [ -e "$DOTFILES_DIR/vim" ]; then
     git clone https://github.com/kergoth/dotvim "$DOTFILES_DIR/vim"
 fi
+if ! [ -e "$DOTFILES_DIR/workspace" ]; then
+    git clone https://github.com/kergoth/kergoth-workspace "$DOTFILES_DIR/workspace"
+fi
+if ! [ -e "$DOTFILES_DIR/bb" ]; then
+    git clone https://github.com/kergoth/bb "$DOTFILES_DIR/bb"
+fi
 
 if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/setup" ]; then
     # shellcheck disable=SC1090
