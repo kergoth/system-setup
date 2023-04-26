@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 NIXPKGS=${NIXPKGS:-https://nixos.org/channels/nixpkgs-unstable}
 XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
@@ -14,7 +14,7 @@ has() {
 case "${OSTYPE:-}" in
 darwin*)
     OS=macos
-    SYSTEM=Darwin
+    SYSTEM=darwin
     ;;
 *)
     case "$(uname -r)" in
@@ -26,7 +26,7 @@ darwin*)
     if [ -e /etc/os-release ]; then
         OS="$(sed -n -e 's/^ID=//p' /etc/os-release | tr '[:upper:]' '[:lower:]')"
     fi
-    SYSTEM=$(uname -s)
+    SYSTEM=$(uname -s | tr '[:upper:]' '[:lower:]')
     ;;
 esac
 
@@ -91,3 +91,18 @@ pacman() {
     sudorun pacman --noconfirm --needed "$@"
 }
 
+component_source() {
+    local scriptdir=$1
+    local scriptname=$2
+
+    if [ -n "$SYSTEM" ] && [ -e "$scriptdir/components/$SYSTEM/$scriptname" ]; then
+        msg "Sourcing $scriptdir/components/$SYSTEM/$scriptname"
+        # shellcheck disable=SC1090
+        . "$scriptdir/components/$SYSTEM/$scriptname"
+    fi
+    if [ "$SYSTEM" = linux ] && [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/$scriptname" ]; then
+        msg "Sourcing $scriptdir/components/$OS/$scriptname"
+        # shellcheck disable=SC1090
+        . "$scriptdir/components/$OS/$scriptname"
+    fi
+}

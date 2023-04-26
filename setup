@@ -51,12 +51,7 @@ rm -f ~/.viminfo ~/.zcompdump
 # Install dotfiles
 "$DOTFILES_DIR/script/install"
 
-if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/setup" ]; then
-    # shellcheck disable=SC1090
-    . "$scriptdir/components/$OS/setup"
-else
-    msg "WARNING: unrecognized or unsupported operating system"
-fi
+component_source "$scriptdir" setup
 
 if command -v nix-env >/dev/null 2>&1; then
     msg "Applying Nix Home Manager configuration"
@@ -65,9 +60,6 @@ else
     msg "WARNING: nix is not installed, skipping home-manager setup"
 fi
 
-if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/post-setup" ]; then
-    # shellcheck disable=SC1090
-    . "$scriptdir/components/$OS/post-setup"
-fi
+component_source "$scriptdir" post-setup
 
 msg "Setup complete"

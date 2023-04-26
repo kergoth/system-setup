@@ -20,11 +20,6 @@ if [ -z "$HOMEBREW_PREFIX" ]; then
     die "HOMEBREW_PREFIX must be set or unset, not the empty string"
 fi
 
-if [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/setup-admin" ]; then
-    # shellcheck disable=SC1090
-    . "$scriptdir/components/$OS/setup-admin"
-else
-    msg "WARNING: unrecognized or unsupported operating system"
-fi
+component_source "$scriptdir" setup-admin
 
 msg "Admin setup complete"
