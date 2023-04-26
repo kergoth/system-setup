@@ -42,6 +42,23 @@ if (-Not (Test-Path "$env:SCOOP"))
 }
 RefreshEnvPath
 
+# Install git
+scoop install git
+
+# Clone my dotfiles
+if (-Not $env:DOTFILES_DIR)
+{
+    $env:DOTFILES_DIR = "$env:USERPROFILE\dotfiles"
+}
+if (-Not (Test-Path "$env:DOTFILES_DIR"))
+{
+    git clone https://github.com/kergoth/dotfiles "$env:DOTFILES_DIR"
+}
+if (-Not (Test-Path "$env:DOTFILES_DIR\vim"))
+{
+    git clone https://github.com/kergoth/dotvim "$env:DOTFILES_DIR\vim"
+}
+
 # Install languages
 scoop install rust go python
 $reg = Get-ChildItem $env:USERPROFILE\scoop\apps\python\*\install-pep-514.reg -ErrorAction SilentlyContinue | Select-Object -First 1
@@ -60,7 +77,6 @@ scoop install sudo gow starship
 
 # Install core
 # Unavailable on Windows: tmux, zsh
-scoop install git
 scoop install neovim
 scoop install wget
 
