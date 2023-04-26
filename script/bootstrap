@@ -7,7 +7,7 @@ has() {
 }
 
 run () {
-    if has printcmd >/dev/null 2>&1; then
+    if has printcmd; then
         printf '❯ %s\n' "$(printcmd "$@")" >&2
     else
         printf '❯ %s\n' "$*" >&2
