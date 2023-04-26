@@ -59,4 +59,10 @@ if ! [ -e "$SETUP_DIR" ]; then
 fi
 
 run "$SETUP_DIR/setup-admin" || :
-run "$SETUP_DIR/setup"
+if [ -d /data/kergoth ]; then
+    run "$SETUP_DIR/setup" -c work_data
+elif [ -d /mel/kergoth ]; then
+    run "$SETUP_DIR/setup" -c work
+else
+    run "$SETUP_DIR/setup"
+fi
