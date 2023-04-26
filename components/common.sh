@@ -14,6 +14,7 @@ has() {
 case "${OSTYPE:-}" in
 darwin*)
     OS=macos
+    SYSTEM=Darwin
     ;;
 *)
     case "$(uname -r)" in
@@ -25,6 +26,7 @@ darwin*)
     if [ -e /etc/os-release ]; then
         OS="$(sed -n -e 's/^ID=//p' /etc/os-release | tr '[:upper:]' '[:lower:]')"
     fi
+    SYSTEM=$(uname -s)
     ;;
 esac
 
