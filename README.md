@@ -7,7 +7,6 @@ This project holds the consolidation of my various per-system setup script repos
 ## Prerequisites
 
 - (On macOS) Command-Line Tools or XCode must be installed (See extras/ for scripts to install these).
-- (On non-Arch Linux hosts, for now) Nix is already installed.
 
 ## Usage
 
@@ -116,6 +115,7 @@ The remaining two are common to all hosts, but are powershell scripts on Windows
 #### Linux and macOS
 
 - [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
+- [nix](https://nixos.org): Nix is a tool that takes a unique approach to package management and system configuration.
 - [patchutils](http://cyberelk.net/tim/software/patchutils/): A small collection of programs that operate on patch files.
 - [ssh-copy-id](https://www.openssh.com): Install your identity.pub in a remote machine’s authorized_keys.
 - [tmux](https://github.com/tmux/tmux): An open-source terminal multiplexer.
@@ -137,7 +137,6 @@ The intention is to incorporate the installation of Nix on all systems in time.
 
 ##### Arch Linux
 
-- [nix](https://nixos.org): Nix is a tool that takes a unique approach to package management and system configuration.
 - [openssh](https://www.openssh.com): The premier connectivity tool for remote login with the SSH protocol.
 - [avahi](https://avahi.org): A system which facilitates service discovery on a local network via mDNS.
 - [nss-mdns](http://0pointer.de/lennart/projects/nss-mdns/): A GNU Libc NSS module that provides mDNS host name resolution.
