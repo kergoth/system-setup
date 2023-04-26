@@ -51,6 +51,9 @@ fi
 
 msg() {
     fmt="$1"
+    if [ $# -gt 1 ]; then
+        shift
+    fi
     # shellcheck disable=SC2059
     printf "$fmt\n" "$@" >&2
 }
