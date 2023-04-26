@@ -6,40 +6,33 @@ This project holds the consolidation of my various per-system setup script repos
 
 ## Prerequisites
 
-- Logged in as your already-configured user.
 - (On macOS) Command-Line Tools or XCode must be installed (See extras/ for scripts to install these).
 - (On Linux hosts) Zsh is already installed.
 - (On non-Arch Linux hosts, for now) Nix is already installed.
 
 ## Usage
 
-### Linux or macOS
+This repository includes scripts for setting up systems per my personal preferences. The scripts are split into 4 phases:
 
-As a user that can run `sudo`:
+The first two scripts are currently only used for non-Windows hosts:
 
-```console
-./setup-admin
-```
+- os-install: Currently I only have a single script for this, which is Arch.
+  This is run as root, prior to rebooting into the newly installed system, and
+  is intended to install and perform initial early system setup such as
+  bootloader installation. This script is intended to be able to run without cloning this repository, so must be self-contained, and by definition is os/distro-specific, so exists in a subdirectory of script/ for each.
+- setup-root: This is run as root, after OS installation, before our user has
+  sudo/doas access, possibly before our user exists, and its purpose is to do
+  just this, add our user and ensure it can use sudo or doas, and nothing more.
+  This script is intended to be able to run without cloning this repository, so
+  must be self-contained, and by definition is os/distro-specific, so exists in
+  a subdirectory of script/ for each.
 
-As a non-root user:
+The remaining two are common to all hosts, but are powershell scripts on Windows (.ps1 extension):
 
-```console
-./setup
-```
-
-### Windows
-
-In an Administrative PowerShell:
-
-```console
-./setup-admin.ps1
-```
-
-In powershell:
-
-```console
-./setup.ps1
-```
+- setup-admin: This is run by a non-root user with sudo/doas access, to perform
+  post-install system-level setup and configuration.
+- setup: This is run by our non-root user with no need for sudo/doas. This may
+  be the same user as is used for setup-admin, but this is not required.
 
 ## Manual Steps
 
