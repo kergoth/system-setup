@@ -73,7 +73,7 @@ python3 -m pipx ensurepath
 RefreshEnvPath
 
 # Windows-specific
-scoop install sudo gow starship
+scoop install sudo gow starship npiperelay
 
 # Install core
 # Unavailable on Windows: tmux, zsh
@@ -117,7 +117,6 @@ scoop install sad
 scoop install sd
 cargo install choose
 scoop install git-branchless
-scoop install npiperelay
 
 # Disk tools
 scoop install dua
