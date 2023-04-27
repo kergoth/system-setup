@@ -88,8 +88,8 @@ Add-EnvironmentVariableItem "PATH" "$gitdir\bin" -User
 Add-EnvironmentVariableItem "PATH" "$env:USERPROFILE\.cargo\bin" -User
 
 # Install tools
-# Unavailable on Windows: direnv
 scoop install bat
+scoop install direnv
 scoop install fd
 scoop install ripgrep
 scoop install zoxide

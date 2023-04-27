@@ -101,6 +101,7 @@ setup scripts. This is self-contained also.
 - [bat](https://github.com/sharkdp/bat): A cat(1) clone with syntax highlighting and Git integration.
 - [choose](https://github.com/theryangeary/choose): A human-friendly and fast alternative to cut and (sometimes) awk.
 - [delta](https://github.com/dandavison/delta): A syntax-highlighting pager for git, diff, and grep output.
+- [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
 - [dua](https://github.com/Byron/dua-cli): View disk space usage and delete unwanted data, fast. This is a faster version of ncdu.
 - [dust](https://github.com/bootandy/dust): A more intuitive version of du in rust.
 - [exa](https://github.com/ogham/exa): A modern replacement for ls.
@@ -123,7 +124,6 @@ setup scripts. This is self-contained also.
 
 #### Linux and macOS
 
-- [direnv](https://direnv.net): An extension for your shell which can load and unload environment variables depending on the current directory.
 - [nix](https://nixos.org): Nix is a tool that takes a unique approach to package management and system configuration.
 - [patchutils](http://cyberelk.net/tim/software/patchutils/): A small collection of programs that operate on patch files.
 - [ssh-copy-id](https://www.openssh.com): Install your identity.pub in a remote machine’s authorized_keys.
