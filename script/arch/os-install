@@ -106,12 +106,10 @@ setup_os() {
         fi
     fi
 
-    pacman_install vim net-tools dhcpcd openssh
+    pacman_install vi net-tools dhcpcd
 
     systemctl enable dhcpcd
-    systemctl enable sshd
 
-    # User setup
     groupadd -r -g 51 staff
     chgrp -R staff /usr/local
     chmod -R g+rwX /usr/local
