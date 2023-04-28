@@ -25,7 +25,7 @@ if (-Not $myWindowsPrincipal.IsInRole($adminRole)) {
     exit
 }
 
-. $PSScriptRoot\components\windows\common.ps1
+. $PSScriptRoot\..\components\windows\common.ps1
 
 # Install winget
 if (-Not (Get-Command winget -ErrorAction SilentlyContinue)) {
@@ -100,12 +100,12 @@ catch {
 RefreshEnvPath
 
 # Install GUI apps
-winget import $PSScriptRoot\components\windows\winget.json
+winget import $PSScriptRoot\..\components\windows\winget.json
 
 # Install Visual Studio C++ Desktop Workload
 winget install Microsoft.VisualStudio.2022.Community --silent --override "--wait --quiet --add ProductLang En-us --add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended"
 
 # Configuration
-. $PSScriptRoot\components\windows\configure-admin.ps1
+. $PSScriptRoot\..\components\windows\configure-admin.ps1
 
 Write-Output "Admin setup complete"

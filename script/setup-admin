@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
-PATH="$scriptdir/scripts:$PATH"
+repodir="$(dirname "$(cd "$(dirname "$0")" && pwd -P)")"
+PATH="$repodir/scripts:$PATH"
 
 HOMEBREW_PREFIX=${ADMIN_HOMEBREW_PREFIX:-${HOMEBREW_PREFIX:-$HOME/.brew}}
 
-# shellcheck source=./components/common.sh
-. "$scriptdir/components/common.sh" || exit 1
+# shellcheck source=../components/common.sh
+. "$repodir/components/common.sh" || exit 1
 
 set -euo pipefail
 
@@ -20,7 +20,7 @@ if [ -z "$HOMEBREW_PREFIX" ]; then
     die "HOMEBREW_PREFIX must be set or unset, not the empty string"
 fi
 
-component_source "$scriptdir" setup-admin
-component_source "$scriptdir" post-setup-admin
+component_source "$repodir" setup-admin
+component_source "$repodir" post-setup-admin
 
 msg "Admin setup complete"

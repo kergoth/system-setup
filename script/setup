@@ -18,11 +18,11 @@ while getopts c:h opt; do
 done
 shift $((OPTIND - 1))
 
-scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
-PATH="$scriptdir/scripts:$PATH"
+repodir="$(dirname "$(cd "$(dirname "$0")" && pwd -P)")"
+PATH="$repodir/scripts:$PATH"
 
-# shellcheck source=./components/common.sh
-. "$scriptdir/components/common.sh" || exit 1
+# shellcheck source=../components/common.sh
+. "$repodir/components/common.sh" || exit 1
 
 set -euo pipefail
 
@@ -45,21 +45,16 @@ if ! [ -e "$DOTFILES_DIR/bb" ]; then
     git clone https://github.com/kergoth/bb "$DOTFILES_DIR/bb"
 fi
 
-component_source "$scriptdir" setup
-
-# Install nix configuration
-if ! [ -e "$XDG_CONFIG_HOME/nix/nix.conf" ]; then
-    "$DOTFILES_DIR/script/install" nix
-fi
+component_source "$repodir" setup
 
 if command -v nix-env >/dev/null 2>&1; then
     msg "Applying Nix Home Manager configuration"
-    "$scriptdir/switch.sh" ${home_config:+"$home_config"}
+    "$repodir/switch.sh" ${home_config:+"$home_config"}
 else
     msg "WARNING: nix is not installed, skipping home-manager setup"
 fi
 
-component_source "$scriptdir" post-setup
+component_source "$repodir" post-setup
 
 # Clean up for before my dotfiles were used
 rm -f ~/.viminfo ~/.zcompdump

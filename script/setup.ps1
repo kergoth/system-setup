@@ -13,10 +13,10 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
     exit
 }
 
-. $PSScriptRoot\components\windows\common.ps1
+. $PSScriptRoot\..\components\windows\common.ps1
 
 # Install PowerShell modules
-. $PSScriptRoot\components\windows\install-pwsh-modules.ps1
+. $PSScriptRoot\..\components\windows\install-pwsh-modules.ps1
 
 # Add installed software to the user's PATH and/or startup
 if (Test-Path "C:\Program Files\7-Zip") {
