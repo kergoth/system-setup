@@ -7,3 +7,10 @@ if [ -e /bin/zsh ] && [ "$(getent passwd "$(id -un)" | awk -F : '{print $NF}')" 
     # known or set, as is the case with some container usage.
     chsh -s /bin/zsh || :
 fi
+
+# Install PowerShell modules, if needed
+if has pwsh; then
+    # Ignore failure, as these are not critical to my workflow, and can fail due
+    # to transient network issues.
+    pwsh -nop "./scripts/install-pwsh-modules.ps1" || :
+fi
