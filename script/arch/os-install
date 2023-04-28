@@ -2,7 +2,6 @@
 
 set -eu
 
-locale="en_US.UTF-8"
 timezone="America/Phoenix"
 initcpio_modules="crc32c"
 initcpio_extra_hooks=
@@ -76,11 +75,6 @@ setup_os() {
     # Timezone
     ln -sf /usr/share/zoneinfo/$timezone /etc/localtime
     hwclock --systohc
-
-    # Locales
-    sed -i -e "/^#$locale /s/^#//" /etc/locale.gen
-    locale-gen
-    echo "LANG=$locale" >/etc/locale.conf
 
     if [ "$OSTYPE" != WSL ]; then
         root_fs="$(sed -n -e '/[         ]\/[    ]/p' /proc/mounts | awk '{print $3}')"
