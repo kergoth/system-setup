@@ -49,7 +49,7 @@ component_source "$repodir" setup
 
 if command -v nix-env >/dev/null 2>&1; then
     msg "Applying Nix Home Manager configuration"
-    "$repodir/switch.sh" ${home_config:+"$home_config"}
+    switch.sh ${home_config:+"$home_config"}
 else
     msg "WARNING: nix is not installed, skipping home-manager setup"
 fi

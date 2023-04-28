@@ -9,6 +9,6 @@ set -euo pipefail
 configuration="${1:-$(uname -s | tr '[:upper:]' '[:lower:]')}"
 package=".#homeConfigurations.$configuration.activationPackage"
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 
 nix build --no-link "$package"

@@ -41,10 +41,12 @@ else
     shift
 fi
 
-cd "$(dirname "$0")"
-./build.sh "$configuration"
+cd "$(dirname "$0")/.."
+PATH="$PWD/scripts:$PATH"
 
-./scripts/hm-nvd "$configuration"
+build.sh "$configuration"
+
+hm-nvd "$configuration"
 
 hm --flake ".#$configuration" switch ${dry_run:+-n}
 
