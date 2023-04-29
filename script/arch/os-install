@@ -34,11 +34,14 @@ pacman_install() {
 
 # shellcheck disable=SC2120
 partition_and_mount() {
-    partition="${1:-/dev/sda1}"
+    device="${1:-/dev/sda}"
+    partition="${device}1"
 
-    mkfs.btrfs -f -L root /dev/sda1
+    echo 'type=83' | sfdisk "$device"
+
+    mkfs.btrfs -f -L root "$partition"
     mkdir -p /mnt2
-    mount /dev/sda1 /mnt2
+    mount "$partition" /mnt2
     (
         cd /mnt2
 
