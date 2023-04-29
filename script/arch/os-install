@@ -39,8 +39,8 @@ partition_and_mount() {
 
     echo 'type=83' | sfdisk "$device"
 
-    umount /mnt 2>/dev/null || :
-    umount /mnt2 2>/dev/null || :
+    umount -R /mnt 2>/dev/null || :
+    umount -R /mnt2 2>/dev/null || :
 
     mkfs.btrfs -f -L root "$partition"
     mkdir -p /mnt2
