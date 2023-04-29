@@ -36,7 +36,7 @@ cargos=
 gos=
 
 if ! command -v pipx >/dev/null 2>&1; then
-    "$(dirname "$0")"/scripts/install-pipx
+    install-pipx
 fi
 
 pipx_check git-revise git-revise
