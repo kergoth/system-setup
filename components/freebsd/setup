@@ -69,7 +69,7 @@ fi
 
 # User shell
 if [ -e /usr/local/bin/zsh ]; then
-    current_shell="$(getent passwd "$LOGNAME" | sed -e 's#.*:##')"
+    current_shell="$(getent passwd "$USER" | sed -e 's#.*:##')"
     if [ "$current_shell" != /usr/local/bin/zsh ]; then
         msg "Changing current user shell to zsh"
         chsh -s /usr/local/bin/zsh

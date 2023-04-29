@@ -87,8 +87,8 @@ freebsd_check sysutils/exa exa
 freebsd_check sysutils/lsblk lsblk
 
 # Add user to operator and video groups
-doas pw groupmod operator -m "$LOGNAME"
-doas pw groupmod video -m "$LOGNAME"
+doas pw groupmod operator -m "$USER"
+doas pw groupmod video -m "$USER"
 
 # Installation
 if [ -n "$(echo "$pkgs" | sed -e 's/^ *//; s/ *$//')" ]; then
@@ -102,9 +102,9 @@ if [ -n "$(echo "$ports" | sed -e 's/^ *//; s/ *$//')" ]; then
 fi
 
 if [ -e /usr/local/bin/zsh ]; then
-    current_shell="$(getent passwd "$LOGNAME" | sed -e 's#.*:##')"
+    current_shell="$(getent passwd "$USER" | sed -e 's#.*:##')"
     if [ "$current_shell" != /usr/local/bin/zsh ]; then
         msg "Changing current user shell to zsh"
-        sudorun chsh -s /usr/local/bin/zsh "$LOGNAME"
+        sudorun chsh -s /usr/local/bin/zsh "$USER"
     fi
 fi
