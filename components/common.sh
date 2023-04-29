@@ -104,6 +104,7 @@ pacman_install() {
     done | xargs $SUDO pacman --noconfirm --needed -S
 }
 
+# shellcheck disable=SC2030
 component_source() {
     local scriptdir=$1
     local scriptname=$2
@@ -111,12 +112,18 @@ component_source() {
     if [ -n "$SYSTEM" ] && [ -e "$scriptdir/components/$SYSTEM/$scriptname" ]; then
         msg "Sourcing $scriptdir/components/$SYSTEM/$scriptname"
         # shellcheck disable=SC1090
-        . "$scriptdir/components/$SYSTEM/$scriptname"
+        (
+            PATH="$scriptdir/components/$SYSTEM/scripts:$PATH"
+            . "$scriptdir/components/$SYSTEM/$scriptname"
+        )
     fi
     if [ "$SYSTEM" = linux ] && [ -n "$OS" ] && [ -e "$scriptdir/components/$OS/$scriptname" ]; then
         msg "Sourcing $scriptdir/components/$OS/$scriptname"
         # shellcheck disable=SC1090
-        . "$scriptdir/components/$OS/$scriptname"
+        (
+            PATH="$scriptdir/components/$OS/scripts:$PATH"
+            . "$scriptdir/components/$OS/$scriptname"
+        )
     fi
 }
 
