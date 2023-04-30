@@ -197,7 +197,7 @@ if [ $in_chroot -eq 0 ]; then
 
     scriptdest=/root/"${0##*/}"
     cp -af "$0" "/mnt/$scriptdest"
-    arch-chroot /mnt sh "$scriptdest" -c -b "$bootloader" "$hostname"
+    arch-chroot /mnt sh "$scriptdest" -c -b "$bootloader efibootmgr" "$hostname"
 else
     echo >&2 "Setting up new Arch Linux installation"
     setup_os
