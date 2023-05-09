@@ -38,10 +38,6 @@ defaults write com.apple.spotlight orderedItems -array \
 	'{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
 	'{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
 
-# Set your screen to lock as soon as the screensaver starts:
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-
 # Expose hidden files and Library folder in Finder:
 defaults write com.apple.finder AppleShowAllFiles -bool true
 chflags nohidden ~/Library
