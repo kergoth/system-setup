@@ -18,6 +18,9 @@ sudorun defaults write /Library/Preferences/com.apple.mDNSResponder NoMulticastA
 # Don't show hostname at the login screen
 sudorun defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo ""
 
+# Disable Guest account
+sudorun sysadminctl -guestAccount off
+
 # Enable auto-update via https://github.com/rtrouton/rtrouton_scripts
 
 # Enable automatic background check for macOS software updates
