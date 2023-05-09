@@ -47,6 +47,8 @@ setup scripts. This is self-contained also.
 
 - Enable `secure keyboard entry` in Terminal
 - `extras/enable-filevault`
+- System Settings > Lock Screen
+  - Set “Require password after screen saver begins or display is turned off” to after 5 seconds or less.
 - Run vscode, enable settings sync
 - Run vivaldi, enable sync
 - Run deliveries, click yes to import from iCloud
