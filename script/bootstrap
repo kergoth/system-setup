@@ -67,10 +67,4 @@ fi
 cd "$SETUP_DIR"
 
 run ./script/setup-admin || :
-if [ -d /data/kergoth ]; then
-    run ./script/setup -c work_data
-elif [ -d /mel/kergoth ]; then
-    run ./script/setup -c work
-else
-    run ./script/setup
-fi
+run ./script/setup
