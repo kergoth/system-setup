@@ -39,7 +39,7 @@ The remaining two are common to all hosts, but are powershell scripts on Windows
 
 Lastly, a wrapper script `script/bootstrap` is provided which clones the
 repository, installing git first if necessary, and then runs the setup-admin and
-setup scripts. This is self-contained also.
+setup scripts. This is self-contained also. No bootstrap.ps1 is currently provided.
 
 ## Manual Steps
 
