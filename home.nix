@@ -11,8 +11,6 @@
   home.stateVersion = "22.05";
 
   home.packages = with pkgs; [
-    glibcLocales
-  
     wget
 
     git
@@ -63,6 +61,8 @@
     lima
     mas
     reattach-to-user-namespace
+  ] ++ lib.optionals stdenv.isLinux [
+    glibcLocales
   ];
 
   programs = {
