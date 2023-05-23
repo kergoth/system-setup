@@ -199,6 +199,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - [Hidden Bar](https://apps.apple.com/us/app/hidden-bar/id1452453066?mt=12&uo=4&at=10l4tL)
 - [Hush](https://apps.apple.com/us/app/hush-nag-blocker/id1544743900?uo=4&at=10l4tL)
 - [Itsycal for Mac](https://www.mowglii.com/itsycal/): A tiny menu bar calendar.
+- [kitty](https://sw.kovidgoyal.net/kitty/): The fast, feature-rich, GPU based terminal emulator.
 - [LilyView](https://apps.apple.com/us/app/lilyview/id529490330?mt=12&uo=4&at=10l4tL)
 - [LuLu](https://objective-see.org/products/lulu.html): The free, open-source firewall that aims to block unknown outgoing connections.
 - [Magnet](https://apps.apple.com/us/app/magnet/id441258766?mt=12&uo=4&at=10l4tL)
