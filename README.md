@@ -212,7 +212,6 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - [SyncThing](https://syncthing.net/)
 - [Tampermonkey](https://www.onlinedown.net/soft/1229995.htm)
 - [The Unarchiver](https://macpaw.com/download/the-unarchiver)
-- [Todoist](https://todoist.com/app/)
 - [Toolkit for YNAB](https://apps.apple.com/us/app/toolkit-for-ynab/id1592912837?mt=12&uo=4&at=10l4tL)
 - [Transmission Remote GUI](https://github.com/transmission-remote-gui/transgui): A feature rich cross platform Transmission BitTorrent client. Faster and has more functionality than the built-in web GUI.
 - [uBlacklist for Safari](https://apps.apple.com/us/app/ublacklist-for-safari/id1547912640?uo=4&at=10l4tL)
@@ -336,7 +335,6 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - [Balena Etcher](https://www.balena.io/etcher/)
 - [Paint.NET](https://getpaint.net)
 - [Process Explorer](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer) (from [Sysinternals](https://learn.microsoft.com/en-us/sysinternals/))
-- [Todoist](https://todoist.com/)
 - [WinDirStat](https://windirstat.net/)
 - [WinSCP](https://winscp.net/)
 
