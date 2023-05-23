@@ -30,6 +30,7 @@
     zoxide
     sd
     sad
+    unar
 
     # SCM & Related
     delta

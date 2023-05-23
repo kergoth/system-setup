@@ -113,15 +113,16 @@ setup scripts. This is self-contained also. No bootstrap.ps1 is currently provid
 - [git-branchless](https://github.com/arxanas/git-branchless): High-velocity, monorepo-scale workflow for Git.
 - [git-imerge](https://github.com/mhagger/git-imerge): Incremental merge for git.
 - [git-revise](https://github.com/mystor/git-revise): A handy tool for doing efficient in-memory commit rebases & fixups.
-- [jq](https://github.com/stedolan/jq): A lightweight and flexible command-line JSON processor.
 - [jira-cli](https://github.com/ankitpokhrel/jira-cli): Feature-rich interactive Jira command line.
+- [jq](https://github.com/stedolan/jq): A lightweight and flexible command-line JSON processor.
 - [peru](https://github.com/buildinspace/peru): A generic package manager, for including other people's code in your projects.
 - [ripgrep](https://github.com/BurntSushi/ripgrep): A line-oriented search tool that recursively searches the current directory for a regex pattern.
-- [sapling](https://sapling-scm.com): A Scalable, User-Friendly Source Control System.
 - [sad](https://github.com/ms-jpq/sad): CLI search and replace | Space Age seD.
+- [sapling](https://sapling-scm.com): A Scalable, User-Friendly Source Control System.
 - [sd](https://github.com/chmln/sd): Intuitive find & replace CLI (sed alternative).
 - [shellcheck](https://github.com/koalaman/shellcheck): A static analysis tool for shell scripts.
 - [shfmt](https://github.com/mvdan/sh#shfmt): Format shell programs.
+- [unar](https://theunarchiver.com/command-line): Universal archives extractor. Available via brew, nix, and scoop.
 - [zoxide](https://github.com/ajeetdsouza/zoxide): A smarter cd command, inspired by z and autojump.
 
 #### Linux and macOS
