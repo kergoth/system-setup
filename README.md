@@ -175,7 +175,6 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - [Discord](https://discord.com): A VoIP and instant messaging social platform.
 - [IRCCloud](https://www.irccloud.com/)
 - [Microsoft Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software?ms.url=teamscom&rtc=1)
-- [Slack](https://slack.com/)
 - [Visual Studio Code](https://code.visualstudio.com)
 - [Vivaldi](https://vivaldi.com/)
 
