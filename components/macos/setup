@@ -15,9 +15,9 @@ unset HOMEBREW_AUTO_UPDATE
 "$HOMEBREW_PREFIX/bin/brew" bundle --no-upgrade install --file="$scriptdir/components/macos/Brewfile"
 
 msg "Configuring"
-# shellcheck source=./components/macos/configure
-. "$scriptdir/components/macos/configure"
-# shellcheck source=./components/macos/setup-apps
-. "$scriptdir/components/macos/setup-apps"
+# shellcheck source=./configure
+. "$scriptdir/../components/macos/configure"
+# shellcheck source=./setup-apps
+. "$scriptdir/../components/macos/setup-apps"
 
 msg "Configuring complete"
