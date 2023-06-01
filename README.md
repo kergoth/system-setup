@@ -131,9 +131,18 @@ setup scripts. This is self-contained also. No bootstrap.ps1 is currently provid
 #### Linux and macOS
 
 - [nix](https://nixos.org): Nix is a tool that takes a unique approach to package management and system configuration.
+
 - [patchutils](http://cyberelk.net/tim/software/patchutils/): A small collection of programs that operate on patch files.
+
+  - On Windows, patchutils can be used via either WSl or MSYS2 (which can be installed via scoop and run as `msys2`, ex. `msys2 -c 'exec filterdiff "$@"' -`).
+
 - [ssh-copy-id](https://www.openssh.com): Install your identity.pub in a remote machine’s authorized_keys.
+
+  - On Windows, I have a powershell function which does this, and is aliased to `ssh-copy-id`.
+
 - [tmux](https://github.com/tmux/tmux): An open-source terminal multiplexer.
+
+  - There are no good options for tmux or tmux-equivalent on Windows. The closest you can get is just splits in Windows Terminal, which doesn't give you the ability to disconnect.
 
 #### macOS
 
