@@ -201,7 +201,7 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - [Bear](https://www.pcmag.com/reviews/bear-for-mac)
 - [BlockBlock](https://objective-see.org/products/blockblock.html): Monitors common persistence locations and alerts whenever a persistent component is added.
 - [Brooklyn](https://brooklyn99.fandom.com/wiki/Mac)
-- [Calibre](https://en.wikipedia.org/wiki/Calibre_(software))
+- [Calibre](<https://en.wikipedia.org/wiki/Calibre_(software)>)
 - [CleanMyDrive 2](https://apps.apple.com/us/app/cleanmydrive-2/id523620159?mt=12&uo=4&at=10l4tL)
 - [Declutter](https://apps.apple.com/us/app/declutter-pro/id1187706662?mt=12&uo=4&at=10l4tL)
 - [DevDocs for macOS](https://github.com/dteoh/devdocs-macos): An unofficial [DevDocs API Documentation](https://devdocs.io/) viewer for macOS.
