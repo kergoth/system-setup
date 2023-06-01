@@ -118,6 +118,7 @@ scoop install sd
 cargo install choose
 scoop install git-branchless
 scoop install unar
+scoop install zstd
 
 # Disk tools
 scoop install dua

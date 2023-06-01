@@ -126,6 +126,7 @@ setup scripts. This is self-contained also. No bootstrap.ps1 is currently provid
 - [shfmt](https://github.com/mvdan/sh#shfmt): Format shell programs.
 - [unar](https://theunarchiver.com/command-line): Universal archives extractor. Available via brew, nix, and scoop.
 - [zoxide](https://github.com/ajeetdsouza/zoxide): A smarter cd command, inspired by z and autojump.
+- [zstd](http://www.zstd.net/): Zstandard - Fast real-time compression algorithm.
 
 #### Linux and macOS
 

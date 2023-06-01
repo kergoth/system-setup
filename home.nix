@@ -31,6 +31,7 @@
     sd
     sad
     unar
+    zstd
 
     # SCM & Related
     delta
