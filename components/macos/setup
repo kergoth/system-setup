@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+repodir="$(cd "$(dirname "$0")/.." && pwd -P)"
+PATH="$repodir/scripts:$PATH"
+
+# shellcheck source=../common.sh
+. "$repodir/components/common.sh" || exit 1
+
 if ! [ -x "$HOMEBREW_PREFIX/bin/brew" ]; then
     msg "Installing homebrew"
     install-brew -s "$HOMEBREW_PREFIX" || {
@@ -16,8 +22,8 @@ unset HOMEBREW_AUTO_UPDATE
 
 msg "Configuring"
 # shellcheck source=./configure
-. "$scriptdir/../components/macos/configure"
+"$repodir/components/macos/configure"
 # shellcheck source=./setup-apps
-. "$scriptdir/../components/macos/setup-apps"
+"$repodir/components/macos/setup-apps"
 
 msg "Configuring complete"
