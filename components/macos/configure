@@ -165,6 +165,44 @@ defaults write com.apple.SafariTechnologyPreview ShowFullURLInSmartSearchField -
 defaults write com.apple.Safari ShowOverlayStatusBar -bool TRUE
 defaults write com.apple.SafariTechnologyPreview ShowOverlayStatusBar -bool TRUE
 
+# Restore session at launch by default
+defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
+defaults write com.apple.SafariTechnologyPreview AlwaysRestoreSessionAtLaunch -bool true
+
+# Disable autofill
+defaults write com.apple.Safari AutoFillCreditCardData -bool false
+defaults write com.apple.SafariTechnologyPreview AutoFillCreditCardData -bool false
+defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
+defaults write com.apple.SafariTechnologyPreview AutoFillMiscellaneousForms -bool false
+defaults write com.apple.Safari AutoFillPasswords -bool false
+defaults write com.apple.SafariTechnologyPreview AutoFillPasswords -bool false
+
+# Don't open downloads automatically
+defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+defaults write com.apple.SafariTechnologyPreview AutoOpenSafeDownloads -bool false
+
+# Compact tabs
+defaults write com.apple.Safari EnableNarrowTabs -bool true
+defaults write com.apple.SafariTechnologyPreview EnableNarrowTabs -bool true
+
+# Adjustments to start page
+defaults write com.apple.Safari HideStartPageRecentlyClosedTabsEmptyItemView -bool true
+defaults write com.apple.SafariTechnologyPreview HideStartPageRecentlyClosedTabsEmptyItemView -bool true
+defaults write com.apple.Safari HideStartPageSiriSuggestionsEmptyItemView -bool true
+defaults write com.apple.SafariTechnologyPreview HideStartPageSiriSuggestionsEmptyItemView -bool true
+
+# Hide footer and header in printouts
+defaults write com.apple.Safari PrintHeadersAndFooters -bool false
+defaults write com.apple.SafariTechnologyPreview PrintHeadersAndFooters -bool false
+
+# Only show unread in reading list
+defaults write com.apple.Safari ShowAllItemsInReadingList -bool false
+defaults write com.apple.SafariTechnologyPreview ShowAllItemsInReadingList -bool false
+
+# Hide Favorites bar by default
+defaults write com.apple.Safari ShowFavoritesBar-v2 -bool false
+defaults write com.apple.SafariTechnologyPreview ShowFavoritesBar-v2 -bool false
+
 ## Activity Monitor
 
 # Show the main window when launching Activity Monitor
