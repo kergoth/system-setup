@@ -102,10 +102,10 @@ try {
         . ($VSTools + "/Launch-VsDevShell.ps1")
     }
 
-    cargo install --git https://github.com/ogham/exa
+    cargo install eza
 }
 catch {
-    Write-Error "Failed to install exa. Please make sure the Visual Studio Build Tools with the C++ Desktop workload is installed."
+    Write-Error "Failed to install eza. Please make sure the Visual Studio Build Tools with the C++ Desktop workload is installed."
 }
 
 scoop install gh

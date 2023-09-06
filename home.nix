@@ -24,6 +24,7 @@
     python310.pkgs.pipx
     go
 
+    eza
     choose
     fd
     ripgrep
@@ -77,6 +78,5 @@
     fzf.enable = true;
     jq.enable = true;
     bat.enable = true;
-    exa.enable = true;
   };
 }
