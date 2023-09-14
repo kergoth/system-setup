@@ -6,7 +6,7 @@ usage() {
 }
 
 nix () {
-    command nix --experimental-features 'nix-command flakes' "$@"
+    command nix --extra-experimental-features 'nix-command flakes' "$@"
 }
 
 if ! command -v home-manager &>/dev/null; then
