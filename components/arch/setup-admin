@@ -3,7 +3,7 @@
 locale="en_US.UTF-8"
 
 # Sync the files database
-pacman -Fy
+sudorun pacman -Fy
 
 # Locales
 sed -i -e "/^#$locale /s/^#//" /etc/locale.gen
