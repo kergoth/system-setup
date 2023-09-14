@@ -2,8 +2,6 @@
 
 locale="en_US.UTF-8"
 
-pacman -Sy
-
 # Sync the files database
 pacman -Fy
 
