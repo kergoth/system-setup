@@ -150,6 +150,10 @@ install_nix() {
 
         sudorun systemctl enable nix-daemon
         sudorun systemctl start nix-daemon
+    elif uname -n | grep -qF lima; then
+        if ! has nix-env; then
+            curl -L https://nixos.org/nix/install | sudorun sh -s -- --no-daemon
+        fi
     else
         if ! has nix-env; then
             curl -L https://nixos.org/nix/install | sudorun sh -s -- --daemon
