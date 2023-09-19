@@ -66,7 +66,6 @@ fi
 
 git clone https://github.com/"$github_user"/brew "$HOMEBREW_REPO"
 git config -f "$HOMEBREW_REPO/.git/config" homebrew.analyticsdisabled true
-git clone https://github.com/"$github_user"/homebrew-core "$HOMEBREW_REPO/Library/Taps/homebrew/homebrew-core"
 
 HOMEBREW_PREFIX="$(cd "$HOMEBREW_PREFIX" && pwd -P)"
 if [ "$separate_prefix" -eq 1 ]; then
