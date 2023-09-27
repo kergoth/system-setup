@@ -191,11 +191,14 @@ The intention is to incorporate the installation of Nix on all systems in time.
 - [Visual Studio Code](https://code.visualstudio.com)
 - [Vivaldi](https://vivaldi.com/)
 
+#### macOS (Pre-Sonoma Only)
+
+- [Aerial](https://aerialscreensaver.github.io): A macOS screensaver that lets you play videos from Apple's tvOS screensaver.
+
 #### macOS
 
 - [1Password for Safari](https://apps.apple.com/us/app/1password-for-safari/id1569813296?mt=12&uo=4&at=10l4tL)
 - [AdGuard for Safari](https://apps.apple.com/us/app/adguard-for-safari/id1440147259?mt=12&uo=4&at=10l4tL)
-- [Aerial](https://aerialscreensaver.github.io): A macOS screensaver that lets you play videos from Apple's tvOS screensaver.
 - [Alfred](https://www.alfredapp.com)
 - [AppCleaner](https://macpaw.com/how-to/best-mac-cleaner-software)
 - [Bear](https://www.pcmag.com/reviews/bear-for-mac)

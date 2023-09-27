@@ -5,7 +5,6 @@ cask_args appdir: "~/Applications"
 
 brew "trash"
 
-cask "aerial"
 cask "alfred"
 cask "apparency"
 cask "appcleaner"

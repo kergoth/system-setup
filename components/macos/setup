@@ -20,6 +20,15 @@ unset HOMEBREW_AUTO_UPDATE
 # shellcheck disable=SC2154
 "$HOMEBREW_PREFIX/bin/brew" bundle --no-upgrade install --file="$scriptdir/components/macos/Brewfile"
 
+case "$(sw_vers -productVersion)" in
+    14.0)
+        :
+        ;;
+    *)
+        "$HOMEBREW_PREFIX/bin/brew" bundle --no-upgrade install --file="$scriptdir/components/macos/Brewfile-pre-Sonoma"
+        ;;
+esac
+
 msg "Configuring"
 # shellcheck source=./configure
 "$repodir/components/macos/configure"
