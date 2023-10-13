@@ -59,6 +59,7 @@
     # Nix tools
     nvd
   ] ++ lib.optionals stdenv.isDarwin [
+    qemu
     colima
     duti
     lima
