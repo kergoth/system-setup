@@ -42,7 +42,7 @@ if [ -n "$generation" ]; then
     package=".#homeConfigurations.$configuration.activationPackage"
     new_generation="$(nix path-info "$package" 2>/dev/null)" || :
 
-    if [ -n "$generation" ] && [ -n "$new_generation" ] && [ "$generation" != "$new_generation" ]; then
+    if command -v nvd >/dev/null 2>&1 && [ -n "$generation" ] && [ -n "$new_generation" ] && [ "$generation" != "$new_generation" ]; then
         nvd diff "$generation" "$new_generation"
     fi
 fi
