@@ -4,6 +4,9 @@ scriptdir="$(cd "$(dirname "$0")" && pwd -P)"
 tmpdir="$(mktemp -d -t "${0##*/}.XXXXXX")" || exit 1
 trap 'rm -rf "$tmpdir"' EXIT INT TERM
 
+# shellcheck source=./../common.sh
+. "$scriptdir/../common.sh" || exit 1
+
 # Prevent auto-mounting of remote-filesystems by Finder
 duti -vs com.apple.Safari afp
 duti -vs com.apple.Safari ftp
