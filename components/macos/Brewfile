@@ -33,6 +33,7 @@ cask "qlstephen"
 cask "quicklook-csv"
 cask "quicklook-json"
 cask "quicklookase"
+cask "rectangle"
 cask "soulver2"
 cask "suspicious-package"
 cask "swiftdefaultappsprefpane"
@@ -54,7 +55,6 @@ mas "GoodLinks", id: 1474335294
 mas "Hidden Bar", id: 1452453066
 mas "Hush", id: 1544743900
 mas "LilyView", id: 529490330
-mas "Magnet", id: 441258766
 mas "MusicHarbor", id: 1440405750
 mas "PiPer", id: 1421915518
 mas "PopClip", id: 445189367
