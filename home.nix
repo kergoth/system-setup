@@ -47,6 +47,7 @@
 
     # Disk tools
     dua
+    duf
     du-dust
 
     # Linting and formatting

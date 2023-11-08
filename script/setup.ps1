@@ -90,6 +90,7 @@ Add-EnvironmentVariableItem "PATH" "$env:USERPROFILE\.cargo\bin" -User
 # Install tools
 scoop install bat
 scoop install direnv
+scoop install duf
 scoop install fd
 scoop install ripgrep
 scoop install zoxide
