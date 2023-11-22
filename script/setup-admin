@@ -20,6 +20,7 @@ if [ -z "$HOMEBREW_PREFIX" ]; then
     die "HOMEBREW_PREFIX must be set or unset, not the empty string"
 fi
 
+component_source "$repodir" pre-setup-admin
 component_source "$repodir" setup-admin
 component_source "$repodir" post-setup-admin
 

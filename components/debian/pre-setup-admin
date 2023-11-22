@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Install xz for nix
+if ! has xz; then
+    sudorun apt-get -y install xz-utils
+fi
