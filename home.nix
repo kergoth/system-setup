@@ -12,6 +12,8 @@
 
   home.packages = with pkgs; [
     wget
+    curl
+    cacert
 
     git
     git-lfs
