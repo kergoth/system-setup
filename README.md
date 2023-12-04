@@ -2,7 +2,8 @@
 
 [![BlueOak 1.0.0 License](https://img.shields.io/badge/License-BlueOak%201.0.0-2D6B79.svg)](https://spdx.org/licenses/BlueOak-1.0.0.html)
 
-This project holds the consolidation of my various per-system setup script repositories into something more cohesive.
+This repository includes scripts for setting up systems per my personal
+preferences.
 
 ## Prerequisites
 
@@ -10,8 +11,7 @@ This project holds the consolidation of my various per-system setup script repos
 
 ## Usage
 
-This repository includes scripts for setting up systems per my personal
-preferences. The scripts are split into 4 phases, each of which is manually run:
+The scripts are split into 4 phases, each of which is manually run:
 
 The first two scripts are currently only used for non-Windows hosts. These are
 self-contained and may be used without cloning the repository:
