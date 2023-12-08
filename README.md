@@ -46,7 +46,7 @@ setup scripts. This is self-contained also. No bootstrap.ps1 is currently provid
 ### macOS
 
 - Enable `secure keyboard entry` in Terminal
-- `extras/enable-filevault`
+- `./scripts/extras/enable-filevault`
 - System Settings > Lock Screen
   - Set “Require password after screen saver begins or display is turned off” to after 5 seconds or less.
 - System Settings > Privacy & Security > Security
