@@ -89,6 +89,7 @@ Add-EnvironmentVariableItem "PATH" "$env:USERPROFILE\.cargo\bin" -User
 
 # Install tools
 scoop install bat
+scoop install cht
 scoop install direnv
 scoop install duf
 scoop install fd
