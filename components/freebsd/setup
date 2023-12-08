@@ -30,13 +30,12 @@ go_check() {
     gos="$gos $pkg"
 }
 
-
 pipxs=
 cargos=
 gos=
 
 if ! command -v pipx >/dev/null 2>&1; then
-    install-pipx
+    python3 -m pip install --user --disable-pip-version-check pipx
 fi
 
 pipx_check git-revise git-revise
