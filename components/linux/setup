@@ -14,3 +14,12 @@ if has pwsh; then
     # to transient network issues.
     pwsh -nop "./scripts/install-pwsh-modules.ps1" || :
 fi
+
+# Install dtrx, if unar is missing
+if ! command -v unar; then
+    if ! command -v pipx; then
+        python3 -m pip install --user --disable-pip-version-check pipx
+        python3 -m pipx ensurepath
+    fi
+    pipx install dtrx
+fi
